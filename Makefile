@@ -18,6 +18,6 @@ runGrobid:
 runMetatagger:
 	target/universal/stage/bin/meta-eval runMetatagger
 
-runPstotext:
-	target/universal/stage/bin/meta-eval runPstotext
+runPsToText:
+	target/universal/stage/bin/meta-eval runPsToText
 
