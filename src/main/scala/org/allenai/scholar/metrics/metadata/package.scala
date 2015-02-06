@@ -1,7 +1,6 @@
 package org.allenai.scholar.metrics
 
 import com.typesafe.config.ConfigFactory
-
 import scala.sys.process.Process
 import scala.xml.NodeSeq
 
@@ -17,7 +16,11 @@ package object metadata {
 
   val grobidRoot = s"$root/${config.getString("grobid.root")}"
   val grobidHome = s"$grobidRoot/grobid-home"
-  val grobidJar = s"$grobidRoot/grobid-core/target/grobid-core-0.3.1-SNAPSHOT.one-jar.jar"
+  val grobidJar = new File(s"$grobidRoot/grobid-core/target")
+      .listFiles
+      .filter(_.getName.endsWith("one-jar.jar"))
+      .head
+      .getAbsolutePath
   val grobidProperties = s"$grobidHome/config/grobid.properties"
 
   val pstotextHome = s"$root/${config.getString("pstotext.home")}"
