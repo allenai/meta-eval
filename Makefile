@@ -6,18 +6,19 @@ stage:
 conf: reports
 	cat src/main/resources/application.conf
 
+runGrobid: 
+	target/universal/stage/bin/meta-eval runGrobid
+
 evalGrobid:
 	target/universal/stage/bin/meta-eval evalGrobid
 
-evalMetatagger:
-	target/universal/stage/bin/meta-eval evalMetatagger
-
-runGrobid: 
-	target/universal/stage/bin/meta-eval runGrobid
+runPsToText:
+	target/universal/stage/bin/meta-eval runPsToText
 
 runMetatagger:
 	target/universal/stage/bin/meta-eval runMetatagger
 
-runPsToText:
-	target/universal/stage/bin/meta-eval runPsToText
+evalMetatagger:
+	target/universal/stage/bin/meta-eval evalMetatagger
+
 
