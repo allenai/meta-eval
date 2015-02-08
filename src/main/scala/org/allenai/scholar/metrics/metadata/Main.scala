@@ -1,6 +1,7 @@
 package org.allenai.scholar.metrics.metadata
 
 import java.io.File
+import java.nio.file.{Paths, Files}
 
 object Main extends App {
   def runGrobid() = {
@@ -37,8 +38,10 @@ object Main extends App {
 
   def runMetatagger() = {
     val inputs = new File(pstotextAclExtracted).listFiles
-    val metataggerInput = inputs.map { input =>
-      s"${input.getPath} -> $metataggerAclExtracted/${input.getName}.tagged.xml"
+    val metataggerInput = inputs.flatMap { input =>
+      val output = s"$metataggerAclExtracted/${input.getName}.tagged.xml"
+      if (Files.exists(Paths.get(output)))  None
+      else Some(s"${input.getPath} -> $output")
     }
 
     runProcess(
