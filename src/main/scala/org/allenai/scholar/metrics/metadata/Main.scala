@@ -1,9 +1,12 @@
 package org.allenai.scholar.metrics.metadata
 
 import java.io.File
-import java.nio.file.{Paths, Files}
+import java.nio.file.{ Paths, Files }
 
 object Main extends App {
+  /** Run only Grobid's processHeader for now, not fullText.
+    * https://github.com/kermitt2/grobid/wiki/Grobid-batch-quick-start
+    */
   def runGrobid() = {
     val processCmd = s"""java -Xmx1024m
                          -jar $grobidJar -gH $grobidHome
@@ -40,14 +43,17 @@ object Main extends App {
     val inputs = new File(pstotextAclExtracted).listFiles
     val metataggerInput = inputs.flatMap { input =>
       val output = s"$metataggerAclExtracted/${input.getName}.tagged.xml"
-      if (Files.exists(Paths.get(output)))  None
+
+      // skip if output file exists
+      if (Files.exists(Paths.get(output))) None
       else Some(s"${input.getPath} -> $output")
     }
 
     runProcess(
       s"bin/runcrf",
       cwd = Some(metataggerHome),
-      input = Some(metataggerInput.mkString("\n")))
+      input = Some(metataggerInput.mkString("\n"))
+    )
   }
 
   def evalMetatagger() = {
