@@ -1,7 +1,7 @@
 # Meta-Eval
 
 This is a tool to evaluate performance of various (research papers') metadata extraction
-libraries (see for example [this article]((https://medium.com/@vha14/extracting-metadata-from-research-articles-metatagger-versus-grobid-9249e4364734) for background). It has been verified to run on Mac OS X and Linux Ubuntu.
+libraries (see for example [this article](https://medium.com/@vha14/extracting-metadata-from-research-articles-metatagger-versus-grobid-9249e4364734) for background). It has been verified to run on Mac OS X and Linux Ubuntu.
 
 Currently, two libraries are supported:
 
