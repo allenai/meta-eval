@@ -13,7 +13,7 @@ object Main extends App {
                          -gP $grobidProperties
                          -dIn $aclPdfDir
                          -dOut $grobidAclExtracted
-                         -exe processHeader"""
+                         -exe processFullText"""
     runProcess(processCmd)
   }
 

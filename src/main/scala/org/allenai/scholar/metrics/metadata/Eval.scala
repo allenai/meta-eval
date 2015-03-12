@@ -13,15 +13,19 @@ import java.io.File
 case class Eval(
     algoName: String,
     taggedFiles: Array[File],
-    taggedFileParser: File => CoreMetadata
+    taggedFileParser: File => Option[CoreMetadata]
 ) {
   def computeEval(groundTruthMetadata: Map[String, CoreMetadata]): Array[CoreMetadataMatch] =
     taggedFiles.flatMap {
       f =>
-        val id = f.getName.split('.')(0)
-        groundTruthMetadata get id match {
-          case Some(gt) => Some(matchCoreMetadata(id, taggedFileParser(f), gt))
-          case _ => None
+        taggedFileParser(f) match {
+          case Some(parsed) =>
+            val id = f.getName.split('.')(0)
+            groundTruthMetadata get id match {
+              case Some(gt) => Some(matchCoreMetadata(id, parsed, gt))
+              case _ => None
+            }
+          case None => None
         }
     }
 
@@ -47,7 +51,7 @@ object Eval {
     val grobidEval = Eval(
       "Grobid",
       files,
-      parseGrobidCoreMetadata _
+      parseCoreMetadata(CoreExtractor.GROBID)
     )
 
     println(s"Processing ${files.size} grobid files")
@@ -58,7 +62,7 @@ object Eval {
     val metataggerEval = Eval(
       "Metatagger",
       files,
-      parseMetataggerCoreMetadata _
+      parseCoreMetadata(CoreExtractor.METATAGGER)
     )
 
     println(s"Processing ${files.size} metatagger files")

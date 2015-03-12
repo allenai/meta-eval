@@ -18,5 +18,7 @@ libraryDependencies ++= Seq(
 
 libraryDependencies += "io.spray" % "spray-json_2.11" % "1.3.1"
 
+libraryDependencies += "org.jsoup" % "jsoup" % "1.8.1"
+
 
 

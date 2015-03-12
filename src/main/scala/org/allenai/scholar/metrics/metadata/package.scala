@@ -1,10 +1,13 @@
 package org.allenai.scholar.metrics
 
 import com.typesafe.config.ConfigFactory
+import org.jsoup.nodes.Element
+import org.jsoup.select.Elements
 import scala.sys.process.Process
 import scala.xml.NodeSeq
-
+import org.apache.commons.lang3.StringUtils._
 import java.io.{ ByteArrayInputStream, FileWriter, BufferedWriter, File }
+import java.time.Year
 
 package object metadata {
   val config = ConfigFactory.load()
@@ -29,6 +32,8 @@ package object metadata {
   val grobidAclExtracted = s"$aclExtracted/grobid"
   val pstotextAclExtracted = s"$aclExtracted/pstotext"
   val metataggerAclExtracted = s"$aclExtracted/metatagger"
+
+  val defaultPublishedYear = Year.parse("0000")
 
   /** Run a shell process, optionally time it.
     * @param processCmd The command string to execute.
@@ -67,24 +72,37 @@ package object metadata {
     bw.close()
   }
 
+  implicit class StringImplicits(str: String) {
+    def normalize() = stripAccents(str.trim.toLowerCase)
+
+    def trimRight(s: String, filter: Char => Boolean): String = {
+      if (s.isEmpty) s
+      else s.last match {
+        case c if filter(c) => trimRight(s.substring(0, s.size - 1), filter)
+        case _ => s
+      }
+    }
+
+    def trimRight(filter: Char => Boolean): String = trimRight(str, filter)
+  }
+
   /** Some convenient conversions for an XML NodeSeq.
-    * @param n The XML NodeSeq.
+    * @param elems The XML NodeSeq.
     */
-  implicit class XmlNodeSeqImplicits(n: NodeSeq) {
-    def toLowerCaseText: String = n.text.toLowerCase
+  implicit class JsoupElementsImplicits(elems: Element) {
+    def toLowerCaseText(): String = elems.text.toLowerCase
 
     /** Lower case, then trim all non-letters to the right.
       * @return The lower-cased and trimmed output.
       */
-    def toLowerCaseTextTrimNonLetters: String = {
-      def trim(s: String): String = if (s.isEmpty) s
-      else s.last match {
-        case c if c < 'a'.toInt || c > 'z'.toInt => trim(s.substring(0, s.size - 1))
-        case _ => s
-      }
+    def toLowerCaseTextTrimNonLetters: String =
+      elems.text.normalize.trimRight(c => c < 'a'.toInt || c > 'z'.toInt)
 
-      trim(n.toLowerCaseText)
-    }
+    /** Lower case, then trim all characters end the end that belong to a blacklist
+      * @param chars The string containing the blacklisted chars.
+      * @return The trimmed string.
+      */
+    def toLowerCaseTextTrimChars(chars: String): String =
+      elems.text.normalize.trimRight(c => chars.contains(c))
   }
-
 }

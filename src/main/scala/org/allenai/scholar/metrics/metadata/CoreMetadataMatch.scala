@@ -99,10 +99,14 @@ object CoreMetadataMatch {
       (countDiff, exact, edit)
     }
 
+    val (lastNames1, fullNames1) = m1.authorNames.unzip
+    val (lastNames2, fullNames2) = m2.authorNames.unzip
+
     val (fullNameCountDiff, fullNameExact, fullNameEdit) =
-      matchLists(m1.authorFullNames, m2.authorFullNames)
+      matchLists(fullNames1, fullNames2)
     val (lastNameCountDiff, lastNameExact, lastNameEdit) =
-      matchLists(m1.authorLastNames, m2.authorLastNames)
+      matchLists(lastNames1, lastNames2)
+
     CoreMetadataMatch(
       id = id,
       titleExact = m1.title == m2.title,
