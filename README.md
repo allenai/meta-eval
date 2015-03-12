@@ -21,7 +21,7 @@ Below is the guide to set up and run meta-eval on your own machine. We are in th
 To run this evaluation tool, the following are needed:
 
 - Mac OS X or Linux. Linux Ubuntu has been tested.
-- Java 7+ runtime.
+- Java 8 (due to the use of Java's time library.
 - Scala 2.11 or later.
 - Git.
 - Simple build tool (sbt), version 0.13.7 or later.
