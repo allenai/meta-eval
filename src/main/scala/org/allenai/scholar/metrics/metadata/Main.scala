@@ -8,7 +8,7 @@ object Main extends App {
     * https://github.com/kermitt2/grobid/wiki/Grobid-batch-quick-start
     */
   def runGrobid() = {
-    val processCmd = s"""java -Xmx1024m
+    val processCmd = s"""java -Xmx4096m
                          -jar $grobidJar -gH $grobidHome
                          -gP $grobidProperties
                          -dIn $aclPdfDir
