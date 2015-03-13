@@ -134,7 +134,6 @@ object CoreMetadata {
     * @return The paper's core metadata.
     */
   def parseCoreMetadata(tagger: CoreExtractor)(file: File): Option[CoreMetadata] = {
-    println(s"processing ${file.getName}")
     try {
       val doc = Jsoup.parse(file, "UTF-8", "")
       def extractName(a: Element, namePath: String) = a.select(namePath).headOption match {
@@ -192,7 +191,7 @@ object CoreMetadata {
       ))
     } catch {
       case e: Exception => {
-        println(s"Could not load xml file ${file.getName}")
+        println(s"Could not parse xml file ${file.getName}")
         e.printStackTrace()
         None
       }
