@@ -51,7 +51,7 @@ object Eval {
     val grobidEval = Eval(
       "Grobid",
       files,
-      parseCoreMetadata(CoreExtractor.GROBID)
+      grobidParser.parseCoreMetadata
     )
 
     println(s"Processing ${files.size} grobid files")
@@ -62,7 +62,7 @@ object Eval {
     val metataggerEval = Eval(
       "Metatagger",
       files,
-      parseCoreMetadata(CoreExtractor.METATAGGER)
+      metataggerParser.parseCoreMetadata
     )
 
     println(s"Processing ${files.size} metatagger files")

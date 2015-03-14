@@ -3,6 +3,7 @@ package org.allenai.scholar.metrics
 import com.typesafe.config.ConfigFactory
 import org.apache.commons.lang3.StringUtils._
 import org.jsoup.nodes.Element
+import org.jsoup.select.Elements
 
 import scala.sys.process.Process
 
@@ -96,24 +97,65 @@ package object metadata {
     }
   }
 
+  object ElementsImplicit {
+
+    import scala.collection.JavaConverters._
+
+    /** Convenient implicit: no need for .asScala any time calling jsoup's select. */
+    implicit def elementsToSeq(elms: Elements): collection.mutable.Buffer[Element] = elms.asScala
+  }
+
   /** Some convenient conversions for an XML NodeSeq.
-    * @param elems The XML NodeSeq.
+    * @param e The XML NodeSeq.
     */
-  implicit class JsoupElementsImplicits(elems: Element) {
-    def toLowerCaseText(): String = elems.text.toLowerCase
+  implicit class JsoupElementsImplicits(e: Element) {
+
+    import org.allenai.scholar.metrics.metadata.ElementsImplicit._
+
+    def toLowerCaseText(): String = e.text.toLowerCase
 
     /** Lower case, then trim all non-letters to the right.
       * @return The lower-cased and trimmed output.
       */
     def toLowerCaseTextTrimNonLetters: String =
-      elems.text.normalize.trimRight(c => c < 'a'.toInt || c > 'z'.toInt)
+      e.text.normalize.trimRight(c => c < 'a'.toInt || c > 'z'.toInt)
 
     /** Lower case, then trim all characters end the end that belong to a blacklist
       * @param chars The string containing the blacklisted chars.
       * @return The trimmed string.
       */
     def toLowerCaseTextTrimChars(chars: String): String =
-      elems.text.normalize.trimRight(c => chars.contains(c))
+      e.text.normalize.trimRight(c => chars.contains(c))
+
+    def extractName(namePath: String) = e.select(namePath).headOption match {
+      case Some(n) => n.toLowerCaseTextTrimNonLetters
+      case None => ""
+    }
+
+    def extractLower(path: String) = e.select(path).headOption match {
+      case Some(v) => v.toLowerCaseText
+      case None => ""
+    }
+
+    def extractTitle(path: String) = extractLower(path)
+
+    def extractLowerTrimChars(path: String, chars: String) =
+      e.select(path).headOption match {
+        case Some(v) => v.toLowerCaseTextTrimChars(chars)
+        case None => ""
+      }
+
+    def extractBibTitle(path: String) = e.extractLowerTrimChars(path, ",.")
+
+    def extractYear(path: String, get: Element => String) =
+      e.select(path).headOption match {
+        case Some(d) => "\\d{4}".r.findFirstIn(get(d)) match {
+          case Some(y) => Year.parse(y)
+          case None => defaultPublishedYear
+        }
+        case None => defaultPublishedYear
+      }
+
   }
 
 }
