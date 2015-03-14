@@ -67,10 +67,9 @@ object Main extends App {
   val cmds = this.getClass.getDeclaredMethods.map(m => m.getName -> m).toMap
 
   cmds get args(0) match {
-    case Some(m) => {
+    case Some(m) =>
       println(s"Invoking ${m.getName}")
       m.invoke(this)
-    }
     case _ => println(s"Unrecognized cmd: ${args(0)}")
   }
 }

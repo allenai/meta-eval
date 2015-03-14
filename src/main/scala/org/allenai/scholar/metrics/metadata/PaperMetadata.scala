@@ -7,14 +7,12 @@ import spray.json._
 import scala.io.Source
 
 case class PaperMetadata(
-    id: String,
-    title: String,
-    venue: String,
-    year: Int,
-    authors: List[String]
-) {
-  @transient lazy val authorLastNames = authors map (_ dropWhile (_ == ' ') takeWhile (_ != ','))
-}
+  id: String,
+  title: String,
+  venue: String,
+  year: Int,
+  authors: List[String]
+)
 
 object PaperMetadata {
   implicit val JsFormat = jsonFormat5(PaperMetadata.apply)
@@ -33,7 +31,7 @@ object PaperMetadata {
     meta.map { m =>
       m.id -> CoreMetadata(
         m.title.toLowerCase,
-        m.authorLastNames.map(normalize).sorted.zip(m.authors.map(normalize).sorted)
+        m.authors.map(normalize).sorted
       )
     }
   }.toMap

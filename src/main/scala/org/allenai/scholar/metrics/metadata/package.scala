@@ -1,12 +1,12 @@
 package org.allenai.scholar.metrics
 
 import com.typesafe.config.ConfigFactory
-import org.jsoup.nodes.Element
-import org.jsoup.select.Elements
-import scala.sys.process.Process
-import scala.xml.NodeSeq
 import org.apache.commons.lang3.StringUtils._
-import java.io.{ ByteArrayInputStream, FileWriter, BufferedWriter, File }
+import org.jsoup.nodes.Element
+
+import scala.sys.process.Process
+
+import java.io.{ BufferedWriter, ByteArrayInputStream, File, FileWriter }
 import java.time.Year
 
 package object metadata {
@@ -84,6 +84,16 @@ package object metadata {
     }
 
     def trimRight(filter: Char => Boolean): String = trimRight(str, filter)
+
+    def lastNameFromFull() = str.trim.takeWhile(_ != ',')
+
+    def buildFullName(first: String, middle: String, initial: Boolean = false) = {
+      def format(name: String) = if (initial) name(0) else name
+      var full = str
+      if (first.nonEmpty) full = full + s", ${format(first)}"
+      if (middle.nonEmpty) full = full + s" ${format(middle)}"
+      full
+    }
   }
 
   /** Some convenient conversions for an XML NodeSeq.
@@ -105,4 +115,5 @@ package object metadata {
     def toLowerCaseTextTrimChars(chars: String): String =
       elems.text.normalize.trimRight(c => chars.contains(c))
   }
+
 }

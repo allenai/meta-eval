@@ -99,13 +99,12 @@ object CoreMetadataMatch {
       (countDiff, exact, edit)
     }
 
-    val (lastNames1, fullNames1) = m1.authorNames.unzip
-    val (lastNames2, fullNames2) = m2.authorNames.unzip
+    val (fullNames1, fullNames2) = (m1.authorNames, m2.authorNames)
+    val lastNames1 = fullNames1.map(_.lastNameFromFull)
+    val lastNames2 = fullNames2.map(_.lastNameFromFull)
 
-    val (fullNameCountDiff, fullNameExact, fullNameEdit) =
-      matchLists(fullNames1, fullNames2)
-    val (lastNameCountDiff, lastNameExact, lastNameEdit) =
-      matchLists(lastNames1, lastNames2)
+    val (fullNameCountDiff, fullNameExact, fullNameEdit) = matchLists(fullNames1, fullNames2)
+    val (lastNameCountDiff, lastNameExact, lastNameEdit) = matchLists(lastNames1, lastNames2)
 
     CoreMetadataMatch(
       id = id,
