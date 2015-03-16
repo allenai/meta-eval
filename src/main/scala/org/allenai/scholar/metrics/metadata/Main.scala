@@ -1,5 +1,7 @@
 package org.allenai.scholar.metrics.metadata
 
+import org.allenai.scholar.metrics.metadata.CoreMetadata.{ grobidParser, metataggerParser }
+
 import java.io.File
 import java.nio.file.{ Files, Paths }
 
@@ -18,12 +20,11 @@ object Main extends App {
   }
 
   def evalGrobid() = {
-    Eval.evalGrobid(
-      files = new File(grobidAclExtracted).listFiles,
-      groundTruthMetadataFile = aclMetadata,
-      citationEdgesFile = aclCitationEdges,
-      idWhiteListFile = Some(aclIdWhiteList)
-    )
+    Eval(
+      algoName = "Grobid",
+      taggedFiles = new File(grobidAclExtracted).listFiles,
+      taggedFileParser = grobidParser.parseCoreMetadata
+    ).run(aclMetadata, aclCitationEdges, Some(aclIdWhiteList))
   }
 
   def psToTextOutputFile(input: File) = s"$pstotextAclExtracted/${input.getName}.xml"
@@ -59,15 +60,11 @@ object Main extends App {
   }
 
   def evalMetatagger() = {
-    Eval.evalMetatagger(
-      // Filter out files that are too small, a sign that metatagger failed
-      files = new File(metataggerAclExtracted).listFiles,
-      //      files = new File(metataggerAclExtracted).listFiles.filter(_.length > 1000),
-      groundTruthMetadataFile = aclMetadata,
-      citationEdgesFile = aclCitationEdges,
-      //      idWhiteListFile = None)
-      Some(aclIdWhiteList)
-    )
+    Eval(
+      algoName = "Metatagger",
+      taggedFiles = new File(metataggerAclExtracted).listFiles,
+      taggedFileParser = metataggerParser.parseCoreMetadata
+    ).run(aclMetadata, aclCitationEdges, Some(aclIdWhiteList))
   }
 
   val cmds = this.getClass.getDeclaredMethods.map(m => m.getName -> m).toMap

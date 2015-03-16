@@ -85,35 +85,3 @@ case class Eval(
     }
   }
 }
-
-/** Defining evaluations of different metadata extraction algorithms.
-  */
-object Eval {
-  def evalGrobid(
-    files: Array[File],
-    groundTruthMetadataFile: String,
-    citationEdgesFile: String,
-    idWhiteListFile: Option[String]
-  ) = {
-
-    Eval(
-      algoName = "Grobid",
-      taggedFiles = files,
-      taggedFileParser = grobidParser.parseCoreMetadata
-    ).run(groundTruthMetadataFile, citationEdgesFile, idWhiteListFile)
-  }
-
-  def evalMetatagger(
-    files: Array[File],
-    groundTruthMetadataFile: String,
-    citationEdgesFile: String,
-    idWhiteListFile: Option[String]
-  ) = {
-
-    Eval(
-      algoName = "Metatagger",
-      taggedFiles = files,
-      taggedFileParser = metataggerParser.parseCoreMetadata
-    ).run(groundTruthMetadataFile, citationEdgesFile, idWhiteListFile)
-  }
-}
