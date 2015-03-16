@@ -1,28 +1,25 @@
 package org.allenai.scholar.metrics.metadata
 
 import com.sun.xml.internal.bind.v2.util.EditDistance
-import spray.json.DefaultJsonProtocol._
 
 import java.text.DecimalFormat
 
 /** Object containing key stats of comparing core metadata.
   * @param nEntries Number of papers in the eval.
   * @param titleExact Precision of title using exact string matching.
-  * @param titleEdit Average title edit distance (normalized by the longer title's length).
-  * @param titleEditPrecision Normalized edit distance precision of title.
+  * @param titleEdit Normalized edit distance precision of title.
   * @param fullNameCountDiff Average difference between the number of authors.
   * @param fullNameExact Precision of full name extraction using exact string matching.
-  * @param fullNameEdit Average full name edit distance (normalized by the longer name's length).
-  * @param fullNameEditPrecision Normalized edit distance precision of full name.
+  * @param fullNameEdit Normalized edit distance precision of full name.
   * @param lastNameExact Precision of last name extraction using exact string matching.
-  * @param lastNameEdit Average last name edit distance (normalized by the longer name's length).
-  * @param lastNameEditPrecision Normalized edit distance precision of last name.
+  * @param lastNameEdit Normalized edit distance precision of last name.
   */
 case class CoreMetadataMatchStats(
   nEntries: Int,
-  titleExact: Double, titleEdit: Double, titleEditPrecision: Double,
-  fullNameCountDiff: Double, fullNameExact: Double, fullNameEdit: Double, fullNameEditPrecision: Double,
-  lastNameExact: Double, lastNameEdit: Double, lastNameEditPrecision: Double
+  titleExact: Double, titleEdit: Double,
+  fullNameCountDiff: Double, fullNameExact: Double, fullNameEdit: Double,
+  lastNameExact: Double, lastNameEdit: Double,
+  bibScore: Double
 )
 
 object CoreMetadataMatchStats {
@@ -33,16 +30,18 @@ object CoreMetadataMatchStats {
 
     println(s"Precision on titles exact/edit: ${
       formatter.format(matchSummary.titleExact)
-    }%/${formatter.format(matchSummary.titleEditPrecision)}%")
+    }%/${formatter.format(matchSummary.titleEdit)}%")
 
     println(s"Average difference in number of author full names: ${formatter.format(matchSummary.fullNameCountDiff)}")
     println(s"Precision on author full names exact/edit: ${
       formatter.format(matchSummary.fullNameExact)
-    }%/ ${formatter.format(matchSummary.fullNameEditPrecision)}%")
+    }%/ ${formatter.format(matchSummary.fullNameEdit)}%")
 
     println(s"Precision on author last names exact/edit: ${
       formatter.format(matchSummary.lastNameExact)
-    }%/${formatter.format(matchSummary.lastNameEditPrecision)}")
+    }%/${formatter.format(matchSummary.lastNameEdit)}")
+
+    println(s"Precision on bib extraction: ${formatter.format(matchSummary.bibScore)}%")
   }
 }
 
@@ -55,7 +54,8 @@ case class CoreMetadataMatch(
     authorFullNameEdit: Double,
     authorLastNameExact: Boolean,
     authorLastNameCountDiff: Int,
-    authorLastNameEdit: Double
+    authorLastNameEdit: Double,
+    bibScore: Option[Double]
 ) {
 
   /** Prepare a row in Tableau format for this match.
@@ -63,7 +63,7 @@ case class CoreMetadataMatch(
     * @return
     */
   def getValueRow(algoName: String) = {
-    import CoreMetadataMatch._
+    import org.allenai.scholar.metrics.metadata.CoreMetadataMatch._
 
     def boolToInt(b: Boolean) = if (b) 1 else 0
 
@@ -84,18 +84,22 @@ object CoreMetadataMatch {
     */
   def getHeaderRow() = "algorithm" + sep + fields.map(_.getName).mkString(sep)
 
-  implicit val jsFormat = jsonFormat9(CoreMetadataMatch.apply)
-
-  def matchCoreMetadata(id: String, m1: CoreMetadata, m2: CoreMetadata): CoreMetadataMatch = {
-    def editDistance(s1: String, s2: String): Double = {
+  def matchCoreMetadata(
+    id: String,
+    m1: CoreMetadata,
+    m2: CoreMetadata,
+    bibs: Option[Map[String, CoreMetadata]]
+  ): CoreMetadataMatch = {
+    def editPrecision(s1: String, s2: String): Double = {
       val d = EditDistance.editDistance(s1, s2)
-      if (d == 0) 0.0 else d * 1.0 / Seq(s1.length, s2.length).max
+      val ed = if (d == 0) 0.0 else d * 1.0 / Seq(s1.length, s2.length).max
+      1 - ed
     }
 
     def matchLists(l1: Seq[String], l2: Seq[String]) = {
       val countDiff = l1.size - l2.size
       val exact = countDiff == 0 && l1.zip(l2).forall(pair => pair._1 == pair._2)
-      val edit = editDistance(l1.mkString(";"), l2.mkString(";"))
+      val edit = editPrecision(l1.mkString(";"), l2.mkString(";"))
       (countDiff, exact, edit)
     }
 
@@ -106,41 +110,60 @@ object CoreMetadataMatch {
     val (fullNameCountDiff, fullNameExact, fullNameEdit) = matchLists(fullNames1, fullNames2)
     val (lastNameCountDiff, lastNameExact, lastNameEdit) = matchLists(lastNames1, lastNames2)
 
+    val bibScore = bibs match {
+      case Some(bibMap) =>
+        val scores = for {
+          b <- m1.bibs
+          key = CoreMetadata.bibKey(b)
+          score <- bibMap.get(key) match {
+            case Some(cm) =>
+              Some(editPrecision(b.title, cm.title))
+            case None => None
+          }
+        } yield score
+
+        Some(scores.sum / bibMap.size)
+      case None => None
+    }
+
     CoreMetadataMatch(
       id = id,
       titleExact = m1.title == m2.title,
-      titleEdit = editDistance(m1.title, m2.title),
+      titleEdit = editPrecision(m1.title, m2.title),
       authorFullNameExact = fullNameExact,
       authorFullNameCountDiff = fullNameCountDiff,
       authorFullNameEdit = fullNameEdit,
       authorLastNameExact = lastNameExact,
       authorLastNameCountDiff = lastNameCountDiff,
-      authorLastNameEdit = lastNameEdit
+      authorLastNameEdit = lastNameEdit,
+      bibScore = bibScore
     )
   }
 
   def stats(matches: Seq[CoreMetadataMatch]) = {
-    def editPrecision(edit: Double) = 100 - 100 * edit
-
     val nEntries = matches.size
-    val titleExact = matches.count(m => m.titleExact) * 100.0 / nEntries
-    val titleEdit = matches.map(_.titleEdit).sum / nEntries
-    val titleEditPrecision = editPrecision(titleEdit)
+
+    def percent(raw: Double) = raw * 100 / nEntries
+
+    val titleExact = percent(matches.count(m => m.titleExact))
+    val titleEdit = percent(matches.map(_.titleEdit).sum)
 
     val fullNameCountDiff = matches.map(_.authorFullNameCountDiff).sum * 1.0 / nEntries
-    val fullNameExact = matches.count(m => m.authorFullNameExact) * 100.0 / nEntries
-    val fullNameEdit = matches.map(_.authorFullNameEdit).sum / nEntries
-    val fullNameEditPrecision = editPrecision(fullNameEdit)
+    val fullNameExact = percent(matches.count(m => m.authorFullNameExact))
+    val fullNameEdit = percent(matches.map(_.authorFullNameEdit).sum)
 
-    val lastNameExact = matches.count(m => m.authorLastNameExact) * 100.0 / nEntries
-    val lastNameEdit = matches.map(_.authorLastNameEdit).sum / nEntries
-    val lastNameEditPrecision = editPrecision(lastNameEdit)
+    val lastNameExact = percent(matches.count(m => m.authorLastNameExact))
+    val lastNameEdit = percent(matches.map(_.authorLastNameEdit).sum)
+
+    val bibScores = matches.flatMap(_.bibScore)
+    val bibScore = bibScores.sum * 100 / bibScores.size
 
     CoreMetadataMatchStats(
       nEntries = nEntries,
-      titleExact = titleExact, titleEdit = titleEdit, titleEditPrecision = titleEditPrecision,
-      fullNameCountDiff = fullNameCountDiff, fullNameExact = fullNameExact, fullNameEdit = fullNameEdit, fullNameEditPrecision = fullNameEditPrecision,
-      lastNameExact = lastNameExact, lastNameEdit = lastNameEdit, lastNameEditPrecision = lastNameEditPrecision
+      titleExact = titleExact, titleEdit = titleEdit,
+      fullNameCountDiff = fullNameCountDiff, fullNameExact = fullNameExact, fullNameEdit = fullNameEdit,
+      lastNameExact = lastNameExact, lastNameEdit = lastNameEdit,
+      bibScore = bibScore
     )
   }
 }

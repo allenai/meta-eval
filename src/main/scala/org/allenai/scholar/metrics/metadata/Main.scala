@@ -1,7 +1,7 @@
 package org.allenai.scholar.metrics.metadata
 
 import java.io.File
-import java.nio.file.{ Paths, Files }
+import java.nio.file.{ Files, Paths }
 
 object Main extends App {
   /** Run only Grobid's processHeader for now, not fullText.
@@ -18,10 +18,7 @@ object Main extends App {
   }
 
   def evalGrobid() = {
-    import PaperMetadata._
-    val files = new File(grobidAclExtracted).listFiles
-    val groundTruthMetadata = convertToCore(fromJsonLinesFile(aclMetadata))
-    Eval.evalGrobid(files, groundTruthMetadata)
+    Eval.evalGrobid(new File(grobidAclExtracted).listFiles, aclMetadata, aclCitationEdges)
   }
 
   def psToTextOutputFile(input: File) = s"$pstotextAclExtracted/${input.getName}.xml"
@@ -57,11 +54,9 @@ object Main extends App {
   }
 
   def evalMetatagger() = {
-    import PaperMetadata._
     // Filter out files that are too small, a sign that metatagger failed
     val files = new File(metataggerAclExtracted).listFiles.filter(_.length > 1000)
-    val groundTruthMetadata = convertToCore(fromJsonLinesFile(aclMetadata))
-    Eval.evalMetatagger(files, groundTruthMetadata)
+    Eval.evalMetatagger(files, aclMetadata, aclCitationEdges)
   }
 
   val cmds = this.getClass.getDeclaredMethods.map(m => m.getName -> m).toMap

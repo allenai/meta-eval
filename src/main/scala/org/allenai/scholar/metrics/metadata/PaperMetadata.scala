@@ -1,10 +1,11 @@
 package org.allenai.scholar.metrics.metadata
 
-import org.apache.commons.lang3.StringUtils._
 import spray.json.DefaultJsonProtocol._
 import spray.json._
 
 import scala.io.Source
+
+import java.time.Year
 
 case class PaperMetadata(
   id: String,
@@ -22,16 +23,13 @@ object PaperMetadata {
       _.parseJson.convertTo[PaperMetadata]
     }
 
-  def convertToCore(meta: Iterator[PaperMetadata], stripAcc: Boolean = true): Map[String, CoreMetadata] = {
-    def normalize(s: String) = {
-      val res = s.trim.toLowerCase
-      if (stripAcc) stripAccents(res) else res
-    }
-
+  def convertToCore(meta: Iterator[PaperMetadata]): Map[String, CoreMetadata] = {
     meta.map { m =>
       m.id -> CoreMetadata(
-        m.title.toLowerCase,
-        m.authors.map(normalize).sorted
+        title = m.title.toLowerCase,
+        authorNames = m.authors.map(_.normalize).sorted,
+        venue = m.venue,
+        publishedYear = Year.parse(m.year.toString)
       )
     }
   }.toMap

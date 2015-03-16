@@ -25,6 +25,16 @@ object CoreMetadata {
 
   import org.allenai.scholar.metrics.metadata.ElementsImplicit._
 
+  /** Assumption that the first two last names, published year, and first word in the title uniquely
+    * id a paper. Failure may occur, but very rarely.
+    * @param cm The CoreMetadata object.
+    * @return The hash/key of cm.
+    */
+  def bibKey(cm: CoreMetadata): String =
+    cm.authorNames.take(2).map(_.lastNameFromFull).mkString("_") +
+      cm.publishedYear +
+      cm.title.takeWhile(_ != ' ')
+
   abstract class Parser(
       titlePath: String,
       authorPath: String,
