@@ -19,30 +19,32 @@ case class Eval(
 ) {
   def computeEval(
     groundTruthMetadata: Map[String, CoreMetadata],
-    bibs: Map[String, Map[String, CoreMetadata]]
+    bibs: Map[String, Map[String, CoreMetadata]],
+    idFilter: String => Boolean
   ): Array[CoreMetadataMatch] =
-    taggedFiles.flatMap {
-      f =>
-        taggedFileParser(f) match {
-          case Some(parsed) =>
-            val id = f.getName.split('.')(0)
-            groundTruthMetadata get id match {
-              case Some(gt) => Some(matchCoreMetadata(id, parsed, gt, bibs.get(id)))
-              case _ => None
-            }
-          case None => None
-        }
-    }
+    for {
+      f <- taggedFiles
+      id = f.getName.split('.')(0)
+      if idFilter(id)
+      m <- taggedFileParser(f) match {
+        case Some(parsed) =>
+          groundTruthMetadata get id match {
+            case Some(gt) => Some(matchCoreMetadata(id, parsed, gt, bibs.get(id)))
+            case _ => None
+          }
+        case None => None
+      }
+    } yield m
 
   /** Run evaluation, print out summary, and save match data to Tableau format.
     * @param groundTruthMetadata map paper ids to ground truth core metadata.
     */
   def run(
     groundTruthMetadata: Map[String, CoreMetadata],
-    bibs: Map[String, Map[String, CoreMetadata]]
+    bibs: Map[String, Map[String, CoreMetadata]],
+    idFilter: String => Boolean
   ): Unit = {
-    val matches = computeEval(groundTruthMetadata, bibs)
-    println(s"Summary of match results for $algoName: ")
+    val matches = computeEval(groundTruthMetadata, bibs, idFilter)
     CoreMetadataMatchStats.printSummary(CoreMetadataMatch.stats(matches))
 
     val evalTsvFile = algoName + ".tab"
@@ -51,7 +53,11 @@ case class Eval(
     writeToFile(entries, evalTsvFile)
   }
 
-  def run(groundTruthMetadataFile: String, citationEdgesFile: String): Unit = {
+  def run(
+    groundTruthMetadataFile: String,
+    citationEdgesFile: String,
+    idWhiteListFile: Option[String] = None
+  ): Unit = {
     import org.allenai.scholar.metrics.metadata.PaperMetadata._
     val groundTruthMetadata = convertToCore(fromJsonLinesFile(groundTruthMetadataFile))
 
@@ -71,32 +77,43 @@ case class Eval(
     val bibs = edges.toList
       .groupBy(_._1) // group by citing paper id
       .mapValues(_.map(_._2).toMap) // each value is a map from citee's bibKey to its CoreMetadata
-    run(groundTruthMetadata, bibs)
+    idWhiteListFile match {
+      case Some(fn) =>
+        val whiteList = Source.fromFile(fn).getLines.toSet
+        run(groundTruthMetadata, bibs, whiteList.contains(_))
+      case None => run(groundTruthMetadata, bibs, id => true)
+    }
   }
 }
 
 /** Defining evaluations of different metadata extraction algorithms.
   */
 object Eval {
-  def evalGrobid(files: Array[File], groundTruthMetadataFile: String, citationEdgesFile: String) = {
-    val grobidEval = Eval(
-      "Grobid",
-      files,
-      grobidParser.parseCoreMetadata
-    )
+  def evalGrobid(
+    files: Array[File],
+    groundTruthMetadataFile: String,
+    citationEdgesFile: String,
+    idWhiteListFile: Option[String]
+  ) = {
 
-    println(s"Processing ${files.size} grobid files")
-    grobidEval.run(groundTruthMetadataFile, citationEdgesFile)
+    Eval(
+      algoName = "Grobid",
+      taggedFiles = files,
+      taggedFileParser = grobidParser.parseCoreMetadata
+    ).run(groundTruthMetadataFile, citationEdgesFile, idWhiteListFile)
   }
 
-  def evalMetatagger(files: Array[File], groundTruthMetadataFile: String, citationEdgesFile: String) = {
-    val metataggerEval = Eval(
-      "Metatagger",
-      files,
-      metataggerParser.parseCoreMetadata
-    )
+  def evalMetatagger(
+    files: Array[File],
+    groundTruthMetadataFile: String,
+    citationEdgesFile: String,
+    idWhiteListFile: Option[String]
+  ) = {
 
-    println(s"Processing ${files.size} metatagger files")
-    metataggerEval.run(groundTruthMetadataFile, citationEdgesFile)
+    Eval(
+      algoName = "Metatagger",
+      taggedFiles = files,
+      taggedFileParser = metataggerParser.parseCoreMetadata
+    ).run(groundTruthMetadataFile, citationEdgesFile, idWhiteListFile)
   }
 }

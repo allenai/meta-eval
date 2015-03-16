@@ -18,6 +18,7 @@ package object metadata {
   val aclPdfDir = s"$aclHome/${config.getString("data.acl.pdfDirectory")}"
   val aclMetadata = s"$aclHome/${config.getString("data.acl.metadata")}"
   val aclCitationEdges = s"$aclHome/${config.getString("data.acl.citationEdges")}"
+  val aclIdWhiteList = s"$aclHome/${config.getString("data.acl.idWhiteList")}"
 
   val grobidRoot = s"$root/${config.getString("grobid.root")}"
   val grobidHome = s"$grobidRoot/grobid-home"

@@ -18,7 +18,12 @@ object Main extends App {
   }
 
   def evalGrobid() = {
-    Eval.evalGrobid(new File(grobidAclExtracted).listFiles, aclMetadata, aclCitationEdges)
+    Eval.evalGrobid(
+      files = new File(grobidAclExtracted).listFiles,
+      groundTruthMetadataFile = aclMetadata,
+      citationEdgesFile = aclCitationEdges,
+      idWhiteListFile = Some(aclIdWhiteList)
+    )
   }
 
   def psToTextOutputFile(input: File) = s"$pstotextAclExtracted/${input.getName}.xml"
@@ -54,9 +59,15 @@ object Main extends App {
   }
 
   def evalMetatagger() = {
-    // Filter out files that are too small, a sign that metatagger failed
-    val files = new File(metataggerAclExtracted).listFiles.filter(_.length > 1000)
-    Eval.evalMetatagger(files, aclMetadata, aclCitationEdges)
+    Eval.evalMetatagger(
+      // Filter out files that are too small, a sign that metatagger failed
+      files = new File(metataggerAclExtracted).listFiles,
+      //      files = new File(metataggerAclExtracted).listFiles.filter(_.length > 1000),
+      groundTruthMetadataFile = aclMetadata,
+      citationEdgesFile = aclCitationEdges,
+      //      idWhiteListFile = None)
+      Some(aclIdWhiteList)
+    )
   }
 
   val cmds = this.getClass.getDeclaredMethods.map(m => m.getName -> m).toMap
