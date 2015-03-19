@@ -2,9 +2,13 @@ import com.typesafe.sbt.SbtNativePackager.packageArchetype
 
 import org.allenai.plugins.CoreDependencies
 
+import org.allenai.plugins.CoreRepositories.PublishTo
+
 name := "meta-eval"
 
 version := "1.0"
+
+organization := "org.allenai.scholar.metrics.metadata"
 
 packageArchetype.java_application
 
@@ -20,6 +24,8 @@ libraryDependencies += "org.jsoup" % "jsoup" % "1.8.1"
 dependencyOverrides ++= Set(
   "com.typesafe" % "config" % "1.2.1"
 )
+
+PublishTo.ai2Public
 
 
 
