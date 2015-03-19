@@ -24,6 +24,7 @@ object PaperMetadata {
     }
 
   def convertToCore(meta: Iterator[PaperMetadata]): Map[String, CoreMetadata] = {
+    import Parser.StringImplicits
     meta.map { m =>
       m.id -> CoreMetadata(
         title = m.title.toLowerCase,

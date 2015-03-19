@@ -1,14 +1,10 @@
 package org.allenai.scholar.metrics
 
 import com.typesafe.config.ConfigFactory
-import org.apache.commons.lang3.StringUtils._
-import org.jsoup.nodes.Element
-import org.jsoup.select.Elements
 
 import scala.sys.process.Process
 
 import java.io.{ BufferedWriter, ByteArrayInputStream, File, FileWriter }
-import java.time.Year
 
 package object metadata {
   val config = ConfigFactory.load()
@@ -36,7 +32,7 @@ package object metadata {
   val pstotextAclExtracted = s"$aclExtracted/pstotext"
   val metataggerAclExtracted = s"$aclExtracted/metatagger"
 
-  val defaultPublishedYear = Year.parse("0000")
+  val yearZero = java.time.Year.of(0)
 
   /** Run a shell process, optionally time it.
     * @param processCmd The command string to execute.
@@ -49,8 +45,8 @@ package object metadata {
     time: Boolean = true,
     input: Option[String] = None,
     cwd: Option[String] = None
-  ) = {
-
+  ): Unit = {
+    import scala.language.postfixOps
     println(s"Running command: $processCmd")
     val proc = cwd match {
       case Some(d) => Process(processCmd, new File(d))
@@ -69,95 +65,9 @@ package object metadata {
     * @param lines The lines.
     * @param fileName The name of the output file.
     */
-  def writeToFile(lines: Iterable[String], fileName: String) = {
+  def writeToFile(lines: Iterable[String], fileName: String): Unit = {
     val bw = new BufferedWriter(new FileWriter(new File(fileName)))
     bw.write(lines.mkString("\n"))
     bw.close()
   }
-
-  implicit class StringImplicits(str: String) {
-    def normalize() = stripAccents(str.trim.toLowerCase)
-
-    def trimRight(s: String, filter: Char => Boolean): String = {
-      if (s.isEmpty) s
-      else s.last match {
-        case c if filter(c) => trimRight(s.substring(0, s.size - 1), filter)
-        case _ => s
-      }
-    }
-
-    def trimRight(filter: Char => Boolean): String = trimRight(str, filter)
-
-    def lastNameFromFull() = str.trim.takeWhile(_ != ',')
-
-    def buildFullName(first: String, middle: String, initial: Boolean = false) = {
-      def format(name: String) = if (initial) name(0) else name
-      var full = str
-      if (first.nonEmpty) full = full + s", ${format(first)}"
-      if (middle.nonEmpty) full = full + s" ${format(middle)}"
-      full
-    }
-  }
-
-  object ElementsImplicit {
-
-    import scala.collection.JavaConverters._
-
-    /** Convenient implicit: no need for .asScala any time calling jsoup's select. */
-    implicit def elementsToSeq(elms: Elements): collection.mutable.Buffer[Element] = elms.asScala
-  }
-
-  /** Some convenient conversions for an XML NodeSeq.
-    * @param e The XML NodeSeq.
-    */
-  implicit class JsoupElementsImplicits(e: Element) {
-
-    import org.allenai.scholar.metrics.metadata.ElementsImplicit._
-
-    def toLowerCaseText(): String = e.text.toLowerCase
-
-    /** Lower case, then trim all non-letters to the right.
-      * @return The lower-cased and trimmed output.
-      */
-    def toLowerCaseTextTrimNonLetters: String =
-      e.text.normalize.trimRight(c => c < 'a'.toInt || c > 'z'.toInt)
-
-    /** Lower case, then trim all characters end the end that belong to a blacklist
-      * @param chars The string containing the blacklisted chars.
-      * @return The trimmed string.
-      */
-    def toLowerCaseTextTrimChars(chars: String): String =
-      e.text.normalize.trimRight(c => chars.contains(c))
-
-    def extractName(namePath: String) = e.select(namePath).headOption match {
-      case Some(n) => n.toLowerCaseTextTrimNonLetters
-      case None => ""
-    }
-
-    def extractLower(path: String) = e.select(path).headOption match {
-      case Some(v) => v.toLowerCaseText
-      case None => ""
-    }
-
-    def extractTitle(path: String) = extractLower(path)
-
-    def extractLowerTrimChars(path: String, chars: String) =
-      e.select(path).headOption match {
-        case Some(v) => v.toLowerCaseTextTrimChars(chars)
-        case None => ""
-      }
-
-    def extractBibTitle(path: String) = e.extractLowerTrimChars(path, ",.")
-
-    def extractYear(path: String, get: Element => String) =
-      e.select(path).headOption match {
-        case Some(d) => "\\d{4}".r.findFirstIn(get(d)) match {
-          case Some(y) => Year.parse(y)
-          case None => defaultPublishedYear
-        }
-        case None => defaultPublishedYear
-      }
-
-  }
-
 }

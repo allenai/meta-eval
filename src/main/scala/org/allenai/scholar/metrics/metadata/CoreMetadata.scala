@@ -16,14 +16,16 @@ import java.time.Year
 case class CoreMetadata(
   title: String,
   authorNames: List[String],
-  publishedYear: Year = defaultPublishedYear,
+  publishedYear: Year = yearZero,
   venue: String = "",
   bibs: List[CoreMetadata] = List()
 )
 
 object CoreMetadata {
 
-  import org.allenai.scholar.metrics.metadata.ElementsImplicit._
+  import org.allenai.scholar.metrics.metadata.Parser.ElementsImplicit.elementsToSeq
+  import org.allenai.scholar.metrics.metadata.Parser.StringImplicits
+  import org.allenai.scholar.metrics.metadata.Parser.JsoupElementsImplicits
 
   /** Assumption that the first two last names, published year, and first word in the title uniquely
     * id a paper. Failure may occur, but very rarely.
@@ -52,7 +54,7 @@ object CoreMetadata {
 
     def extractSpecialBib(bib: Element): CoreMetadata
 
-    def extractNames(e: Element, authorPath: String, initial: Boolean = false) =
+    protected def extractNames(e: Element, authorPath: String, initial: Boolean = false) =
       e.select(authorPath).map(a => {
         val last = a.extractName(lastRelativePath)
         val first = a.extractName(firstRelativePath)
@@ -60,7 +62,7 @@ object CoreMetadata {
         last.buildFullName(first, middle)
       }).sorted.toList
 
-    def extractBibs(doc: Document) = doc.select(bibMainPath).map(bib =>
+    private def extractBibs(doc: Document) = doc.select(bibMainPath).map(bib =>
       bib.extractBibTitle(bibTitlePath) match {
         case title if title.nonEmpty =>
           CoreMetadata(
@@ -92,7 +94,7 @@ object CoreMetadata {
     }
   }
 
-  object grobidParser extends Parser(
+  object GrobidParser extends Parser(
     titlePath = "teiHeader>fileDesc>titleStmt>title",
     authorPath = "teiHeader>fileDesc>sourceDesc>biblStruct>analytic>author",
     lastRelativePath = "persName>surname",
@@ -103,12 +105,12 @@ object CoreMetadata {
     bibTitlePath = "analytic>title[type=main]"
   ) {
 
-    override def extractBibYear(bib: Element) =
+    def extractBibYear(bib: Element): Year =
       bib.extractYear("monogr>imprint>date[type=published]", _.attr("when"))
 
-    def extractVenue(bib: Element) = bib.extractBibTitle("monogr>title")
+    def extractVenue(bib: Element): String = bib.extractBibTitle("monogr>title")
 
-    override def extractSpecialBib(bib: Element) =
+    def extractSpecialBib(bib: Element): CoreMetadata =
       CoreMetadata(
         title = extractVenue(bib), // venue becomes title for PhD theses
         authorNames = extractNames(bib, "monogr>author"),
@@ -117,7 +119,7 @@ object CoreMetadata {
       )
   }
 
-  object metataggerParser extends Parser(
+  object MetataggerParser extends Parser(
     titlePath = "document>content>headers>title",
     authorPath = "document>content>headers>authors>author",
     lastRelativePath = "author-last",
@@ -128,16 +130,16 @@ object CoreMetadata {
     bibTitlePath = "title"
   ) {
 
-    override def extractBibYear(bib: Element) = bib.extractYear("date", _.text)
+    def extractBibYear(bib: Element): Year = bib.extractYear("date", _.text)
 
-    override def extractVenue(bib: Element) =
+    def extractVenue(bib: Element): String =
       List("conference", "journal", "booktitle")
         .find(vt => !bib.select(vt).isEmpty) match {
           case Some(v) => bib.extractBibTitle(v)
           case None => ""
         }
 
-    override def extractSpecialBib(bib: Element) =
+    def extractSpecialBib(bib: Element): CoreMetadata =
       CoreMetadata(
         title = bib.extractBibTitle("booktitle"),
         authorNames = extractNames(bib, "authors>author"),

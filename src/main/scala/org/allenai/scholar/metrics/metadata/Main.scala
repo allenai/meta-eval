@@ -1,6 +1,6 @@
 package org.allenai.scholar.metrics.metadata
 
-import org.allenai.scholar.metrics.metadata.CoreMetadata.{ grobidParser, metataggerParser }
+import org.allenai.scholar.metrics.metadata.CoreMetadata.{ GrobidParser, MetataggerParser }
 
 import java.io.File
 import java.nio.file.{ Files, Paths }
@@ -9,7 +9,7 @@ object Main extends App {
   /** Run only Grobid's processHeader for now, not fullText.
     * https://github.com/kermitt2/grobid/wiki/Grobid-batch-quick-start
     */
-  def runGrobid() = {
+  def runGrobid(): Unit = {
     val processCmd = s"""java -Xmx4096m
                          -jar $grobidJar -gH $grobidHome
                          -gP $grobidProperties
@@ -19,18 +19,17 @@ object Main extends App {
     runProcess(processCmd)
   }
 
-  def evalGrobid() = {
+  def evalGrobid(): Unit = {
     Eval(
       algoName = "Grobid",
       taggedFiles = new File(grobidAclExtracted).listFiles,
-      taggedFileParser = grobidParser.parseCoreMetadata
+      taggedFileParser = GrobidParser.parseCoreMetadata
     ).run(aclMetadata, aclCitationEdges, Some(aclIdWhiteList))
   }
 
-  def psToTextOutputFile(input: File) = s"$pstotextAclExtracted/${input.getName}.xml"
-
-  def runPsToText() = {
-    def processCmd(input: File) =
+  def runPsToText(): Unit = {
+    def psToTextOutputFile(input: File): String = s"$pstotextAclExtracted/${input.getName}.xml"
+    def processCmd(input: File): String =
       s"""$pstotextHome/bin/pstotext
            -output ${psToTextOutputFile(input)}
            -ligatures $pstotextHome/bin/ligatures.txt
@@ -42,14 +41,13 @@ object Main extends App {
     println(s"Time elapsed in milliseconds: ${System.currentTimeMillis() - startTime}")
   }
 
-  def runMetatagger() = {
+  def runMetatagger(): Unit = {
     val inputs = new File(pstotextAclExtracted).listFiles
     val metataggerInput = inputs.flatMap { input =>
       val output = s"$metataggerAclExtracted/${input.getName}.tagged.xml"
 
       // skip if output file exists
-      if (Files.exists(Paths.get(output))) None
-      else Some(s"${input.getPath} -> $output")
+      if (Files.exists(Paths.get(output))) None else Some(s"${input.getPath} -> $output")
     }
 
     runProcess(
@@ -59,11 +57,11 @@ object Main extends App {
     )
   }
 
-  def evalMetatagger() = {
+  def evalMetatagger(): Unit = {
     Eval(
       algoName = "Metatagger",
       taggedFiles = new File(metataggerAclExtracted).listFiles,
-      taggedFileParser = metataggerParser.parseCoreMetadata
+      taggedFileParser = MetataggerParser.parseCoreMetadata
     ).run(aclMetadata, aclCitationEdges, Some(aclIdWhiteList))
   }
 

@@ -67,7 +67,7 @@ case class Eval(
       if s.length > 1
       (citing, citee) = (s(0), s(1))
       citeeMeta <- groundTruthMetadata.get(citee) match {
-        case Some(cm) => Some(bibKey(cm), cm)
+        case Some(cm) => Some((bibKey(cm), cm))
         case None => None
       }
     } yield {

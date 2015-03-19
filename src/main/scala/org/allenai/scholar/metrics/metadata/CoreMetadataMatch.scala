@@ -32,7 +32,10 @@ object CoreMetadataMatchStats {
       formatter.format(matchSummary.titleExact)
     }%/${formatter.format(matchSummary.titleEdit)}%")
 
-    println(s"Average difference in number of author full names: ${formatter.format(matchSummary.fullNameCountDiff)}")
+    println(s"Average difference in number of author full names: ${
+      formatter.format(matchSummary
+        .fullNameCountDiff)
+    }")
     println(s"Precision on author full names exact/edit: ${
       formatter.format(matchSummary.fullNameExact)
     }%/ ${formatter.format(matchSummary.fullNameEdit)}%")
@@ -58,14 +61,13 @@ case class CoreMetadataMatch(
     bibScore: Option[Double]
 ) {
 
-  /** Prepare a row in Tableau format for this match.
-    * @param algoName
-    * @return
+  /** @param algoName The name of the algo such as Grobid, Metatagger, etc.
+    * @return Return a row in Tableau format for this match.
     */
-  def getValueRow(algoName: String) = {
+  def getValueRow(algoName: String): String = {
     import org.allenai.scholar.metrics.metadata.CoreMetadataMatch._
 
-    def boolToInt(b: Boolean) = if (b) 1 else 0
+    def boolToInt(b: Boolean): Int = if (b) 1 else 0
 
     algoName + sep + fields.map { f =>
       f.setAccessible(true)
@@ -79,10 +81,9 @@ object CoreMetadataMatch {
 
   lazy val fields = classOf[CoreMetadataMatch].getDeclaredFields
 
-  /** Prepare the header in Tableau format.
-    * @return
+  /** @return Return the header in Tableau format.
     */
-  def getHeaderRow() = "algorithm" + sep + fields.map(_.getName).mkString(sep)
+  def getHeaderRow: String = "algorithm" + sep + fields.map(_.getName).mkString(sep)
 
   def matchCoreMetadata(
     id: String,
@@ -90,13 +91,14 @@ object CoreMetadataMatch {
     m2: CoreMetadata,
     bibs: Option[Map[String, CoreMetadata]]
   ): CoreMetadataMatch = {
+    import Parser.StringImplicits
     def editPrecision(s1: String, s2: String): Double = {
       val d = EditDistance.editDistance(s1, s2)
       val ed = if (d == 0) 0.0 else d * 1.0 / Seq(s1.length, s2.length).max
       1 - ed
     }
 
-    def matchLists(l1: Seq[String], l2: Seq[String]) = {
+    def matchLists(l1: Seq[String], l2: Seq[String]): (Int, Boolean, Double) = {
       val countDiff = l1.size - l2.size
       val exact = countDiff == 0 && l1.zip(l2).forall(pair => pair._1 == pair._2)
       val edit = editPrecision(l1.mkString(";"), l2.mkString(";"))
@@ -140,10 +142,10 @@ object CoreMetadataMatch {
     )
   }
 
-  def stats(matches: Seq[CoreMetadataMatch]) = {
+  def stats(matches: Seq[CoreMetadataMatch]): CoreMetadataMatchStats = {
     val nEntries = matches.size
 
-    def percent(raw: Double) = raw * 100 / nEntries
+    def percent(raw: Double): Double = raw * 100 / nEntries
 
     val titleExact = percent(matches.count(m => m.titleExact))
     val titleEdit = percent(matches.map(_.titleEdit).sum)
@@ -161,7 +163,8 @@ object CoreMetadataMatch {
     CoreMetadataMatchStats(
       nEntries = nEntries,
       titleExact = titleExact, titleEdit = titleEdit,
-      fullNameCountDiff = fullNameCountDiff, fullNameExact = fullNameExact, fullNameEdit = fullNameEdit,
+      fullNameCountDiff = fullNameCountDiff,
+      fullNameExact = fullNameExact, fullNameEdit = fullNameEdit,
       lastNameExact = lastNameExact, lastNameEdit = lastNameEdit,
       bibScore = bibScore
     )
