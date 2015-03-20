@@ -55,6 +55,11 @@ object Parser {
       if (middle.nonEmpty) full = full + s" ${format(middle)}"
       full
     }
+
+    def extractYear(): Year = "\\d{4}".r.findFirstIn(str) match {
+      case Some(y) => Year.parse(y)
+      case None => yearZero
+    }
   }
 
   object ElementsImplicit {
@@ -70,30 +75,22 @@ object Parser {
 
     import ElementsImplicit._
 
-    def extractName(namePath: String): String = e.select(namePath).headOption match {
-      case Some(n) => n.text.normalize.trimNonLowerCaseLetters
+    def extractNormalize(path: String): String = e.select(path).headOption match {
+      case Some(v) => v.text.normalize
       case None => ""
     }
 
-    def extractTitle(path: String): String = e.select(path).headOption match {
-      case Some(v) => v.text.toLowerCase
-      case None => ""
-    }
+    def extractName(namePath: String): String =
+      extractNormalize(namePath).trimNonLowerCaseLetters
 
-    def extractLowerTrimChars(path: String, chars: String): String =
-      e.select(path).headOption match {
-        case Some(v) => v.text.normalize.trimChars(chars)
-        case None => ""
-      }
+    def extractTitle(path: String): String = extractNormalize(path)
 
-    def extractBibTitle(path: String): String = e.extractLowerTrimChars(path, ",.")
+    def extractBibTitle(path: String): String =
+      e.extractNormalize(path).trimChars(",.")
 
     def extractYear(path: String, get: Element => String): Year =
       e.select(path).headOption match {
-        case Some(d) => "\\d{4}".r.findFirstIn(get(d)) match {
-          case Some(y) => Year.parse(y)
-          case None => yearZero
-        }
+        case Some(d) => get(d).extractYear
         case None => yearZero
       }
 

@@ -28,7 +28,7 @@ object PaperMetadata {
     meta.map { m =>
       m.id -> CoreMetadata(
         title = m.title.toLowerCase,
-        authorNames = m.authors.map(_.normalize).sorted,
+        authorNames = m.authors.map(_.normalize),
         venue = m.venue,
         publishedYear = Year.parse(m.year.toString)
       )

@@ -60,7 +60,7 @@ object CoreMetadata {
         val first = a.extractName(firstRelativePath)
         val middle = a.extractName(middleRelativePath)
         last.buildFullName(first, middle)
-      }).sorted.toList
+      }).toList
 
     private def extractBibs(doc: Document) = doc.select(bibMainPath).map(bib =>
       bib.extractBibTitle(bibTitlePath) match {
