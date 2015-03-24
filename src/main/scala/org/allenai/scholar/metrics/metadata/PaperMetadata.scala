@@ -14,8 +14,8 @@ case class PaperMetadata(
   year: Int,
   authors: List[String]
 ) {
+  import Parser.StringImplicits
   def toCore: (String, CoreMetadata) = {
-    import Parser.StringImplicits
     id -> CoreMetadata(
       title = title.toLowerCase,
       authorNames = authors.map(_.normalize),
@@ -23,6 +23,7 @@ case class PaperMetadata(
       publishedYear = Year.parse(year.toString)
     )
   }
+  def authorLastNames = authors.map(_.lastNameFromFull)
 }
 
 object PaperMetadata {
