@@ -3,6 +3,8 @@ package org.allenai.scholar.metrics.metadata
 import org.jsoup.Jsoup
 import org.jsoup.nodes.{ Document, Element }
 
+import scala.io.Source
+
 import java.io.File
 import java.time.Year
 
@@ -74,23 +76,27 @@ object CoreMetadata {
         case _ => extractSpecialBib(bib)
       }).toList
 
-    /** Function that parses an XML file to produce core metadata.
-      * Names are lower-cased and trimmed of non-letter at the end.
-      * @param file The XML file
-      * @return The paper's core metadata.
-      */
     def parseCoreMetadata(file: File): Option[CoreMetadata] = try {
-      val doc = Jsoup.parse(file, "UTF-8", "")
-      Some(CoreMetadata(
-        title = doc.extractTitle(titlePath),
-        authorNames = extractNames(doc, authorPath),
-        bibs = extractBibs(doc)
-      ))
+      val xmlString = Source.fromFile(file, "UTF-8").getLines().mkString("\n")
+      Some(parseCoreMetadataString(xmlString))
     } catch {
       case e: Exception =>
         println(s"Could not parse xml file ${file.getName}")
         e.printStackTrace()
         None
+    }
+    /** Function that parses an XML file to produce core metadata.
+      * Names are lower-cased and trimmed of non-letter at the end.
+      * @param xmlString The XML data as a string
+      * @return The paper's core metadata.
+      */
+    def parseCoreMetadataString(xmlString: String): CoreMetadata = {
+      val doc = Jsoup.parse(xmlString)
+      CoreMetadata(
+        title = doc.extractTitle(titlePath),
+        authorNames = extractNames(doc, authorPath),
+        bibs = extractBibs(doc)
+      )
     }
   }
 
