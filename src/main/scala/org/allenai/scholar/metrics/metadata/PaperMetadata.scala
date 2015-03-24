@@ -8,11 +8,11 @@ import scala.io.Source
 import java.time.Year
 
 case class PaperMetadata(
-  id: String,
-  title: String,
-  venue: String,
-  year: Int,
-  authors: List[String]
+    id: String,
+    title: String,
+    venue: String,
+    year: Int,
+    authors: List[String]
 ) {
   import Parser.StringImplicits
   def toCore: (String, CoreMetadata) = {
@@ -33,7 +33,6 @@ object PaperMetadata {
     Source.fromFile(metaFileName).getLines.map {
       _.parseJson.convertTo[PaperMetadata]
     }
-
 
   def convertToCore(pm: Iterator[PaperMetadata]): Map[String, CoreMetadata] =
     pm.map(_.toCore).toMap
