@@ -23,16 +23,16 @@ object PaperMetadata {
       _.parseJson.convertTo[PaperMetadata]
     }
 
-  def convertToCore(meta: Iterator[PaperMetadata]): Map[String, CoreMetadata] = {
+  def toCore(m: PaperMetadata): (String, CoreMetadata) = {
     import Parser.StringImplicits
-    meta.map { m =>
-      m.id -> CoreMetadata(
-        title = m.title.toLowerCase,
-        authorNames = m.authors.map(_.normalize),
-        venue = m.venue,
-        publishedYear = Year.parse(m.year.toString)
-      )
-    }
-  }.toMap
+    m.id -> CoreMetadata(
+      title = m.title.toLowerCase,
+      authorNames = m.authors.map(_.normalize),
+      venue = m.venue,
+      publishedYear = Year.parse(m.year.toString)
+    )
+  }
+
+  def convertToCore(pm: Iterator[PaperMetadata]): Map[String, CoreMetadata] = pm.map(toCore).toMap
 }
 
