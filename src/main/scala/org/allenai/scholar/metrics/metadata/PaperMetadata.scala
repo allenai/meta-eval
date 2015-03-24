@@ -13,7 +13,17 @@ case class PaperMetadata(
   venue: String,
   year: Int,
   authors: List[String]
-)
+) {
+  def toCore: (String, CoreMetadata) = {
+    import Parser.StringImplicits
+    id -> CoreMetadata(
+      title = title.toLowerCase,
+      authorNames = authors.map(_.normalize),
+      venue = venue,
+      publishedYear = Year.parse(year.toString)
+    )
+  }
+}
 
 object PaperMetadata {
   implicit val JsFormat = jsonFormat5(PaperMetadata.apply)
@@ -23,16 +33,8 @@ object PaperMetadata {
       _.parseJson.convertTo[PaperMetadata]
     }
 
-  def toCore(m: PaperMetadata): (String, CoreMetadata) = {
-    import Parser.StringImplicits
-    m.id -> CoreMetadata(
-      title = m.title.toLowerCase,
-      authorNames = m.authors.map(_.normalize),
-      venue = m.venue,
-      publishedYear = Year.parse(m.year.toString)
-    )
-  }
 
-  def convertToCore(pm: Iterator[PaperMetadata]): Map[String, CoreMetadata] = pm.map(toCore).toMap
+  def convertToCore(pm: Iterator[PaperMetadata]): Map[String, CoreMetadata] =
+    pm.map(_.toCore).toMap
 }
 
