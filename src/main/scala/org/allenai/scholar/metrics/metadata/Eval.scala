@@ -55,24 +55,6 @@ case class Eval(
     writeToFile(entries, evalTsvFile)
   }
 
-  def edgesToBibKeyMap(
-    citationEdges: Iterable[(String, String)],
-    coreMetadata: Map[String, CoreMetadata]
-  ): Map[String, Map[String, CoreMetadata]] = {
-    val edges = for {
-      (citing, citee) <- citationEdges
-      citeeMeta <- coreMetadata.get(citee) match {
-        case Some(cm) => Some((bibKey(cm), cm))
-        case None => None
-      }
-    } yield {
-      citing -> citeeMeta
-    }
-    edges
-      .groupBy(_._1) // group by citing paper id
-      .mapValues(_.map(_._2).toMap) // each value is a map from citee's bibKey to its CoreMetadata
-  }
-
   def run(
     groundTruthMetadataFile: String,
     groundTruthCitationEdgesFile: String,
@@ -87,7 +69,7 @@ case class Eval(
     } yield {
       (s(0), s(1))
     }
-    val bibs = edgesToBibKeyMap(citationEdges, groundTruthMetadata)
+    val bibs = CoreMetadata.edgesToBibKeyMap(citationEdges, groundTruthMetadata)
     idWhiteListFile match {
       case Some(fn) =>
         val whiteList = Source.fromFile(fn).getLines.toSet
