@@ -85,7 +85,7 @@ object CoreMetadata {
         e.printStackTrace()
         None
     }
-    /** Function that parses an XML file to produce core metadata.
+    /** Function that parses XML to produce core metadata.
       * Names are lower-cased and trimmed of non-letter at the end.
       * @param xmlString The XML data as a string
       * @return The paper's core metadata.

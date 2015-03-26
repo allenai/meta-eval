@@ -30,7 +30,8 @@ object Parser {
       */
     def trimRight(filter: Char => Boolean): String = trimRight(str, filter)
 
-    /** @return Given full name such as "Doe, John A.", returns the last name assuming that it's the word before the comma.
+    /** @return Given full name such as "Doe, John A.", returns the last name assuming
+      *         that it's the word before the comma.
       */
     def lastNameFromFull(): String = str.trim.takeWhile(_ != ',')
 
