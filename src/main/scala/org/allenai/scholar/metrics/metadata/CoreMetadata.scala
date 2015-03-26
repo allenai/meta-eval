@@ -39,6 +39,7 @@ object CoreMetadata {
       cm.publishedYear +
       cm.title.takeWhile(_ != ' ')
 
+
   def edgesToBibKeyMap(
     citationEdges: Iterable[(String, String)],
     coreMetadata: Map[String, CoreMetadata]
@@ -53,8 +54,8 @@ object CoreMetadata {
       citing -> citeeMeta
     }
     edges
-      .groupBy(_._1) // group by citing paper id
-      .mapValues(_.map(_._2).toMap) // each value is a map from citee's bibKey to its CoreMetadata
+        .groupBy(_._1) // group by citing paper id
+        .mapValues(_.map(_._2).toMap) // each value is a map from citee's bibKey to its CoreMetadata
   }
 
   abstract class Parser(

@@ -1,7 +1,5 @@
 package org.allenai.scholar.metrics
 
-import com.typesafe.config.ConfigFactory
-
 import scala.sys.process.Process
 
 import java.io.{ BufferedWriter, ByteArrayInputStream, File, FileWriter }
