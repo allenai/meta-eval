@@ -6,6 +6,7 @@ import spray.json._
 import scala.io.Source
 
 import java.time.Year
+import java.time.format.DateTimeParseException
 
 case class PaperMetadata(
     id: String,
@@ -20,10 +21,21 @@ case class PaperMetadata(
       title = title.toLowerCase,
       authorNames = authors.map(_.normalize),
       venue = venue,
-      publishedYear = Year.parse(year.toString)
+      publishedYear = yearIntAsYear
     )
   }
   def authorLastNames = authors.map(_.lastNameFromFull)
+  def yearIntAsYear: Year = {
+    if (year == 0) {
+      yearZero
+    } else {
+      try {
+        Year.parse(year.toString)
+      } catch {
+        case e: DateTimeParseException => yearZero
+      }
+    }
+  }
 }
 
 object PaperMetadata {
