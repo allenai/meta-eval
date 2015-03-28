@@ -102,15 +102,14 @@ object CoreMetadataMatch {
     */
   def getHeaderRow: String = "algorithm" + sep + fields.map(_.getName).mkString(sep)
 
-  /**
-   * Compute CoreMetadataMatch
-   * @param id of the ground-truth paper itself
-   * @param predictedMeta the CoreMetadata (with bibs!) to be tested against ground truth
-   * @param groundTruthMeta the ground truth metadata
-   * @param groundTruthBibsByBibKey map of the ground truth bibliography, keyed by
-   *                                CoreMetadata.edgesToBibKeyMap
-   * @return overall stats of the match
-   */
+  /** Compute CoreMetadataMatch
+    * @param id of the ground-truth paper itself
+    * @param predictedMeta the CoreMetadata (with bibs!) to be tested against ground truth
+    * @param groundTruthMeta the ground truth metadata
+    * @param groundTruthBibsByBibKey map of the ground truth bibliography, keyed by
+    *                                CoreMetadata.edgesToBibKeyMap
+    * @return overall stats of the match
+    */
   def matchCoreMetadata(
     id: String,
     predictedMeta: CoreMetadata,
