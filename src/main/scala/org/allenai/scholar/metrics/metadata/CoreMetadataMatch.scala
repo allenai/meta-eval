@@ -102,11 +102,20 @@ object CoreMetadataMatch {
     */
   def getHeaderRow: String = "algorithm" + sep + fields.map(_.getName).mkString(sep)
 
+  /**
+   * Compute CoreMetadataMatch
+   * @param id of the ground-truth paper itself
+   * @param predictedMeta the CoreMetadata (with bibs!) to be tested against ground truth
+   * @param groundTruthMeta the ground truth metadata
+   * @param groundTruthBibsByBibKey map of the ground truth bibliography, keyed by
+   *                                CoreMetadata.edgesToBibKeyMap
+   * @return overall stats of the match
+   */
   def matchCoreMetadata(
     id: String,
-    m1: CoreMetadata,
-    m2: CoreMetadata,
-    bibs: Option[Map[String, CoreMetadata]]
+    predictedMeta: CoreMetadata,
+    groundTruthMeta: CoreMetadata,
+    groundTruthBibsByBibKey: Option[Map[String, CoreMetadata]]
   ): CoreMetadataMatch = {
     import Parser.StringImplicits
     def editPrecision(s1: String, s2: String): Double = {
@@ -122,47 +131,47 @@ object CoreMetadataMatch {
       (countDiff, exact, edit)
     }
 
-    val (fullNames1, fullNames2) = (m1.authorNames, m2.authorNames)
-    val lastNames1 = fullNames1.map(_.lastNameFromFull)
-    val lastNames2 = fullNames2.map(_.lastNameFromFull)
+    val (pFullNames, gtFullNames) = (predictedMeta.authorNames, groundTruthMeta.authorNames)
+    val pLastNames = pFullNames.map(_.lastNameFromFull)
+    val gtLastNames = gtFullNames.map(_.lastNameFromFull)
 
-    val (fullNameCountDiff, fullNameExact, fullNameEdit) = matchLists(fullNames1, fullNames2)
-    val (lastNameCountDiff, lastNameExact, lastNameEdit) = matchLists(lastNames1, lastNames2)
+    val (fullNameCountDiff, fullNameExact, fullNameEdit) = matchLists(pFullNames, gtFullNames)
+    val (lastNameCountDiff, lastNameExact, lastNameEdit) = matchLists(pLastNames, gtLastNames)
 
-    val bibScore = bibs match {
-      case Some(bibMap) =>
+    val bibScore = groundTruthBibsByBibKey match {
+      case Some(groundTruthBibMap) =>
         val scores = for {
-          b <- m1.bibs
-          key = CoreMetadata.bibKey(b)
-          score <- bibMap.get(key) match {
-            case Some(cm) =>
-              Some(editPrecision(b.title, cm.title))
+          predictedBib <- predictedMeta.bibs
+          key = CoreMetadata.bibKey(predictedBib)
+          score <- groundTruthBibMap.get(key) match {
+            case Some(groundTruthBib) =>
+              Some(editPrecision(predictedBib.title, groundTruthBib.title))
             case None => None
           }
         } yield score
 
-        Some(scores.sum / bibMap.size)
+        Some(scores.sum / groundTruthBibMap.size)
       case None => None
     }
 
     CoreMetadataMatch(
       id = id,
-      titleExact = m1.title == m2.title,
-      titleNonEmpty = m2.title.nonEmpty,
-      titleEdit = editPrecision(m1.title, m2.title),
+      titleExact = predictedMeta.title == groundTruthMeta.title,
+      titleNonEmpty = predictedMeta.title.nonEmpty,
+      titleEdit = editPrecision(predictedMeta.title, groundTruthMeta.title),
       authorFullNameExact = fullNameExact,
-      authorFullNameNonEmpty = m2.authorNames.count(_.nonEmpty) > 0,
+      authorFullNameNonEmpty = pLastNames.count(_.nonEmpty) > 0,
       authorFullNameCountDiff = fullNameCountDiff,
       authorFullNameEdit = fullNameEdit,
       authorLastNameExact = lastNameExact,
-      authorLastNameNonEmpty = lastNames2.count(_.nonEmpty) > 0,
+      authorLastNameNonEmpty = pLastNames.count(_.nonEmpty) > 0,
       authorLastNameCountDiff = lastNameCountDiff,
       authorLastNameEdit = lastNameEdit,
-      venueExact = m1.venue == m2.venue,
-      venueNonEmpty = m2.venue.nonEmpty,
-      venueEdit = editPrecision(m1.venue, m2.venue),
-      yearExact = m1.publishedYear == m2.publishedYear,
-      yearNonZero = m2.publishedYear != yearZero,
+      venueExact = predictedMeta.venue == groundTruthMeta.venue,
+      venueNonEmpty = predictedMeta.venue.nonEmpty,
+      venueEdit = editPrecision(predictedMeta.venue, groundTruthMeta.venue),
+      yearExact = predictedMeta.publishedYear == groundTruthMeta.publishedYear,
+      yearNonZero = predictedMeta.publishedYear != yearZero,
       bibScore = bibScore
     )
   }
