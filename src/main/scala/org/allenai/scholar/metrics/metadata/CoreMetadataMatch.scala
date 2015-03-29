@@ -94,6 +94,7 @@ case class CoreMetadataMatch(
 }
 
 object CoreMetadataMatch {
+  import Parser.StringImplicits
   val sep = "\t"
 
   lazy val fields = classOf[CoreMetadataMatch].getDeclaredFields
@@ -101,6 +102,19 @@ object CoreMetadataMatch {
   /** @return Return the header in Tableau format.
     */
   def getHeaderRow: String = "algorithm" + sep + fields.map(_.getName).mkString(sep)
+
+  def editPrecision(s1: String, s2: String): Double = {
+    val d = EditDistance.editDistance(s1, s2)
+    val ed = if (d == 0) 0.0 else d * 1.0 / Seq(s1.length, s2.length).max
+    1 - ed
+  }
+
+  def matchLists(l1: Seq[String], l2: Seq[String]): (Int, Boolean, Double) = {
+    val countDiff = Math.abs(l1.size - l2.size)
+    val exact = countDiff == 0 && l1.zip(l2).forall(pair => pair._1 == pair._2)
+    val edit = editPrecision(l1.mkString(";"), l2.mkString(";"))
+    (countDiff, exact, edit)
+  }
 
   /** Compute CoreMetadataMatch
     * @param id of the ground-truth paper itself
@@ -116,19 +130,6 @@ object CoreMetadataMatch {
     groundTruthMeta: CoreMetadata,
     groundTruthBibsByBibKey: Option[Map[String, CoreMetadata]]
   ): CoreMetadataMatch = {
-    import Parser.StringImplicits
-    def editPrecision(s1: String, s2: String): Double = {
-      val d = EditDistance.editDistance(s1, s2)
-      val ed = if (d == 0) 0.0 else d * 1.0 / Seq(s1.length, s2.length).max
-      1 - ed
-    }
-
-    def matchLists(l1: Seq[String], l2: Seq[String]): (Int, Boolean, Double) = {
-      val countDiff = Math.abs(l1.size - l2.size)
-      val exact = countDiff == 0 && l1.zip(l2).forall(pair => pair._1 == pair._2)
-      val edit = editPrecision(l1.mkString(";"), l2.mkString(";"))
-      (countDiff, exact, edit)
-    }
 
     val (pFullNames, gtFullNames) = (predictedMeta.authorNames, groundTruthMeta.authorNames)
     val pLastNames = pFullNames.map(_.lastNameFromFull)
@@ -139,17 +140,8 @@ object CoreMetadataMatch {
 
     val bibScore = groundTruthBibsByBibKey match {
       case Some(groundTruthBibMap) =>
-        val scores = for {
-          predictedBib <- predictedMeta.bibs
-          key = CoreMetadata.bibKey(predictedBib)
-          score <- groundTruthBibMap.get(key) match {
-            case Some(groundTruthBib) =>
-              Some(editPrecision(predictedBib.title, groundTruthBib.title))
-            case None => None
-          }
-        } yield score
-
-        Some(scores.sum / groundTruthBibMap.size)
+        val scores = matchBibs(predictedMeta, groundTruthBibMap)
+        Some(scores.map(_._1).sum / groundTruthBibMap.size)
       case None => None
     }
 
@@ -173,6 +165,23 @@ object CoreMetadataMatch {
       yearNonZero = predictedMeta.publishedYear != yearZero,
       bibScore = bibScore
     )
+  }
+
+  def matchBibs(
+    predictedMetaWithBibs: CoreMetadata,
+    groundTruthBibMap: Map[String, CoreMetadata]
+  ): List[(Double, CoreMetadata, CoreMetadata)] = {
+    for {
+      predictedBib <- predictedMetaWithBibs.bibs
+      key = CoreMetadata.bibKey(predictedBib)
+      score <- groundTruthBibMap.get(key) match {
+        case Some(groundTruthBib) =>
+          Some(
+            (editPrecision(predictedBib.title, groundTruthBib.title), predictedBib, groundTruthBib)
+          )
+        case None => None
+      }
+    } yield score
   }
 
   def stats(matches: Seq[CoreMetadataMatch]): CoreMetadataMatchStats = {
