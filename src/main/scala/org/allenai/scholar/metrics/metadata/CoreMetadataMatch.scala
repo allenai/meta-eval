@@ -124,7 +124,7 @@ object CoreMetadataMatch {
     }
 
     def matchLists(l1: Seq[String], l2: Seq[String]): (Int, Boolean, Double) = {
-      val countDiff = l1.size - l2.size
+      val countDiff = Math.abs(l1.size - l2.size)
       val exact = countDiff == 0 && l1.zip(l2).forall(pair => pair._1 == pair._2)
       val edit = editPrecision(l1.mkString(";"), l2.mkString(";"))
       (countDiff, exact, edit)
