@@ -19,7 +19,7 @@ case class Eval(
 ) {
   def computeEval(
     groundTruthMetadata: Map[String, CoreMetadata],
-    bibs: Map[String, Map[String, CoreMetadata]],
+    groundTruthBibs: Map[String, Map[String, CoreMetadata]],
     idFilter: String => Boolean
   ): Array[CoreMetadataMatch] =
     for {
@@ -29,7 +29,7 @@ case class Eval(
       m <- taggedFileParser(f) match {
         case Some(parsed) =>
           groundTruthMetadata get id match {
-            case Some(gt) => Some(matchCoreMetadata(id, parsed, gt, bibs.get(id)))
+            case Some(gt) => Some(matchCoreMetadata(id, parsed, gt, groundTruthBibs.get(id)))
             case _ => None
           }
         case None => None
@@ -38,13 +38,15 @@ case class Eval(
 
   /** Run evaluation, print out summary, and save match data to Tableau format.
     * @param groundTruthMetadata map paper ids to ground truth core metadata.
+    * @param groundTruthBibs map of paper ids to a map of "bibKey" to cited core metadata
+    * @param idFilter only keep paper ids matching this filter
     */
   def run(
     groundTruthMetadata: Map[String, CoreMetadata],
-    bibs: Map[String, Map[String, CoreMetadata]],
+    groundTruthBibs: Map[String, Map[String, CoreMetadata]],
     idFilter: String => Boolean
   ): Unit = {
-    val matches = computeEval(groundTruthMetadata, bibs, idFilter)
+    val matches = computeEval(groundTruthMetadata, groundTruthBibs, idFilter)
     CoreMetadataMatchStats.printSummary(CoreMetadataMatch.stats(matches))
 
     val evalTsvFile = algoName + ".tab"
@@ -55,28 +57,19 @@ case class Eval(
 
   def run(
     groundTruthMetadataFile: String,
-    citationEdgesFile: String,
+    groundTruthCitationEdgesFile: String,
     idWhiteListFile: Option[String] = None
   ): Unit = {
     import org.allenai.scholar.metrics.metadata.PaperMetadata._
     val groundTruthMetadata = convertToCore(fromJsonLinesFile(groundTruthMetadataFile))
-
-    val edges = for {
-      line <- Source.fromFile(citationEdgesFile).getLines
+    val citationEdges = for {
+      line <- Source.fromFile(groundTruthCitationEdgesFile).getLines.toIterable
       s = line.split('\t')
       if s.length > 1
-      (citing, citee) = (s(0), s(1))
-      citeeMeta <- groundTruthMetadata.get(citee) match {
-        case Some(cm) => Some((bibKey(cm), cm))
-        case None => None
-      }
     } yield {
-      citing -> citeeMeta
+      (s(0), s(1))
     }
-
-    val bibs = edges.toList
-      .groupBy(_._1) // group by citing paper id
-      .mapValues(_.map(_._2).toMap) // each value is a map from citee's bibKey to its CoreMetadata
+    val bibs = CoreMetadata.edgesToBibKeyMap(citationEdges, groundTruthMetadata)
     idWhiteListFile match {
       case Some(fn) =>
         val whiteList = Source.fromFile(fn).getLines.toSet
