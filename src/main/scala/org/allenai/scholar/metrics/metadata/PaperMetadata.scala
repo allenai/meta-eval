@@ -42,7 +42,7 @@ object PaperMetadata {
   implicit val JsFormat = jsonFormat5(PaperMetadata.apply)
 
   def fromJsonLinesFile(metaFileName: String): Iterator[PaperMetadata] =
-    Source.fromFile(metaFileName).getLines.map {
+    Source.fromFile(metaFileName, "UTF-8").getLines.map {
       _.parseJson.convertTo[PaperMetadata]
     }
 
