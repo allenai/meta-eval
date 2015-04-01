@@ -1,67 +1,151 @@
 package org.allenai.scholar.metrics.metadata
 
+import java.io.File
+
+import org.allenai.scholar.{MetadataAndBibliography, Venue, Author, Title}
 import org.apache.commons.lang3.StringUtils._
-import org.jsoup.nodes.Element
+import org.jsoup.Jsoup
+import org.jsoup.nodes.{Document, Element}
 import org.jsoup.select.Elements
 import java.time.Year
+
+import scala.io.Source
 
 /** A collection of text processing, normalization, and
   * Jsoup-based utilities packaged in implicits to reduce boiler plate.
   */
+
+import org.allenai.scholar.StringUtils._
+import org.allenai.scholar.metrics.metadata.Parser.ElementsImplicit.elementsToSeq
+import org.allenai.scholar.metrics.metadata.Parser.JsoupElementsImplicits
+
+abstract class Parser(
+    titlePath: String,
+    authorPath: String,
+    lastRelativePath: String,
+    firstRelativePath: String,
+    middleRelativePath: String,
+    bibMainPath: String,
+    bibAuthorPath: String,
+    bibTitlePath: String
+    ) {
+
+  def extractBibYear(bib: Element): Year
+
+  def extractVenue(bib: Element): String
+
+  def extractSpecialBib(bib: Element): PaperMetadata
+
+  protected def extractNames(e: Element, authorPath: String, initial: Boolean = false) =
+    e.select(authorPath).map(a => {
+      val last = a.extractName(lastRelativePath)
+      val first = a.extractName(firstRelativePath)
+      val middle = a.extractName(middleRelativePath)
+      last.buildFullName(first, middle)
+    }).toList
+
+  private def extractBibs(doc: Document): Seq[PaperMetadata] =
+    doc.select(bibMainPath).map(bib =>
+      bib.extractBibTitle(bibTitlePath) match {
+        case title if title.nonEmpty =>
+          PaperMetadata(
+            title = Title(title),
+            authors = extractNames(bib, bibAuthorPath).map(Author.commmaSeparated),
+            venue = Venue(extractVenue(bib)),
+            year = extractBibYear(bib)
+          )
+        case _ => extractSpecialBib(bib)
+      }).toList
+
+  def parseCoreMetadata(file: File): Option[MetadataAndBibliography] = try {
+    val xmlString = Source.fromFile(file, "UTF-8").getLines().mkString("\n")
+    Some(parseCoreMetadataString(xmlString))
+  } catch {
+    case e: Exception =>
+      println(s"Could not parse xml file ${file.getName}")
+      e.printStackTrace()
+      None
+  }
+
+  /** Function that parses XML to produce core metadata.
+    * Names are lower-cased and trimmed of non-letter at the end.
+    * @param xmlString The XML data as a string
+    * @return The paper's core metadata.
+    */
+  def parseCoreMetadataString(xmlString: String): MetadataAndBibliography = {
+    val doc = Jsoup.parse(xmlString)
+    val metadata = PaperMetadata(
+      title = Title(doc.extractTitle(titlePath)),
+      authors = extractNames(doc, authorPath).map(Author.commmaSeparated),
+      year = org.allenai.scholar.metrics.metadata.yearZero,
+      venue = Venue("")
+    )
+    MetadataAndBibliography(
+      metadata = metadata,
+      bibs = extractBibs(doc)
+    )
+  }
+}
+
+object GrobidParser extends Parser(
+  titlePath = "teiHeader>fileDesc>titleStmt>title",
+  authorPath = "teiHeader>fileDesc>sourceDesc>biblStruct>analytic>author",
+  lastRelativePath = "persName>surname",
+  firstRelativePath = "persName>forename[type=first]",
+  middleRelativePath = "persName>forename[type=middle]",
+  bibMainPath = "listBibl>biblStruct",
+  bibAuthorPath = "analytic>author",
+  bibTitlePath = "analytic>title[type=main]"
+) {
+
+  def extractBibYear(bib: Element): Year =
+    bib.extractYear("monogr>imprint>date[type=published]", _.attr("when"))
+
+  def extractVenue(bib: Element): String = bib.extractBibTitle("monogr>title")
+
+  def extractSpecialBib(bib: Element): PaperMetadata =
+    PaperMetadata(
+      title = Title(extractVenue(bib)), // venue becomes title for PhD theses
+      authors = extractNames(bib, "monogr>author").map(Author.commmaSeparated),
+      venue = Venue(""),
+      year = extractBibYear(bib)
+    )
+}
+
+object MetataggerParser extends Parser(
+  titlePath = "document>content>headers>title",
+  authorPath = "document>content>headers>authors>author",
+  lastRelativePath = "author-last",
+  firstRelativePath = "author-first",
+  middleRelativePath = "author-middle",
+  bibMainPath = "biblio>reference",
+  bibAuthorPath = "authors>author",
+  bibTitlePath = "title"
+) {
+
+  def extractBibYear(bib: Element): Year = bib.extractYear("date", _.text)
+
+  def extractVenue(bib: Element): String =
+    List("conference", "journal", "booktitle")
+        .find(vt => !bib.select(vt).isEmpty) match {
+      case Some(v) => bib.extractBibTitle(v)
+      case None => ""
+    }
+
+  def extractSpecialBib(bib: Element): PaperMetadata = {
+    val metadata = PaperMetadata(
+      title = Title(bib.extractBibTitle("booktitle")),
+      authors = extractNames(bib, "authors>author").map(Author.commmaSeparated),
+      venue = Venue(""),
+      year = extractBibYear(bib)
+    )
+    metadata
+  }
+}
+
 object Parser {
 
-  implicit class StringImplicits(str: String) {
-
-    /** @return Trim white spaces, lower case, then strip the accents.
-      */
-    def normalize(): String = stripAccents(str.trim.toLowerCase)
-
-    private def trimRight(s: String, filter: Char => Boolean): String = if (s.isEmpty) {
-      s
-    } else {
-      s.last match {
-        case c if filter(c) => trimRight(s.substring(0, s.size - 1), filter)
-        case _ => s
-      }
-    }
-
-    /** @param filter Determine if a character is blacklisted and should be trimmed.
-      * @return String with blacklisted chars trimmed from the right.
-      */
-    def trimRight(filter: Char => Boolean): String = trimRight(str, filter)
-
-    /** @return Given full name such as "Doe, John A.", returns the last name assuming
-      *         that it's the word before the comma.
-      */
-    def lastNameFromFull(): String = str.trim.takeWhile(_ != ',')
-
-    /** @return Trim non-letter chars from the right of a lower-cased string.
-      */
-    def trimNonLowerCaseLetters(): String = str.trimRight(c => c < 'a'.toInt || c > 'z'.toInt)
-
-    /** @param chars String containing the blacklist chars.
-      * @return Trim characters from the right that belongs to a blacklist.
-      */
-    def trimChars(chars: String): String = str.trimRight(c => chars.contains(c))
-
-    /** @param first First name, e.g. "John".
-      * @param middle Middle Name, e.g. "Alan" or "A.".
-      * @param initial If true, take only the initials from first and middle names.
-      * @return The full name in format "Doe, John A.", built from last name.
-      */
-    def buildFullName(first: String, middle: String, initial: Boolean = false): String = {
-      def format(name: String): String = if (initial) name(0).toString else name
-      var full = str
-      if (first.nonEmpty) full = full + s", ${format(first)}"
-      if (middle.nonEmpty) full = full + s" ${format(middle)}"
-      full
-    }
-
-    def extractYear(): Year = "\\d{4}".r.findFirstIn(str) match {
-      case Some(y) => Year.parse(y)
-      case None => yearZero
-    }
-  }
+  import org.allenai.scholar.StringUtils._
 
   object ElementsImplicit {
 

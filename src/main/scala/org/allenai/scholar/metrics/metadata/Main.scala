@@ -1,9 +1,7 @@
 package org.allenai.scholar.metrics.metadata
 
-import org.allenai.scholar.metrics.metadata.CoreMetadata.{ GrobidParser, MetataggerParser }
-
 import java.io.File
-import java.nio.file.{ Files, Paths }
+import java.nio.file.{Files, Paths}
 
 object Main extends App {
   import Config._

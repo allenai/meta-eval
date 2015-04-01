@@ -1,52 +1,41 @@
 package org.allenai.scholar.metrics.metadata
 
+import java.time.Year
+
+import org.allenai.scholar._
+import StringUtils._
 import spray.json.DefaultJsonProtocol._
 import spray.json._
 
 import scala.io.Source
 
-import java.time.Year
-import java.time.format.DateTimeParseException
-
 case class PaperMetadata(
-    id: String,
-    title: String,
-    venue: String,
-    year: Int,
-    authors: List[String]
-) {
-  import Parser.StringImplicits
-  def toCore: (String, CoreMetadata) = {
-    id -> CoreMetadata(
-      title = title.toLowerCase,
-      authorNames = authors.map(_.normalize),
-      venue = venue,
-      publishedYear = yearIntAsYear
+    title: Title,
+    venue: Venue,
+    year: Year,
+    authors: Seq[Author]) {
+  // Soft version of paper metadata:
+  // includes just the first word of the title and the last names of the first two authors
+  def fuzzy: PaperMetadata =
+    PaperMetadata(
+      Title(title.normalized.text.splitOnWhitespace.head),
+      Venue(""),
+      year,
+      authors.map(_.lastNameOnly).take(2)
     )
-  }
-  def authorLastNames = authors.map(_.lastNameFromFull)
-  def yearIntAsYear: Year = {
-    if (year == 0) {
-      yearZero
-    } else {
-      try {
-        Year.parse(year.toString)
-      } catch {
-        case e: DateTimeParseException => yearZero
-      }
-    }
-  }
 }
 
 object PaperMetadata {
-  implicit val JsFormat = jsonFormat5(PaperMetadata.apply)
 
-  def fromJsonLinesFile(metaFileName: String): Iterator[PaperMetadata] =
+  import Title._
+  import Author._
+
+  implicit val JsFormat =
+    jsonFormat4((t: Title, v: Venue, y: Int, a: Seq[Author]) => PaperMetadata(t, v, Year.of(y), a))
+
+  def fromJsonLinesFile(metaFileName: String): Map[String, PaperMetadata] =
     Source.fromFile(metaFileName, "UTF-8").getLines.map {
-      _.parseJson.convertTo[PaperMetadata]
-    }
-
-  def convertToCore(pm: Iterator[PaperMetadata]): Map[String, CoreMetadata] =
-    pm.map(_.toCore).toMap
+      _.parseJson.convertTo[(String, PaperMetadata)]
+    }.toMap
 }
 
