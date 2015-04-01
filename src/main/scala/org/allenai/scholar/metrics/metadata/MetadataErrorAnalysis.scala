@@ -26,6 +26,8 @@ object MetadataErrorAnalysis {
           List(
             YEAR ->
                 PredictionAndTruth.noConfidence(List(y), predicted(x => List(x.year))),
+            VENUE_NONEMPTY ->
+                PredictionAndTruth.noConfidence(List(v.nonEmpty), predicted(x => List(x.venue.nonEmpty))),
             AUTHOR_FULL_NAME ->
                 PredictionAndTruth.noConfidence(a, predicted(_.authors)),
             AUTHOR_LAST_NAME ->
@@ -51,6 +53,7 @@ object MetadataErrorAnalysis {
   private val TITLE_EXACT = "titleExact"
   private val TITLE_NORMALIZED = "titleNormalized"
   private val TITLE_NONEMPTY = "titleNonEmpty"
+  private val VENUE_NONEMPTY = "venueNonEmpty"
 
 }
 
