@@ -30,7 +30,7 @@ case class Eval(
     } yield (id, predicted)
     val goldMetadata = groundTruthMetadata.filterKeys(idFilter)
     val predictedMetadata = predictions.toMap.mapValues(_.metadata)
-    MetadataErrorAnalysis(goldMetadata, predictedMetadata)
+    PaperMetadataErrorAnalysis.computeMetrics(goldMetadata, predictedMetadata)
   }
 
   /** Run evaluation, print out summary, and save match data to Tableau format.
