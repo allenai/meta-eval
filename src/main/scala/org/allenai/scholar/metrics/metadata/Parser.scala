@@ -2,10 +2,10 @@ package org.allenai.scholar.metrics.metadata
 
 import java.io.File
 
-import org.allenai.scholar.{MetadataAndBibliography, Venue, Author, Title}
+import org.allenai.scholar.{ MetadataAndBibliography, Venue, Author, Title }
 import org.apache.commons.lang3.StringUtils._
 import org.jsoup.Jsoup
-import org.jsoup.nodes.{Document, Element}
+import org.jsoup.nodes.{ Document, Element }
 import org.jsoup.select.Elements
 import java.time.Year
 
@@ -28,7 +28,7 @@ abstract class Parser(
     bibMainPath: String,
     bibAuthorPath: String,
     bibTitlePath: String
-    ) {
+) {
 
   def extractBibYear(bib: Element): Year
 
@@ -41,8 +41,8 @@ abstract class Parser(
       val last = a.extractName(lastRelativePath)
       val first = a.extractName(firstRelativePath)
       val middle = a.extractName(middleRelativePath)
-      last.buildFullName(first, middle)
-    }).toList
+      Author(first, if (middle.size > 0) List(middle) else List(), last)
+    }).map(_.ifDefined).flatten.toList
 
   private def extractBibs(doc: Document): Seq[PaperMetadata] =
     doc.select(bibMainPath).map(bib =>
@@ -50,7 +50,7 @@ abstract class Parser(
         case title if title.nonEmpty =>
           PaperMetadata(
             title = Title(title),
-            authors = extractNames(bib, bibAuthorPath).map(Author.commmaSeparated),
+            authors = extractNames(bib, bibAuthorPath),
             venue = Venue(extractVenue(bib)),
             year = extractBibYear(bib)
           )
@@ -76,7 +76,7 @@ abstract class Parser(
     val doc = Jsoup.parse(xmlString)
     val metadata = PaperMetadata(
       title = Title(doc.extractTitle(titlePath)),
-      authors = extractNames(doc, authorPath).map(Author.commmaSeparated),
+      authors = extractNames(doc, authorPath),
       year = org.allenai.scholar.metrics.metadata.yearZero,
       venue = Venue("")
     )
@@ -106,7 +106,7 @@ object GrobidParser extends Parser(
   def extractSpecialBib(bib: Element): PaperMetadata =
     PaperMetadata(
       title = Title(extractVenue(bib)), // venue becomes title for PhD theses
-      authors = extractNames(bib, "monogr>author").map(Author.commmaSeparated),
+      authors = extractNames(bib, "monogr>author"),
       venue = Venue(""),
       year = extractBibYear(bib)
     )
@@ -127,15 +127,15 @@ object MetataggerParser extends Parser(
 
   def extractVenue(bib: Element): String =
     List("conference", "journal", "booktitle")
-        .find(vt => !bib.select(vt).isEmpty) match {
-      case Some(v) => bib.extractBibTitle(v)
-      case None => ""
-    }
+      .find(vt => !bib.select(vt).isEmpty) match {
+        case Some(v) => bib.extractBibTitle(v)
+        case None => ""
+      }
 
   def extractSpecialBib(bib: Element): PaperMetadata = {
     val metadata = PaperMetadata(
       title = Title(bib.extractBibTitle("booktitle")),
-      authors = extractNames(bib, "authors>author").map(Author.commmaSeparated),
+      authors = extractNames(bib, "authors>author"),
       venue = Venue(""),
       year = extractBibYear(bib)
     )
@@ -160,18 +160,18 @@ object Parser {
 
     import ElementsImplicit._
 
-    def extractNormalize(path: String): String = e.select(path).headOption match {
-      case Some(v) => v.text.normalize
+    def extract(path: String): String = e.select(path).headOption match {
+      case Some(v) => v.text
       case None => ""
     }
 
     def extractName(namePath: String): String =
-      extractNormalize(namePath).trimNonLowerCaseLetters
+      extract(namePath).trimNonAlphabetic()
 
-    def extractTitle(path: String): String = extractNormalize(path)
+    def extractTitle(path: String): String = extract(path)
 
     def extractBibTitle(path: String): String =
-      e.extractNormalize(path).trimChars(",.")
+      e.extract(path).trimChars(",.")
 
     def extractYear(path: String, get: Element => String): Year =
       e.select(path).headOption match {

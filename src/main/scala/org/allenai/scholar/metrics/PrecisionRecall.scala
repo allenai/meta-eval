@@ -13,6 +13,7 @@ import scala.collection.mutable.ArrayBuffer
   * The overall precision/recall is the average over examples for which precision/recall is defined
   */
 object PrecisionRecall {
+
   // Precision/recall measurement where either may not be defined
   case class PR(precision: Option[Double], recall: Option[Double])
 
@@ -23,7 +24,7 @@ object PrecisionRecall {
   case class PredictionAndTruth[+T](
       trueLabels: Iterable[T],
       predictedLabels: Iterable[(T, Double)]
-      ) {
+  ) {
     private lazy val overlap =
       predictedLabels.map(_._1).toSet.intersect(trueLabels.toSet).size.toDouble
     lazy val precisionRecall = {
@@ -60,9 +61,9 @@ object PrecisionRecall {
   // Given a set of examples, with predictions and truth for each example, compute the global P/R
   // at a set of confidence thresholds
   def measurePR[T](
-      data: Iterable[PredictionAndTruth[T]],
-      nBins: Int = 10000
-      ): Seq[PRAtThreshold] = {
+    data: Iterable[PredictionAndTruth[T]],
+    nBins: Int = 10000
+  ): Seq[PRAtThreshold] = {
     // Efficient algorithm as follows:
     //   For each example, initialize an empty confusion matrix
     //   Scan through all the predicted labels once, ordered by confidence descending
@@ -73,8 +74,8 @@ object PrecisionRecall {
       matrix = new ConfusionMatrix(0, 0, truth.size)
       (predictedLabel, confidence) <- predictedLabels
     } yield {
-        (confidence, predictedLabel, truth.toSet, matrix)
-      }).toVector.sortBy(-_._1)
+      (confidence, predictedLabel, truth.toSet, matrix)
+    }).toVector.sortBy(-_._1)
 
     // Normal case (ground truth exists)
     if (data.exists(_.trueLabels.size > 0)) {
@@ -82,9 +83,9 @@ object PrecisionRecall {
         confidences.map(_._1)
       } else {
         val (minConfidence, maxConfidence) = confidences.map(_._1).foldLeft((
-            Double.PositiveInfinity,
-            Double.NegativeInfinity
-            )) {
+          Double.PositiveInfinity,
+          Double.NegativeInfinity
+        )) {
           case ((min, max), conf) => (math.min(min, conf), math.max(max, conf))
         }
         (nBins to 1 by -1).map(bin => minConfidence + bin * (maxConfidence - minConfidence) / nBins)
@@ -112,14 +113,19 @@ object PrecisionRecall {
         prAtThreshold.append(PRAtThreshold(t, p, r))
       }
 
-      prAtThreshold.toVector
+      prAtThreshold.size match {
+        // No examples have predicted labels
+        case 0 => List(PRAtThreshold(0.0, None, Some(0.0)))
+        // Normal case
+        case _ => prAtThreshold.toVector
+      }
     } else {
       // Special case for when no examples have any positive labels.
       // In this case, precision is always zero and recall is undefined
       confidences.headOption.map(_._1) match {
         case Some(maxConfidence) => List(PRAtThreshold(maxConfidence, Some(0.0), None))
         // Completely pathological case in which there is no truth and no predictions
-        case None => List()
+        case None => List(PRAtThreshold(0.0, None, None))
       }
     }
   }

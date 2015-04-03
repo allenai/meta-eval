@@ -16,7 +16,7 @@ object Config {
 
   val grobidRoot = s"$root/${config.getString("grobid.root")}"
   val grobidHome = s"$grobidRoot/grobid-home"
-  val grobidJar = new File(s"$grobidRoot/grobid-core/target")
+  lazy val grobidJar = new File(s"$grobidRoot/grobid-core/target")
     .listFiles
     .filter(_.getName.endsWith("one-jar.jar"))
     .head

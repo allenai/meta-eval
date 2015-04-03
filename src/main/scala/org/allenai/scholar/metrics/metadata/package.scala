@@ -2,7 +2,7 @@ package org.allenai.scholar.metrics
 
 import scala.sys.process.Process
 
-import java.io.{ BufferedWriter, ByteArrayInputStream, File, FileWriter }
+import java.io._
 
 package object metadata {
   val yearZero = java.time.Year.of(0)
@@ -42,5 +42,11 @@ package object metadata {
     val bw = new BufferedWriter(new FileWriter(new File(fileName)))
     bw.write(lines.mkString("\n"))
     bw.close()
+  }
+
+  def writeToFile(fileName: String)(write: PrintWriter => Unit) = {
+    val w = new PrintWriter(new FileWriter(new File(fileName)))
+    write(w)
+    w.close()
   }
 }

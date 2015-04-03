@@ -3,6 +3,7 @@ package org.allenai.scholar.metrics.metadata
 import java.io.File
 
 import org.allenai.scholar.MetadataAndBibliography
+import org.allenai.scholar.metrics.PrecisionRecall._
 
 import scala.io.Source
 
@@ -31,6 +32,7 @@ case class Eval(
     val predictedMetadata = predictions.toMap.mapValues(_.metadata)
     MetadataErrorAnalysis(goldMetadata, predictedMetadata)
   }
+
   /** Run evaluation, print out summary, and save match data to Tableau format.
     * @param groundTruthMetadata map paper ids to ground truth core metadata.
     * @param groundTruthBibs map of paper ids to a map of "bibKey" to cited core metadata
@@ -42,6 +44,31 @@ case class Eval(
     idFilter: String => Boolean
   ): Unit = {
     val analysis = computeEval(groundTruthMetadata, groundTruthBibs, idFilter)
+    writeToFile(s"${algoName}-summary.txt") { w =>
+      w.println("Metric\tPrecision\tRecall")
+      for (ErrorAnalysis(metric, p, r, _) <- analysis) {
+        w.println(s"""$metric\t${p.getOrElse("")}\t${r.getOrElse("")}""")
+      }
+    }
+    val detailsDir = new File(s"${algoName}-details")
+    detailsDir.mkdirs()
+    def format(a: Any): String = a match {
+      case i: Iterable[_] => i.map(format).mkString(" ")
+      case p: Product =>
+        p.productIterator.map(format).mkString(",")
+      case _ => a.toString
+    }
+    for (ErrorAnalysis(metric, _, _, examples) <- analysis) {
+      writeToFile(new File(detailsDir, s"$metric.txt").getCanonicalPath) { w =>
+        w.println("id\tPrecision\tRecall\tTruth\tPredicted")
+        for ((id, ex) <- examples) {
+          val truth = ex.trueLabels.map(format).mkString("|")
+          val predictions = ex.predictedLabels.map(_._1).map(format).mkString("|")
+          val PR(p, r) = ex.precisionRecall
+          w.println(s"""$id\t${p.getOrElse("")}\t${r.getOrElse("")}\t$truth\t$predictions""")
+        }
+      }
+    }
   }
 
   def run(
@@ -60,10 +87,10 @@ case class Eval(
     }
     val bibs = MetadataAndBibliography.edgesToBibKeyMap(citationEdges, groundTruthMetadata)
     idWhiteListFile match {
-      case Some(fn) =>
+      case Some(fn) if new File(fn).exists =>
         val whiteList = Source.fromFile(fn).getLines.toSet
         run(groundTruthMetadata, bibs, whiteList.contains(_))
-      case None => run(groundTruthMetadata, bibs, id => true)
+      case _ => run(groundTruthMetadata, bibs, id => true)
     }
   }
 }

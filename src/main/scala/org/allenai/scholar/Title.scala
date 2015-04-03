@@ -4,19 +4,20 @@ import StringUtils._
 import spray.json.DefaultJsonProtocol._
 
 case class Title(text: String) {
-  def normalized = Title.normalized(text)
+  def normalized = Title(text.removePunctuation().normalize())
 
   def nonEmpty =
     text match {
-      case "" => Title(text)
+      case "" => this
       case _ => Title("nonEmpty")
     }
+
+  def ifDefined = text match {
+    case "" => None
+    case _ => Some(this)
+  }
 }
 
 object Title {
-  def exact(s: String) = Title(s)
-
-  def normalized(s: String) = Title(s.normalize)
-
   implicit val JsFormat = jsonFormat1(Title.apply)
 }
