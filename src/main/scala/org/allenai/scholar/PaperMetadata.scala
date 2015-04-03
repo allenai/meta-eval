@@ -14,15 +14,6 @@ case class PaperMetadata(
     year: Year,
     authors: Seq[Author]
 ) {
-  // Soft version of paper metadata:
-  // includes just the first word of the title and the last names of the first two authors
-  def fuzzy: PaperMetadata =
-    PaperMetadata(
-      Title(title.normalized.text.splitOnWhitespace.head),
-      Venue(""),
-      year,
-      authors.map(_.lastNameOnly).take(2)
-    )
 }
 
 object PaperMetadata {

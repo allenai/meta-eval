@@ -29,7 +29,7 @@ object ErrorAnalysis {
           case Some(p) => extract(p)
           case _ => None
         }
-        (metric, (id, ScoredExample.noConfidence(trueLabels, predictedLabels)))
+        (metric, (id, Example(trueLabels, predictedLabels)))
       }
     val groupedExamples = examples.groupBy(_._1).mapValues(_.map(_._2))
     for ((metric, examples) <- groupedExamples) yield {

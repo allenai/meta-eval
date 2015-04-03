@@ -2,9 +2,8 @@ package org.allenai.scholar.metrics.metadata
 
 import java.io.File
 
-import org.allenai.scholar.{ PaperMetadata, MetadataAndBibliography }
-import org.allenai.scholar.metrics.{ PR, ErrorAnalysis }
-import org.allenai.scholar.metrics.PrecisionRecall._
+import org.allenai.scholar.metrics.{ ErrorAnalysis, PR }
+import org.allenai.scholar.{ MetadataAndBibliography, PaperMetadata }
 
 import scala.io.Source
 
@@ -31,7 +30,11 @@ case class Eval(
     } yield (id, predicted)
     val goldMetadata = groundTruthMetadata.filterKeys(idFilter)
     val predictedMetadata = predictions.toMap.mapValues(_.metadata)
-    PaperMetadataErrorAnalysis.computeMetrics(goldMetadata, predictedMetadata)
+    val metadataMetrics = MetadataErrorAnalysis.computeMetrics(goldMetadata, predictedMetadata)
+    val predictedBibs = predictions.toMap.mapValues(_.bibs.toSet)
+    val goldBibs = groundTruthBibs.filterKeys(idFilter).mapValues(_.values.toSet)
+    val bibliographyMetrics = BibliographyErrorAnalysis.computeMetrics(goldBibs, predictedBibs)
+    metadataMetrics ++ bibliographyMetrics
   }
 
   /** Run evaluation, print out summary, and save match data to Tableau format.

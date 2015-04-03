@@ -1,13 +1,12 @@
 package org.allenai.scholar.metrics.metadata
 
 import java.io.File
+import java.time.Year
 
 import org.allenai.scholar._
-import org.apache.commons.lang3.StringUtils._
 import org.jsoup.Jsoup
 import org.jsoup.nodes.{ Document, Element }
 import org.jsoup.select.Elements
-import java.time.Year
 
 import scala.io.Source
 
@@ -15,7 +14,6 @@ import scala.io.Source
   * Jsoup-based utilities packaged in implicits to reduce boiler plate.
   */
 
-import org.allenai.scholar.StringUtils._
 import org.allenai.scholar.metrics.metadata.Parser.ElementsImplicit.elementsToSeq
 import org.allenai.scholar.metrics.metadata.Parser.JsoupElementsImplicits
 

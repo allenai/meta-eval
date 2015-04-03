@@ -5,8 +5,11 @@ import java.time.Year
 import org.allenai.scholar.metrics.ErrorAnalysis
 import org.allenai.scholar._
 
-object PaperMetadataErrorAnalysis {
-  def computeMetrics(truth: Map[String, PaperMetadata], predictions: Map[String, PaperMetadata]) =
+object MetadataErrorAnalysis {
+  def computeMetrics(
+    truth: Map[String, PaperMetadata],
+    predictions: Map[String, PaperMetadata]
+  ) =
     ErrorAnalysis.computeMetrics(truth, predictions,
       YEAR -> extractYear _,
       VENUE_NONEMPTY -> extractVenueNonEmpty _,
