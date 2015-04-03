@@ -2,43 +2,8 @@ package org.allenai.scholar.metrics.metadata
 
 import java.time.Year
 
+import org.allenai.scholar.metrics.ErrorAnalysis
 import org.allenai.scholar._
-import org.allenai.scholar.metrics.PrecisionRecall._
-
-case class ErrorAnalysis(
-  metricName: String,
-  precision: Option[Double],
-  recall: Option[Double],
-  details: Iterable[(String, PredictionAndTruth[_])]
-)
-
-object ErrorAnalysis {
-  def computeMetrics[T](
-    truth: Map[String, T],
-    predicted: Map[String, T],
-    metrics: (String, T => Iterable[_])*
-  ) = {
-
-    val examples: Iterable[(String, (String, PredictionAndTruth[_]))] =
-      for {
-        (id, trueData) <- truth.toList
-        predictedData = predicted.get(id)
-        (metric, extract) <- metrics
-      } yield {
-        val trueLabels = extract(trueData)
-        val predictedLabels: Iterable[_] = predictedData match {
-          case Some(p) => extract(p)
-          case _ => None
-        }
-        (metric, (id, PredictionAndTruth.noConfidence(trueLabels, predictedLabels)))
-      }
-    val groupedExamples = examples.groupBy(_._1).mapValues(_.map(_._2))
-    for ((metric, examples) <- groupedExamples) yield {
-      val pr = measurePR(examples.map(_._2)).head
-      ErrorAnalysis(metric, pr.precision, pr.recall, examples)
-    }
-  }
-}
 
 object PaperMetadataErrorAnalysis {
   def computeMetrics(truth: Map[String, PaperMetadata], predictions: Map[String, PaperMetadata]) =
@@ -74,4 +39,3 @@ object PaperMetadataErrorAnalysis {
   private val VENUE_NONEMPTY = "venueNonEmpty"
 
 }
-

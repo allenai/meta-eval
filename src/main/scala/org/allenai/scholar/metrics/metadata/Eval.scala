@@ -2,7 +2,8 @@ package org.allenai.scholar.metrics.metadata
 
 import java.io.File
 
-import org.allenai.scholar.MetadataAndBibliography
+import org.allenai.scholar.{ PaperMetadata, MetadataAndBibliography }
+import org.allenai.scholar.metrics.{ PR, ErrorAnalysis }
 import org.allenai.scholar.metrics.PrecisionRecall._
 
 import scala.io.Source
@@ -46,7 +47,7 @@ case class Eval(
     val analysis = computeEval(groundTruthMetadata, groundTruthBibs, idFilter)
     writeToFile(s"${algoName}-summary.txt") { w =>
       w.println("Metric\tPrecision\tRecall")
-      for (ErrorAnalysis(metric, p, r, _) <- analysis) {
+      for (ErrorAnalysis(metric, PR(p, r), _) <- analysis) {
         w.println(s"""$metric\t${p.getOrElse("")}\t${r.getOrElse("")}""")
       }
     }
@@ -58,12 +59,12 @@ case class Eval(
         p.productIterator.map(format).mkString(",")
       case _ => a.toString
     }
-    for (ErrorAnalysis(metric, _, _, examples) <- analysis) {
+    for (ErrorAnalysis(metric, _, examples) <- analysis) {
       writeToFile(new File(detailsDir, s"$metric.txt").getCanonicalPath) { w =>
         w.println("id\tPrecision\tRecall\tTruth\tPredicted")
         for ((id, ex) <- examples) {
           val truth = ex.trueLabels.map(format).mkString("|")
-          val predictions = ex.predictedLabels.map(_._1).map(format).mkString("|")
+          val predictions = ex.predictedLabels.map(format).mkString("|")
           val PR(p, r) = ex.precisionRecall
           w.println(s"""$id\t${p.getOrElse("")}\t${r.getOrElse("")}\t$truth\t$predictions""")
         }
@@ -76,7 +77,7 @@ case class Eval(
     groundTruthCitationEdgesFile: String,
     idWhiteListFile: Option[String] = None
   ): Unit = {
-    import org.allenai.scholar.metrics.metadata.PaperMetadata._
+    import PaperMetadata._
     val groundTruthMetadata = fromJsonLinesFile(groundTruthMetadataFile)
     val citationEdges = for {
       line <- Source.fromFile(groundTruthCitationEdgesFile).getLines.toIterable

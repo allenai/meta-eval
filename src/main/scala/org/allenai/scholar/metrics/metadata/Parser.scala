@@ -2,7 +2,7 @@ package org.allenai.scholar.metrics.metadata
 
 import java.io.File
 
-import org.allenai.scholar.{ MetadataAndBibliography, Venue, Author, Title }
+import org.allenai.scholar._
 import org.apache.commons.lang3.StringUtils._
 import org.jsoup.Jsoup
 import org.jsoup.nodes.{ Document, Element }

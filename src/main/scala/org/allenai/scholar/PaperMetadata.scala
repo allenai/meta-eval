@@ -1,9 +1,8 @@
-package org.allenai.scholar.metrics.metadata
+package org.allenai.scholar
 
 import java.time.Year
 
-import org.allenai.scholar._
-import StringUtils._
+import org.allenai.scholar.StringUtils._
 import spray.json.DefaultJsonProtocol._
 import spray.json._
 

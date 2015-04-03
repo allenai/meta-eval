@@ -14,54 +14,19 @@ import scala.collection.mutable.ArrayBuffer
   */
 object PrecisionRecall {
 
-  // Precision/recall measurement where either may not be defined
-  case class PR(precision: Option[Double], recall: Option[Double])
-
-  // Predicted labels with confidence
-  //  case class Prediction[T](predictedLabels: Iterable[(T, Double)])
-
-  // True labels and predicted labels with confidence
-  case class PredictionAndTruth[+T](
-      trueLabels: Iterable[T],
-      predictedLabels: Iterable[(T, Double)]
-  ) {
-    private lazy val overlap =
-      predictedLabels.map(_._1).toSet.intersect(trueLabels.toSet).size.toDouble
-    lazy val precisionRecall = {
-      val p = if (predictedLabels.size > 0) {
-        Some(overlap / predictedLabels.size)
-      } else {
-        None
-      }
-
-      val r =
-        if (trueLabels.size > 0) {
-          Some(overlap / trueLabels.size)
-        } else {
-          None
-        }
-      PR(p, r)
-    }
-  }
-
-  object PredictionAndTruth {
-    def noConfidence[T](trueLabels: Iterable[T], predictedLabels: Iterable[T]): PredictionAndTruth[T] =
-      apply(trueLabels, predictedLabels.map(l => (l, 1.0)))
-
-    def single[T](truth: T, predicted: T): PredictionAndTruth[T] =
-      noConfidence(List(truth), List(predicted))
-
-    def mixed[T](truth: Iterable[T], predicted: T): PredictionAndTruth[T] =
-      noConfidence(truth, List(predicted))
-  }
-
   // A threshold and the precision/recall for that threshold
   case class PRAtThreshold(threshold: Double, precision: Option[Double], recall: Option[Double])
 
+  def measurePR[T](data: Iterable[Example[T]]) = {
+    val scoredExamples = data.map(ex => ScoredExample(ex.trueLabels, ex.predictedLabels.map(l => (l, 1.0))))
+    val pr = scanConfidenceMeasurePR(scoredExamples).head
+    PR(pr.precision, pr.recall)
+  }
+
   // Given a set of examples, with predictions and truth for each example, compute the global P/R
   // at a set of confidence thresholds
-  def measurePR[T](
-    data: Iterable[PredictionAndTruth[T]],
+  def scanConfidenceMeasurePR[T](
+    data: Iterable[ScoredExample[T]],
     nBins: Int = 10000
   ): Seq[PRAtThreshold] = {
     // Efficient algorithm as follows:
@@ -70,7 +35,7 @@ object PrecisionRecall {
     //   Update each example's confusion matrix, and the global P/R number
     //   Output the global P/R at each threshold checkpoint
     val confidences = (for {
-      PredictionAndTruth(truth, predictedLabels) <- data
+      ScoredExample(truth, predictedLabels) <- data
       matrix = new ConfusionMatrix(0, 0, truth.size)
       (predictedLabel, confidence) <- predictedLabels
     } yield {
