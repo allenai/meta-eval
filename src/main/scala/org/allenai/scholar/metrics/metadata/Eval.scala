@@ -3,7 +3,7 @@ package org.allenai.scholar.metrics.metadata
 import java.io.File
 
 import org.allenai.scholar.metrics.{ ErrorAnalysis, PR }
-import org.allenai.scholar.{ MetadataAndBibliography, PaperMetadata }
+import org.allenai.scholar.{ Author, MetadataAndBibliography, PaperMetadata }
 
 import scala.io.Source
 
@@ -57,9 +57,11 @@ case class Eval(
     val detailsDir = new File(s"${algoName}-details")
     detailsDir.mkdirs()
     def format(a: Any): String = a match {
-      case i: Iterable[_] => i.map(format).mkString(" ")
+      case a: Author => a.productIterator.map(format).filter(_.size > 0).mkString(" ")
+      case m: PaperMetadata => s"${m.authors.map(_.lastName).mkString(" & ")} ${m.year}"
       case p: Product =>
         p.productIterator.map(format).mkString(",")
+      case i: Iterable[_] => i.map(format).mkString(" ")
       case _ => a.toString
     }
     for (ErrorAnalysis(metric, _, examples) <- analysis) {
