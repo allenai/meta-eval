@@ -12,7 +12,7 @@ case class Author(firstName: String, middleNames: Seq[String], lastName: String)
 
   def ifDefined =
     if (firstName.isEmpty
-      && middleNames.isEmpty
+      && middleNames.filter(_.nonEmpty).isEmpty
       && lastName.isEmpty) {
       None
     } else {
@@ -30,7 +30,7 @@ object Author {
         val names = s.removePunctuation.splitOnWhitespace
         names.size match {
           case 1 => Author("", Seq(), names(0))
-          case _ => Author(names.head, names.drop(1).take(names.size - 2), names.last)
+          case _ => Author(names.head, names.slice(1, names.size - 1), names.last)
         }
       case _ =>
         val lastName = s.substring(0, i).removePunctuation.trim

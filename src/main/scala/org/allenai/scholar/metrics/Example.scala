@@ -21,9 +21,6 @@ trait Example[+T] {
       }
     PR(p, r)
   }
-
-  def formatTrueLabels = trueLabels.map(_.toString)
-  def formatPredictedLabels = predictedLabels.map(_.toString)
 }
 
 object Example {
