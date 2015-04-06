@@ -6,7 +6,7 @@ import org.allenai.plugins.CoreRepositories.PublishTo
 
 name := "meta-eval"
 
-version := "1.0.4"
+version := "1.1.0"
 
 organization := "org.allenai.scholar.metrics.metadata"
 
