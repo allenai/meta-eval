@@ -11,14 +11,14 @@ object MetadataErrorAnalysis {
     predictions: Map[String, PaperMetadata]
   ) =
     ErrorAnalysis.computeMetrics(truth, predictions,
-      YEAR -> extractYear,
-      VENUE_NONEMPTY -> extractVenueNonEmpty,
-      AUTHOR_FULL_NAME -> extractAuthorExact,
-      AUTHOR_NORMALIZED_LAST_NAME -> extractAuthorLastName,
-      AUTHOR_NORMALIZED_LAST_NAME_FIRST_INITIAL -> extractAuthorLastNameFirstInitial,
-      TITLE_EXACT -> extractTitleExact,
-      TITLE_NORMALIZED -> extractTitleNormalized,
-      TITLE_NONEMPTY -> extractTitleNonempty)
+      YEAR -> extractYear _,
+      VENUE_NONEMPTY -> extractVenueNonEmpty _,
+      AUTHOR_FULL_NAME -> extractAuthorExact _,
+      AUTHOR_NORMALIZED_LAST_NAME -> extractAuthorLastName _,
+      AUTHOR_NORMALIZED_LAST_NAME_FIRST_INITIAL -> extractAuthorLastNameFirstInitial _,
+      TITLE_EXACT -> extractTitleExact _,
+      TITLE_NORMALIZED -> extractTitleNormalized _,
+      TITLE_NONEMPTY -> extractTitleNonempty _)
 
   def extractYear(data: PaperMetadata): Iterable[Year] = PublicationYear.ifDefined(data.year)
 
