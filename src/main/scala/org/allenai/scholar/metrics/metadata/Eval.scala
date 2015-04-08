@@ -52,7 +52,8 @@ case class Eval(
     writeToFile(s"${algoName}-summary.txt") { w =>
       w.println("Metric\tPrecision\tRecall\tF1")
       for (ErrorAnalysis(metric, PR(p, r), _) <- analysis) {
-        w.println(s"$metric\t${p.getOrElse("")}\t${r.getOrElse("")}\t${computeF1(p.getOrElse(0.0), r.getOrElse(0.0))}")
+        val f1 = computeF1(p.getOrElse(0.0), r.getOrElse(0.0))
+        w.println(s"$metric\t${p.getOrElse("")}\t${r.getOrElse("")}\t${if (f1 >= 0.0) f1 else ""}")
       }
     }
     val detailsDir = new File(s"${algoName}-details")
@@ -73,7 +74,7 @@ case class Eval(
           val predictions = ex.predictedLabels.map(format).mkString("|")
           val PR(p, r) = ex.precisionRecall
           val f1 = computeF1(p.getOrElse(0.0), r.getOrElse(0.0))
-          w.println(s"$id\t${p.getOrElse("")}\t${r.getOrElse("")}\t$f1\t$truth\t$predictions")
+          w.println(s"$id\t${p.getOrElse("")}\t${r.getOrElse("")}\t${if (f1 >= 0.0) f1 else ""}\t$truth\t$predictions")
         }
       }
     }
