@@ -28,11 +28,11 @@ case class Eval(
       if idFilter(id)
       predicted <- taggedFileParser(f)
     } yield (id, predicted)
-    val goldMetadata = groundTruthMetadata.filterKeys(idFilter)
+    val goldMetadata = groundTruthMetadata.filterKeys(idFilter).toList
     val predictedMetadata = predictions.toMap.mapValues(_.metadata)
     val metadataMetrics = MetadataErrorAnalysis.computeMetrics(goldMetadata, predictedMetadata)
     val predictedBibs = predictions.toMap.mapValues(_.bibs.toSet)
-    val goldBibs = groundTruthBibs.filterKeys(idFilter).mapValues(_.values.toSet)
+    val goldBibs = groundTruthBibs.filterKeys(idFilter).mapValues(_.values.toSet).toList
     val bibliographyMetrics = BibliographyErrorAnalysis.computeMetrics(goldBibs, predictedBibs)
     metadataMetrics ++ bibliographyMetrics
   }
@@ -56,22 +56,29 @@ case class Eval(
     }
     val detailsDir = new File(s"${algoName}-details")
     detailsDir.mkdirs()
-    def format(a: Any): String = a match {
-      case a: Author => a.productIterator.map(format).filter(_.size > 0).mkString(" ")
-      case m: PaperMetadata => s"${m.authors.map(_.lastName).mkString(" & ")} ${m.year}"
-      case p: Product =>
-        p.productIterator.map(format).mkString(",")
-      case i: Iterable[_] => i.map(format).mkString(" ")
-      case _ => a.toString
-    }
+    def format(a: Any): String =
+      if (Config.verboseLabelFormat) {
+        a.toString
+      } else {
+        a match {
+          case a: Author => a.productIterator.map(format).filter(_.size > 0).mkString(" ")
+          case m: PaperMetadata => s"${m.authors.map(_.lastName).mkString(" & ")} ${m.year}"
+          case p: Product =>
+            p.productIterator.map(format).mkString(",")
+          case i: Iterable[_] => i.map(format).mkString(" ")
+          case _ => a.toString
+        }
+      }
     for (ErrorAnalysis(metric, _, examples) <- analysis) {
       writeToFile(new File(detailsDir, s"$metric.txt").getCanonicalPath) { w =>
-        w.println("id\tPrecision\tRecall\tTruth\tPredicted")
+        w.println("id\tPrecision\tRecall\tFalsePositives\tFalseNegatives\tTruth\tPredicted")
         for ((id, ex) <- examples) {
           val truth = ex.trueLabels.map(format).mkString("|")
           val predictions = ex.predictedLabels.map(format).mkString("|")
+          val falsePositives = (ex.predictedLabels.toSet -- ex.trueLabels).map(format).mkString("|")
+          val falseNegatives = (ex.trueLabels.toSet -- ex.predictedLabels).map(format).mkString("|")
           val PR(p, r) = ex.precisionRecall
-          w.println(s"""$id\t${p.getOrElse("")}\t${r.getOrElse("")}\t$truth\t$predictions""")
+          w.println(s"""$id\t${p.getOrElse("")}\t${r.getOrElse("")}\t$falsePositives\t$falseNegatives\t$truth\t$predictions""")
         }
       }
     }

@@ -6,7 +6,7 @@ import org.allenai.scholar.StringUtils._
 
 object BibliographyErrorAnalysis {
   def computeMetrics(
-    truth: Map[String, Set[PaperMetadata]],
+    truth: Seq[(String, Set[PaperMetadata])],
     predictions: Map[String, Set[PaperMetadata]]
   ) =
     ErrorAnalysis.computeMetrics(truth, predictions,
