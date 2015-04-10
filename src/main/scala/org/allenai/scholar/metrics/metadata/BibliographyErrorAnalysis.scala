@@ -1,6 +1,8 @@
 package org.allenai.scholar.metrics.metadata
 
-import org.allenai.scholar.{ Venue, Title, PaperMetadata }
+import java.time.Year
+
+import org.allenai.scholar.{ Author, Venue, Title, PaperMetadata }
 import org.allenai.scholar.metrics.ErrorAnalysis
 import org.allenai.scholar.StringUtils._
 
@@ -14,17 +16,25 @@ object BibliographyErrorAnalysis {
 
   val BIBLIOGRAPHY_EXTRACTION = "bibliography"
 
-  def extractBibliography(bibs: Set[PaperMetadata]): Iterable[PaperMetadata] =
+  def extractBibliography(bibs: Set[PaperMetadata]): Iterable[FuzzyPaperMetadata] =
     bibs.map(fuzzify)
 
   // Soft version of paper metadata:
-  // includes just the first word of the title and the last names of the first two authors
   def fuzzify(data: PaperMetadata) =
-    PaperMetadata(
-      Title(data.title.normalized.text.splitOnWhitespace.head),
-      Venue(""),
+    FuzzyPaperMetadata(
+      Title(data.title.normalized.text),
       data.year,
-      data.authors.map(_.lastNameOnly.normalized).take(2)
+      data.authors.map(_.lastNameOnly.normalized).toSet
     )
+
+  case class FuzzyPaperMetadata(title: Title, year: Year, authors: Set[Author]) {
+    override def equals(a: Any) = a match {
+      case FuzzyPaperMetadata(title2, year2, authors2) =>
+        title == title2 ||
+          (authors == authors2 && year == year2)
+      case _ => false
+    }
+    override def hashCode = 1
+  }
 
 }
