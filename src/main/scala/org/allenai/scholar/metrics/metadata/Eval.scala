@@ -47,11 +47,17 @@ case class Eval(
     groundTruthBibs: Map[String, Map[String, PaperMetadata]],
     idFilter: String => Boolean
   ): Unit = {
+    def computeF1(precision: Option[Double], recall: Option[Double]) = (precision, recall) match {
+      case (Some(_), Some(0)) | (Some(0), Some(_)) => Some(0.0)
+      case (Some(p), Some(r)) => Some((2.0 * r * p) / (r + p))
+      case _ => None
+    }
     val analysis = computeEval(groundTruthMetadata, groundTruthBibs, idFilter)
     writeToFile(s"${algoName}-summary.txt") { w =>
-      w.println("Metric\tPrecision\tRecall")
+      w.println("Metric\tPrecision\tRecall\tF1")
       for (ErrorAnalysis(metric, PR(p, r), _) <- analysis) {
-        w.println(s"""$metric\t${p.getOrElse("")}\t${r.getOrElse("")}""")
+        val f1 = computeF1(p, r)
+        w.println(s"$metric\t${p.getOrElse("")}\t${r.getOrElse("")}\t${f1.getOrElse("")}")
       }
     }
     val detailsDir = new File(s"${algoName}-details")
@@ -71,14 +77,15 @@ case class Eval(
       }
     for (ErrorAnalysis(metric, _, examples) <- analysis) {
       writeToFile(new File(detailsDir, s"$metric.txt").getCanonicalPath) { w =>
-        w.println("id\tPrecision\tRecall\tFalsePositives\tFalseNegatives\tTruth\tPredicted")
+        w.println("id\tPrecision\tRecall\tF1\tFalsePositives\tFalseNegatives\tTruth\tPredicted")
         for ((id, ex) <- examples) {
           val truth = ex.trueLabels.map(format).mkString("|")
           val predictions = ex.predictedLabels.map(format).mkString("|")
           val falsePositives = (ex.predictedLabels.toSet -- ex.trueLabels).map(format).mkString("|")
           val falseNegatives = (ex.trueLabels.toSet -- ex.predictedLabels).map(format).mkString("|")
           val PR(p, r) = ex.precisionRecall
-          w.println(s"""$id\t${p.getOrElse("")}\t${r.getOrElse("")}\t$falsePositives\t$falseNegatives\t$truth\t$predictions""")
+          val f1 = computeF1(p, r)
+          w.println(s"""$id\t${p.getOrElse("")}\t${r.getOrElse("")}\t${f1.getOrElse("")}\t$falsePositives\t$falseNegatives\t$truth\t$predictions""")
         }
       }
     }
