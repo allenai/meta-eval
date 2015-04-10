@@ -105,10 +105,13 @@ case class Eval(
     } yield {
       (s(0), s(1))
     }
-    val bibs = MetadataAndBibliography.edgesToBibKeyMap(citationEdges, groundTruthMetadata)
+    var bibs = MetadataAndBibliography.edgesToBibKeyMap(citationEdges, groundTruthMetadata)
     idWhiteListFile match {
       case Some(fn) if new File(fn).exists =>
         val whiteList = Source.fromFile(fn).getLines.toSet
+        for (id <- whiteList -- bibs.keySet) {
+          bibs += (id -> Map())
+        }
         run(groundTruthMetadata, bibs, whiteList.contains(_))
       case _ => run(groundTruthMetadata, bibs, id => true)
     }
