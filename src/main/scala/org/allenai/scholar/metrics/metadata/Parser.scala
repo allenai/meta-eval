@@ -43,8 +43,8 @@ abstract class Parser(
       val last = a.extractName(lastRelativePath)
       val first = a.extractName(firstRelativePath)
       val middle = a.extractName(middleRelativePath)
-      Author(first, if (middle.size > 0) List(middle) else List(), last)
-    }).map(_.ifDefined).flatten.toList
+      Author(first, if (middle.nonEmpty) List(middle) else List(), last)
+    }).flatMap(_.ifDefined).toList
 
   private def extractBibs(doc: Document): Seq[PaperMetadata] =
     doc.select(bibMainPath).map(bib =>
@@ -135,7 +135,8 @@ object MetataggerParser extends Parser(
 
   override def extractBibYear(bib: Element): Year = bib.extractYear("date", _.text)
 
-  override def extractHeaderYear(elmt: Element): Year = ???
+  // TODO/NotYetImplemented
+  override def extractHeaderYear(elmt: Element): Year = yearZero
 
   override def extractVenue(bib: Element): String =
     List("conference", "journal", "booktitle")
