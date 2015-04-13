@@ -19,6 +19,8 @@ import org.allenai.scholar.metrics.metadata.Parser.JsoupElementsImplicits
 
 abstract class Parser(
     titlePath: String,
+    venuePath: String,
+    yearPath: String,
     authorPath: String,
     lastRelativePath: String,
     firstRelativePath: String,
@@ -31,6 +33,8 @@ abstract class Parser(
   def extractBibYear(bib: Element): Year
 
   def extractVenue(bib: Element): String
+
+  def extractHeaderYear(elmt: Element): Year
 
   def extractSpecialBib(bib: Element): PaperMetadata
 
@@ -75,8 +79,8 @@ abstract class Parser(
     val metadata = PaperMetadata(
       title = Title(doc.extractTitle(titlePath)),
       authors = extractNames(doc, authorPath),
-      year = org.allenai.scholar.metrics.metadata.yearZero,
-      venue = Venue("")
+      year = extractHeaderYear(doc),
+      venue = Venue(extractVenue(doc))
     )
     MetadataAndBibliography(
       metadata = metadata,
@@ -87,6 +91,8 @@ abstract class Parser(
 
 object GrobidParser extends Parser(
   titlePath = "teiHeader>fileDesc>titleStmt>title",
+  venuePath = "teiHeader>fileDesc>sourceDesc>biblStruct>monogr>title",
+  yearPath = "teiHeader>fileDesc>sourceDesc>biblStruct>monogr>imprint",
   authorPath = "teiHeader>fileDesc>sourceDesc>biblStruct>analytic>author",
   lastRelativePath = "persName>surname",
   firstRelativePath = "persName>forename[type=first]",
@@ -96,12 +102,16 @@ object GrobidParser extends Parser(
   bibTitlePath = "analytic>title[type=main]"
 ) {
 
-  def extractBibYear(bib: Element): Year =
+  override def extractBibYear(bib: Element): Year =
     bib.extractYear("monogr>imprint>date[type=published]", _.attr("when"))
 
-  def extractVenue(bib: Element): String = bib.extractBibTitle("monogr>title")
+  override def extractHeaderYear(elmt: Element): Year = elmt.extractYear(
+    "teiHeader>fileDesc>sourceDesc>biblStruct>monogr>imprint>date[type=published]", _.attr("when")
+  )
 
-  def extractSpecialBib(bib: Element): PaperMetadata =
+  override def extractVenue(bib: Element): String = bib.extractBibTitle("monogr>title")
+
+  override def extractSpecialBib(bib: Element): PaperMetadata =
     PaperMetadata(
       title = Title(extractVenue(bib)), // venue becomes title for PhD theses
       authors = extractNames(bib, "monogr>author"),
@@ -112,6 +122,8 @@ object GrobidParser extends Parser(
 
 object MetataggerParser extends Parser(
   titlePath = "document>content>headers>title",
+  venuePath = "???",
+  yearPath = "???",
   authorPath = "document>content>headers>authors>author",
   lastRelativePath = "author-last",
   firstRelativePath = "author-first",
@@ -121,16 +133,18 @@ object MetataggerParser extends Parser(
   bibTitlePath = "title"
 ) {
 
-  def extractBibYear(bib: Element): Year = bib.extractYear("date", _.text)
+  override def extractBibYear(bib: Element): Year = bib.extractYear("date", _.text)
 
-  def extractVenue(bib: Element): String =
+  override def extractHeaderYear(elmt: Element): Year = ???
+
+  override def extractVenue(bib: Element): String =
     List("conference", "journal", "booktitle")
       .find(vt => !bib.select(vt).isEmpty) match {
         case Some(v) => bib.extractBibTitle(v)
         case None => ""
       }
 
-  def extractSpecialBib(bib: Element): PaperMetadata = {
+  override def extractSpecialBib(bib: Element): PaperMetadata = {
     val metadata = PaperMetadata(
       title = Title(bib.extractBibTitle("booktitle")),
       authors = extractNames(bib, "authors>author"),
