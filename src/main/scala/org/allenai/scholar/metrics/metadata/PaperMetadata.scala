@@ -1,8 +1,8 @@
-package org.allenai.scholar.metrics
+package org.allenai.scholar.metrics.metadata
 
 import java.time.Year
 
-import org.allenai.scholar.{ Author, Title, Venue }
+import org.allenai.scholar.{Author, Title, Venue}
 import spray.json.DefaultJsonProtocol._
 import spray.json._
 
@@ -26,9 +26,14 @@ object PaperMetadata {
     implicit val format = jsonFormat5(Record)
     val metadataWithid = for (line <- Source.fromFile(metaFileName, "UTF-8").getLines) yield {
       val Record(year, id, authors, title, venue) = line.parseJson.convertTo[Record]
-      (id, PaperMetadata(Title(title), Venue(venue), Year.of(year), authors.map(Author.parse)))
+      (id, fromStrings(year, id, authors, title, venue))
     }
     metadataWithid.toMap
+  }
+
+  def fromStrings(year: Int,
+      id: String, authors: Seq[String], title: String, venue: String): PaperMetadata = {
+    PaperMetadata(Title(title), Venue(venue), Year.of(year), authors.map(Author.parse))
   }
 }
 
