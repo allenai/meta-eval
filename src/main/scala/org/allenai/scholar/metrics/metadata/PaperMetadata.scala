@@ -2,7 +2,7 @@ package org.allenai.scholar.metrics.metadata
 
 import java.time.Year
 
-import org.allenai.scholar.{Author, Title, Venue}
+import org.allenai.scholar.{ Author, Title, Venue }
 import spray.json.DefaultJsonProtocol._
 import spray.json._
 
@@ -31,8 +31,10 @@ object PaperMetadata {
     metadataWithid.toMap
   }
 
-  def fromStrings(year: Int,
-      id: String, authors: Seq[String], title: String, venue: String): PaperMetadata = {
+  def fromStrings(
+    year: Int,
+    id: String, authors: Seq[String], title: String, venue: String
+  ): PaperMetadata = {
     PaperMetadata(Title(title), Venue(venue), Year.of(year), authors.map(Author.parse))
   }
 }
