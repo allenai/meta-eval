@@ -1,8 +1,5 @@
 package org.allenai.scholar.metrics
 
-import java.time.Year
-
-import org.allenai.scholar._
 import org.allenai.scholar.metrics.PrecisionRecall._
 
 case class ErrorAnalysis(

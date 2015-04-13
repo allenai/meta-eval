@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" 
+ xmlns:mml="http://www.w3.org/1998/Math/MathML">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Moses: Open Source Toolkit for Statistical Machine Translation</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Association for Computational Linguistics</publisher>
+				<availability><p>Copyright Association for Computational Linguistics</p>
+				</availability>
+				<date type="published" when="2007-06">June 2007 . 2007</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName>
+								<forename type="first">Philipp</forename>
+								<surname>Koehn</surname>
+							</persName>
+							<email>1 pkoehn@inf.ed.ac.uk, {h.hoang, A.C.Birch-Mayne}@sms.ed.ac.uk, callison-burch@ed.ac.uk. 2 {federico, bertoldi}@itc.it. 3 brooke@csail.mit.edu, swade@ll.mit.edu, weezer@mit.edu. 4 zens@i6.informatik.rwth-aachen.de. 5 redpony@umd.edu. 6 bojar@ufal.ms.mff.cuni.cz. 7 07aec_2@williams.edu. 8 evh4@cornell.edu</email>
+							<affiliation>
+								<orgName type="institution">University of Edin-burgh</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName>
+								<forename type="first">Hieu</forename>
+								<surname>Hoang</surname>
+							</persName>
+							<affiliation>
+								<orgName type="institution">University of Edin-burgh</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName>
+								<forename type="first">Alexandra</forename>
+								<surname>Birch</surname>
+							</persName>
+							<affiliation>
+								<orgName type="institution">University of Edin-burgh</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName>
+								<forename type="first">Chris</forename>
+								<surname>Callison-Burch</surname>
+							</persName>
+							<affiliation>
+								<orgName type="institution">University of Edin-burgh</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName>
+								<forename type="first">Marcello</forename>
+								<surname>Federico</surname>
+							</persName>
+							<affiliation>
+								<orgName type="institution">University of Maryland</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName>
+								<forename type="first">Nicola</forename>
+								<surname>Bertoldi</surname>
+							</persName>
+							<affiliation>
+								<orgName type="institution">University of Maryland</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName>
+								<forename type="first">Itc-Irst</forename>
+							</persName>
+							<affiliation>
+								<orgName type="institution">University of Maryland</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName>
+								<forename type="first">Brooke</forename>
+								<surname>Cowan</surname>
+							</persName>
+							<affiliation>
+								<orgName type="institution">University of Maryland</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName>
+								<forename type="first">Wade</forename>
+								<surname>Shen</surname>
+							</persName>
+							<affiliation>
+								<orgName type="institution">University of Maryland</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName>
+								<forename type="first">Christine</forename>
+								<surname>Moran</surname>
+							</persName>
+							<affiliation>
+								<orgName type="institution">University of Maryland</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName>
+								<forename type="first">Mit</forename>
+							</persName>
+							<affiliation>
+								<orgName type="institution">University of Maryland</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName>
+								<forename type="first">Richard</forename>
+								<surname>Zens</surname>
+							</persName>
+							<affiliation>
+								<orgName type="institution">University of Maryland</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName>
+								<forename type="first">Rwth</forename>
+								<surname>Aachen</surname>
+							</persName>
+							<affiliation>
+								<orgName type="institution">University of Maryland</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName>
+								<forename type="first">Chris</forename>
+								<surname>Dyer</surname>
+							</persName>
+							<affiliation>
+								<orgName type="institution">University of Maryland</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName>
+								<forename type="first">Evan</forename>
+								<forename type="middle">Herbst</forename>
+								<surname>Cornell</surname>
+							</persName>
+							<affiliation>
+								<orgName type="department">Ond?ej Bojar</orgName>
+								<orgName type="institution">Charles University</orgName>
+								<address>
+									<addrLine>6 Alexandra Constantin Williams College 7</addrLine>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Moses: Open Source Toolkit for Statistical Machine Translation</title>
+					</analytic>
+					<monogr>
+						<title level="m">Proceedings of the ACL 2007 Demo and Poster Sessions</title>
+						<meeting>the ACL 2007 Demo and Poster Sessions <address>Prague</address>
+						</meeting>
+						<imprint>
+							<publisher>Association for Computational Linguistics</publisher>
+							<biblScope unit="page" from="177" to="180"/>
+							<date type="published" when="2007-06">June 2007 . 2007</date>
+						</imprint>
+					</monogr>
+					<note>1</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<front>
+			<div type="abstract">
+				<head>Abstract</head>
+<p>We describe an open-source toolkit for statistical machine translation whose novel contributions are (a) support for linguistically motivated factors, (b) confusion network decoding, and (c) efficient data formats for translation models and language models. In addition to the SMT decoder, the toolkit also includes a wide variety of tools for training, tuning and applying the system to many translation tasks.</p>
+			</div>
+		</front>
+		<body>
+			<head>Moses: Open Source Toolkit for Statistical Machine Translation Philipp Koehn Hieu Hoang Alexandra Birch Chris Callison-Burch University of Edin</head>
+
+			<figure>
+				<trash>- burgh 1 Marcello Federico Nicola Bertoldi ITC-irst 2 Brooke Cowan Wade Shen Christine Moran MIT 3 Richard Zens RWTH Aachen 4 Chris Dyer University of Maryland 5 Ond?ej Bojar Charles University 6 Alexandra Constantin Williams College 7 Evan Herbst Cornell 8 1 pkoehn@inf</trash>
+
+
+			</figure>
+
+			<p>.ed.ac.uk, {h.hoang, A.C.Birch-Mayne}@sms.ed.ac.uk, callison-burch@ed.ac.uk. 2 {federico, bertoldi}@itc.it. 3 brooke@csail.mit.edu, swade@ll.mit.edu, weezer@mit.edu. 4 zens@i6.informatik.rwth-aachen.de. 5 redpony@umd.edu. 6 bojar@ufal.ms.mff.cuni.cz.</p>
+
+			<figure>
+				<trash>7 07aec_2@williams.edu. 8 evh4@cornell.edu Abstract</trash>
+
+
+			</figure>
+
+			<p>We describe an open-source toolkit for statistical machine translation whose novel contributions are (a) support for linguistically motivated factors, (b) confusion network decoding, and (c) efficient data formats for translation models and language models. In addition to the SMT decoder, the toolkit also includes a wide variety of tools for training, tuning and applying the system to many translation tasks.</p>
+
+			<head n="1">Motivation</head>
+
+			<p>Phrase-based statistical machine translation (Koehn et al. 2003) has emerged as the dominant paradigm in machine translation research. However , until now, most work in this field has been carried out on proprietary and in-house research systems. This lack of openness has created a high barrier to entry for researchers as many of the components required have had to be duplicated. This has also hindered effective comparisons of the different elements of the systems. By providing a free and complete toolkit, we hope that this will stimulate the development of the field. For this system to be adopted by the community , it must demonstrate performance that is comparable to the best available systems. Moses has shown that it achieves results comparable to the most competitive and widely used statistical machine translation systems in translation quality and run-time (Shen et al. 2006). It features all the capabilities of the closed sourced Pharaoh decoder (Koehn 2004). Apart from providing an open-source toolkit for SMT, a further motivation for Moses is to extend phrase-based translation with factors and confusion network decoding. The current phrase-based approach to statistical machine translation is limited to the mapping of small text chunks without any explicit use of linguistic information, be it morphological, syntactic, or semantic. These additional sources of information have been shown to be valuable when integrated into pre-processing or post-processing steps. Moses also integrates confusion network decoding , which allows the translation of ambiguous input. This enables, for instance, the tighter integration of speech recognition and machine translation . Instead of passing along the one-best output of the recognizer, a network of different word choices may be examined by the machine translation system. Efficient data structures in Moses for the memory-intensive translation model and language model allow the exploitation of much larger data resources with limited hardware.</p>
+
+			<head n="2">Toolkit</head>
+
+			<p>The toolkit is a complete out-of-the-box translation system for academic research. It consists of all the components needed to preprocess data, train the language models and the translation models. It also contains tools for tuning these models using minimum error rate training (Och 2003) and evaluating the resulting translations using the BLEU score (Papineni et al. 2002). Moses uses standard external tools for some of the tasks to avoid duplication, such as GIZA++ (Och and Ney 2003) for word alignments and SRILM for language modeling. Also, since these tasks are often CPU intensive, the toolkit has been designed to work with Sun Grid Engine parallel environment to increase throughput. In order to unify the experimental stages, a utility has been developed to run repeatable experiments . This uses the tools contained in Moses and requires minimal changes to set up and cus- tomize. The toolkit has been hosted and developed under sourceforge.net since inception. Moses has an active research community and has reached over 1000 downloads as of 1 st March 2007. The main online presence is at http://www.statmt.org/moses/ where many sources of information about the project can be found. Moses was the subject of this year&amp;apos;s Johns Hopkins University Workshop on Machine Translation (Koehn et al. 2006). The decoder is the core component of Moses. To minimize the learning curve for many researchers , the decoder was developed as a drop-in replacement for Pharaoh, the popular phrase-based decoder. In order for the toolkit to be adopted by the community, and to make it easy for others to contribute to the project, we kept to the following principles when developing the decoder: ? Accessibility ? Easy to Maintain ? Flexibility ? Easy for distributed team development ? Portability It was developed in C++ for efficiency and followed modular, object-oriented design.</p>
+
+			<head n="3">Factored Translation Model</head>
+
+			<p>Non-factored SMT typically deals only with the surface form of words and has one phrase table, as shown in Figure 1. i am buying you a green cat using phrase dictionary: i am buying you a green cat je ach?te vous un vert chat a une je vous ach?te un chat vert</p>
+
+			<head>Translate:</head>
+
+			<p>In factored translation models, the surface forms may be augmented with different factors, such as POS tags or lemma. This creates a factored representation of each word, Figure 2. 1 1 1 / s i n g/ je vous achet un chat PRO PRO VB ART NN je vous acheter un chat st st st present masc masc ? ?? ?? ?? ?? ? ? ?? ?? ?? ?? ? ? ?? ?? ?? ?? ? ? ?? ?? ?? ?? ? ? ?? ?? ?? ?? ? ? ?? ?? ?? ?? ? ? ?? ?? ?? ?? ? 1 1 / 1 sing sing i buy you a cat PRO VB PRO ART NN i tobuy you a cat st st present st ? ?? ?? ?? ?? ? ? ?? ?? ?? ?? ? ? ?? ?? ?? ?? ? ? ?? ?? ?? ?? ? ? ?? ?? ?? ?? ? ? ?? ?? ?? ?? ?</p>
+
+			<p>Mapping of source phrases to target phrases may be decomposed into several steps. Decomposition of the decoding process into various steps means that different factors can be modeled separately . Modeling factors in isolation allows for flexibility in their application. It can also increase accuracy and reduce sparsity by minimizing the number dependencies for each step. For example, we can decompose translating from surface forms to surface forms and lemma, as shown in Figure 3.</p>
+
+			<figure>
+				<head>Figure 2.</head>
+
+				<figDesc>Factored translation</figDesc>
+
+			</figure>
+
+			<figure>
+				<head>Figure 1.</head>
+
+				<figDesc>Non-factored translation</figDesc>
+
+			</figure>
+
+			<p>For the Chinese-English NIST task, the memory requirement of the phrase table is reduced from 1.7 gigabytes to less than 20 mega bytes, with no loss in translation quality and speed (Zens and Ney 2007). The other large data resource for statistical machine translation is the language model. Almost unlimited text resources can be collected from the Internet and used as training data for language modeling. This results in language models that are too large to easily fit into memory. The Moses system implements a data structure for language models that is more efficient than the canonical SRILM (Stolcke 2002) implementation used in most systems. The language model on disk is also converted into this binary format, resulting in a minimal loading time during start-up of the decoder. An even more compact representation of the language model is the result of the quantization of the word prediction and back-off probabilities of the language model. Instead of representing these probabilities with 4 byte or 8 byte floats, they are sorted into bins, resulting in (typically) 256 bins which can be referenced with a single 1 byte index. This quantized language model, albeit being less accurate, has only minimal impact on translation performance (Federico and Bertoldi 2006).</p>
+
+			<head n="6">Conclusion and Future Work</head>
+
+			<p>This paper has presented a suite of open-source tools which we believe will be of value to the MT research community. We have also described a new SMT decoder which can incorporate some linguistic features in a consistent and flexible framework. This new direction in research opens up many possibilities and issues that require further research and experimentation . Initial results show the potential benefit of factors for statistical machine translation, (Koehn et al. 2006) and (Koehn and Hoang 2007).</p>
+
+		</body>
+		<back>
+			<div type="references">
+
+		<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Factored Language Model for Sta-tistical Machine Translation</title>
+		<author>
+			<persName>
+				<surname>Axelrod</surname>
+			</persName>
+		</author>
+		<author>
+			<persName>
+				<surname>Amittai</surname>
+			</persName>
+		</author>
+	</monogr>
+</biblStruct>
+
+		</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>
