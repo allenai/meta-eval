@@ -13,8 +13,7 @@ case class PaperMetadata(
     venue: Venue,
     year: Year,
     authors: Seq[Author]
-) {
-}
+)
 
 object PaperMetadata {
 
@@ -26,14 +25,13 @@ object PaperMetadata {
     implicit val format = jsonFormat5(Record)
     val metadataWithid = for (line <- Source.fromFile(metaFileName, "UTF-8").getLines) yield {
       val Record(year, id, authors, title, venue) = line.parseJson.convertTo[Record]
-      (id, fromStrings(year, id, authors, title, venue))
+      (id, fromStrings(year, authors, title, venue))
     }
     metadataWithid.toMap
   }
 
-  def fromStrings(
-    year: Int,
-    id: String, authors: Seq[String], title: String, venue: String
+  def fromStrings(year: Int,
+      authors: Seq[String], title: String, venue: String
   ): PaperMetadata = {
     PaperMetadata(Title(title), Venue(venue), Year.of(year), authors.map(Author.parse))
   }
