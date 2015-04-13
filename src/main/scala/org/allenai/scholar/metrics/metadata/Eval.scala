@@ -47,11 +47,13 @@ case class Eval(
     groundTruthBibs: Map[String, Map[String, PaperMetadata]],
     idFilter: String => Boolean
   ): Unit = {
+    def computeF1(p: Double, r: Double): Double = if (r + p == 0.0) -1.0 else (2.0 * r * p)/(r + p)
     val analysis = computeEval(groundTruthMetadata, groundTruthBibs, idFilter)
     writeToFile(s"${algoName}-summary.txt") { w =>
-      w.println("Metric\tPrecision\tRecall")
+      w.println("Metric\tPrecision\tRecall\tF1")
       for (ErrorAnalysis(metric, PR(p, r), _) <- analysis) {
-        w.println(s"""$metric\t${p.getOrElse("")}\t${r.getOrElse("")}""")
+        val f1 = computeF1(p.getOrElse(0.0), r.getOrElse(0.0))
+        w.println(s"$metric\t${p.getOrElse("")}\t${r.getOrElse("")}\t${if (f1 >= 0.0) f1 else ""}")
       }
     }
     val detailsDir = new File(s"${algoName}-details")
@@ -66,12 +68,13 @@ case class Eval(
     }
     for (ErrorAnalysis(metric, _, examples) <- analysis) {
       writeToFile(new File(detailsDir, s"$metric.txt").getCanonicalPath) { w =>
-        w.println("id\tPrecision\tRecall\tTruth\tPredicted")
+        w.println("id\tPrecision\tRecall\tF1\tTruth\tPredicted")
         for ((id, ex) <- examples) {
           val truth = ex.trueLabels.map(format).mkString("|")
           val predictions = ex.predictedLabels.map(format).mkString("|")
           val PR(p, r) = ex.precisionRecall
-          w.println(s"""$id\t${p.getOrElse("")}\t${r.getOrElse("")}\t$truth\t$predictions""")
+          val f1 = computeF1(p.getOrElse(0.0), r.getOrElse(0.0))
+          w.println(s"$id\t${p.getOrElse("")}\t${r.getOrElse("")}\t${if (f1 >= 0.0) f1 else ""}\t$truth\t$predictions")
         }
       }
     }
