@@ -28,11 +28,11 @@ case class Eval(
       if idFilter(id)
       predicted <- taggedFileParser(f)
     } yield (id, predicted)
-    val goldMetadata = groundTruthMetadata.filterKeys(idFilter)
+    val goldMetadata = groundTruthMetadata.filterKeys(idFilter).toList
     val predictedMetadata = predictions.toMap.mapValues(_.metadata)
     val metadataMetrics = MetadataErrorAnalysis.computeMetrics(goldMetadata, predictedMetadata)
     val predictedBibs = predictions.toMap.mapValues(_.bibs.toSet)
-    val goldBibs = groundTruthBibs.filterKeys(idFilter).mapValues(_.values.toSet)
+    val goldBibs = groundTruthBibs.filterKeys(idFilter).mapValues(_.values.toSet).toList
     val bibliographyMetrics = BibliographyErrorAnalysis.computeMetrics(goldBibs, predictedBibs)
     metadataMetrics ++ bibliographyMetrics
   }
@@ -47,34 +47,45 @@ case class Eval(
     groundTruthBibs: Map[String, Map[String, PaperMetadata]],
     idFilter: String => Boolean
   ): Unit = {
-    def computeF1(p: Double, r: Double): Double = if (r + p == 0.0) -1.0 else (2.0 * r * p)/(r + p)
+    def computeF1(precision: Option[Double], recall: Option[Double]) = (precision, recall) match {
+      case (Some(_), Some(0)) | (Some(0), Some(_)) => Some(0.0)
+      case (Some(p), Some(r)) => Some((2.0 * r * p) / (r + p))
+      case _ => None
+    }
     val analysis = computeEval(groundTruthMetadata, groundTruthBibs, idFilter)
     writeToFile(s"${algoName}-summary.txt") { w =>
       w.println("Metric\tPrecision\tRecall\tF1")
       for (ErrorAnalysis(metric, PR(p, r), _) <- analysis) {
-        val f1 = computeF1(p.getOrElse(0.0), r.getOrElse(0.0))
-        w.println(s"$metric\t${p.getOrElse("")}\t${r.getOrElse("")}\t${if (f1 >= 0.0) f1 else ""}")
+        val f1 = computeF1(p, r)
+        w.println(s"$metric\t${p.getOrElse("")}\t${r.getOrElse("")}\t${f1.getOrElse("")}")
       }
     }
     val detailsDir = new File(s"${algoName}-details")
     detailsDir.mkdirs()
-    def format(a: Any): String = a match {
-      case a: Author => a.productIterator.map(format).filter(_.size > 0).mkString(" ")
-      case m: PaperMetadata => s"${m.authors.map(_.lastName).mkString(" & ")} ${m.year}"
-      case p: Product =>
-        p.productIterator.map(format).mkString(",")
-      case i: Iterable[_] => i.map(format).mkString(" ")
-      case _ => a.toString
-    }
+    def format(a: Any): String =
+      if (Config.verboseLabelFormat) {
+        a.toString
+      } else {
+        a match {
+          case a: Author => a.productIterator.map(format).filter(_.size > 0).mkString(" ")
+          case m: PaperMetadata => s"${m.authors.map(_.lastName).mkString(" & ")} ${m.year}"
+          case p: Product =>
+            p.productIterator.map(format).mkString(",")
+          case i: Iterable[_] => i.map(format).mkString(" ")
+          case _ => a.toString
+        }
+      }
     for (ErrorAnalysis(metric, _, examples) <- analysis) {
       writeToFile(new File(detailsDir, s"$metric.txt").getCanonicalPath) { w =>
-        w.println("id\tPrecision\tRecall\tF1\tTruth\tPredicted")
+        w.println("id\tPrecision\tRecall\tF1\tFalsePositives\tFalseNegatives\tTruth\tPredicted")
         for ((id, ex) <- examples) {
           val truth = ex.trueLabels.map(format).mkString("|")
           val predictions = ex.predictedLabels.map(format).mkString("|")
+          val falsePositives = (ex.predictedLabels.toSet -- ex.trueLabels).map(format).mkString("|")
+          val falseNegatives = (ex.trueLabels.toSet -- ex.predictedLabels).map(format).mkString("|")
           val PR(p, r) = ex.precisionRecall
-          val f1 = computeF1(p.getOrElse(0.0), r.getOrElse(0.0))
-          w.println(s"$id\t${p.getOrElse("")}\t${r.getOrElse("")}\t${if (f1 >= 0.0) f1 else ""}\t$truth\t$predictions")
+          val f1 = computeF1(p, r)
+          w.println(s"""$id\t${p.getOrElse("")}\t${r.getOrElse("")}\t${f1.getOrElse("")}\t$falsePositives\t$falseNegatives\t$truth\t$predictions""")
         }
       }
     }
@@ -94,10 +105,13 @@ case class Eval(
     } yield {
       (s(0), s(1))
     }
-    val bibs = MetadataAndBibliography.edgesToBibKeyMap(citationEdges, groundTruthMetadata)
+    var bibs = MetadataAndBibliography.edgesToBibKeyMap(citationEdges, groundTruthMetadata)
     idWhiteListFile match {
       case Some(fn) if new File(fn).exists =>
         val whiteList = Source.fromFile(fn).getLines.toSet
+        for (id <- whiteList -- bibs.keySet) {
+          bibs += (id -> Map())
+        }
         run(groundTruthMetadata, bibs, whiteList.contains(_))
       case _ => run(groundTruthMetadata, bibs, id => true)
     }

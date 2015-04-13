@@ -7,7 +7,7 @@ import org.allenai.scholar._
 
 object MetadataErrorAnalysis {
   def computeMetrics(
-    truth: Map[String, PaperMetadata],
+    truth: Seq[(String, PaperMetadata)],
     predictions: Map[String, PaperMetadata]
   ) =
     ErrorAnalysis.computeMetrics(truth, predictions,
