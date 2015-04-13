@@ -9,10 +9,10 @@ import spray.json._
 import scala.io.Source
 
 case class PaperMetadata(
-    title: Title,
-    venue: Venue,
-    year: Year,
-    authors: Seq[Author]
+  title: Title,
+  venue: Venue,
+  year: Year,
+  authors: Seq[Author]
 )
 
 object PaperMetadata {
@@ -30,8 +30,9 @@ object PaperMetadata {
     metadataWithid.toMap
   }
 
-  def fromStrings(year: Int,
-      authors: Seq[String], title: String, venue: String
+  def fromStrings(
+    year: Int,
+    authors: Seq[String], title: String, venue: String
   ): PaperMetadata = {
     PaperMetadata(Title(title), Venue(venue), Year.of(year), authors.map(Author.parse))
   }
