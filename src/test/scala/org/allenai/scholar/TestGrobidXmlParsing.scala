@@ -34,8 +34,7 @@ class TestGrobidXmlParsing extends UnitSpec {
       Author("Itc-Irst", List(), ""), // another affiliation
       Author("Richard", List(), "Zens")
     )
-    //  missing Alexandra Constantin and
-    // Ondřej Bojar
+    // missing Alexandra Constantin and Ondřej Bojar
     metadata.authors.toSet should equal(expectedAuthors)
   }
 }
