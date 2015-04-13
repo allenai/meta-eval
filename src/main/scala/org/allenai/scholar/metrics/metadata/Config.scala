@@ -29,4 +29,5 @@ object Config {
   val grobidAclExtracted = s"$aclExtracted/grobid"
   val pstotextAclExtracted = s"$aclExtracted/pstotext"
   val metataggerAclExtracted = s"$aclExtracted/metatagger"
+  val verboseLabelFormat = config.getBoolean("verboseLabelFormat")
 }

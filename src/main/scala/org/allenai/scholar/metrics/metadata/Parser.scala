@@ -75,7 +75,7 @@ abstract class Parser(
     * @return The paper's core metadata.
     */
   def parseCoreMetadataString(xmlString: String): MetadataAndBibliography = {
-    val doc = Jsoup.parse(xmlString)
+    val doc = Jsoup.parse(xmlString, "", org.jsoup.parser.Parser.xmlParser())
     val metadata = PaperMetadata(
       title = Title(doc.extractTitle(titlePath)),
       authors = extractNames(doc, authorPath),
