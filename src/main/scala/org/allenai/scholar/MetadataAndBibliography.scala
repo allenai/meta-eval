@@ -1,5 +1,7 @@
 package org.allenai.scholar
 
+import org.allenai.scholar.metrics.PaperMetadata
+
 case class MetadataAndBibliography(
   metadata: PaperMetadata,
   bibs: Seq[PaperMetadata] = List()

@@ -40,6 +40,7 @@ case class ScoredExample[+T](
 }
 
 object ScoredExample {
-  def noConfidence[T](trueLabels: Iterable[T], predictedLabels: Iterable[T]) = Example(trueLabels, predictedLabels)
+  def noConfidence[T](trueLabels: Iterable[T], predictedLabels: Iterable[T]) =
+    Example(trueLabels, predictedLabels)
 }
 

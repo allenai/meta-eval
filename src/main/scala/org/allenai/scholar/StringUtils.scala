@@ -39,7 +39,8 @@ object StringUtils {
 
     /** @return Trim non-letter chars from the beginning and end
       */
-    def trimNonAlphabetic(): String = str.dropWhile(c => !Character.isAlphabetic(c)).trimRight(c => !Character.isAlphabetic(c))
+    def trimNonAlphabetic(): String = str.dropWhile(c =>
+      !Character.isAlphabetic(c)).trimRight(c => !Character.isAlphabetic(c))
 
     /** @param chars String containing the blacklist chars.
       * @return Trim characters from the right that belongs to a blacklist.

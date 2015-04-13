@@ -4,6 +4,7 @@ import java.io.File
 import java.time.Year
 
 import org.allenai.scholar._
+import org.allenai.scholar.metrics.PaperMetadata
 import org.jsoup.Jsoup
 import org.jsoup.nodes.{ Document, Element }
 import org.jsoup.select.Elements
