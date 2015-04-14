@@ -18,7 +18,10 @@ object PrecisionRecall {
   case class PRAtThreshold(threshold: Double, precision: Option[Double], recall: Option[Double])
 
   def measurePR[T](data: Iterable[Example[T]]) = {
-    val scoredExamples = data.map(ex => ScoredExample(ex.trueLabels, ex.predictedLabels.map(l => (l, 1.0))))
+    val scoredExamples = data.map(ex => ScoredExample(
+      ex.trueLabels,
+      ex.predictedLabels.map(l => (l, 1.0))
+    ))
     val pr = scanConfidenceMeasurePR(scoredExamples).head
     PR(pr.precision, pr.recall)
   }

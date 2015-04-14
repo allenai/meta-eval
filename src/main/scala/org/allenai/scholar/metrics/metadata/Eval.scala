@@ -2,8 +2,8 @@ package org.allenai.scholar.metrics.metadata
 
 import java.io.File
 
-import org.allenai.scholar.metrics.{ ErrorAnalysis, PR }
-import org.allenai.scholar.{ Author, MetadataAndBibliography, PaperMetadata }
+import org.allenai.scholar.metrics.{ PaperMetadata, ErrorAnalysis, PR }
+import org.allenai.scholar.{ Author, MetadataAndBibliography }
 
 import scala.io.Source
 
@@ -85,7 +85,9 @@ case class Eval(
           val falseNegatives = (ex.trueLabels.toSet -- ex.predictedLabels).map(format).mkString("|")
           val PR(p, r) = ex.precisionRecall
           val f1 = computeF1(p, r)
-          w.println(s"""$id\t${p.getOrElse("")}\t${r.getOrElse("")}\t${f1.getOrElse("")}\t$falsePositives\t$falseNegatives\t$truth\t$predictions""")
+          val report = Seq(id, p.getOrElse(""), r.getOrElse(""), f1.getOrElse(""), falsePositives,
+            falseNegatives, truth, predictions).mkString("\t")
+          w.println(report)
         }
       }
     }

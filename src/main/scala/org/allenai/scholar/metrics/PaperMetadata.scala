@@ -1,8 +1,8 @@
-package org.allenai.scholar
+package org.allenai.scholar.metrics
 
 import java.time.Year
 
-import org.allenai.scholar.StringUtils._
+import org.allenai.scholar.{ Author, Title, Venue }
 import spray.json.DefaultJsonProtocol._
 import spray.json._
 
