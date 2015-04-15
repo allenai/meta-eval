@@ -17,8 +17,16 @@ case class PaperMetadata(
 
 object PaperMetadata {
 
-  implicit val JsFormat =
-    jsonFormat4((t: Title, v: Venue, y: Int, a: Seq[Author]) => PaperMetadata(t, v, Year.of(y), a))
+  implicit val yearFmt = new JsonFormat[Year] {
+    override def write(obj: Year): JsValue = JsNumber.apply(obj.getValue)
+
+    override def read(json: JsValue): Year = json match {
+      case num: JsNumber => Year.of(num.value.toInt)
+      case _ => deserializationError("Year should be formatted as an integer")
+    }
+  }
+
+  implicit val JsFormat = jsonFormat4(PaperMetadata.apply)
 
   def fromJsonLinesFile(metaFileName: String): Map[String, PaperMetadata] = {
     case class Record(year: Int, id: String, authors: Seq[String], title: String, venue: String)
