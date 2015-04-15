@@ -13,6 +13,7 @@ object MetadataErrorAnalysis {
     ErrorAnalysis.computeMetrics(truth, predictions,
       YEAR -> extractYear _,
       VENUE_NONEMPTY -> extractVenueNonEmpty _,
+      VENUE_EXACT -> extractVenueExact _,
       AUTHOR_FULL_NAME -> extractAuthorExact _,
       AUTHOR_NORMALIZED_LAST_NAME -> extractAuthorLastName _,
       AUTHOR_NORMALIZED_LAST_NAME_FIRST_INITIAL -> extractAuthorLastNameFirstInitial _,
@@ -23,6 +24,8 @@ object MetadataErrorAnalysis {
   def extractYear(data: PaperMetadata): Iterable[Year] = PublicationYear.ifDefined(data.year)
 
   def extractVenueNonEmpty(data: PaperMetadata): Iterable[Venue] = data.venue.nonEmpty.ifDefined
+
+  def extractVenueExact(data: PaperMetadata): Iterable[Venue] = data.venue.ifDefined
 
   def extractAuthorExact(data: PaperMetadata): Iterable[Author] = data.authors
 
@@ -45,6 +48,7 @@ object MetadataErrorAnalysis {
   private val TITLE_EXACT = "titleExact"
   private val TITLE_NORMALIZED = "titleNormalized"
   private val TITLE_NONEMPTY = "titleNonEmpty"
+  private val VENUE_EXACT = "venueExact"
   private val VENUE_NONEMPTY = "venueNonEmpty"
 
 }
