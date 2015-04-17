@@ -2,9 +2,8 @@ package org.allenai.scholar.metrics.metadata
 
 import java.time.Year
 
-import org.allenai.scholar.{ Author, Venue, Title }
-import org.allenai.scholar.metrics.{ PaperMetadata, ErrorAnalysis }
-import org.allenai.scholar.StringUtils._
+import org.allenai.scholar.metrics.{ ErrorAnalysis, PaperMetadata }
+import org.allenai.scholar.{ Author, Title }
 
 object BibliographyErrorAnalysis {
   def computeMetrics(

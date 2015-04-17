@@ -70,6 +70,14 @@ abstract class Parser(
       None
   }
 
+  def parseFromExtractedDir(dir: String, idFilter: String => Boolean): Map[String, MetadataAndBibliography] =
+    (for {
+      f <- (new File(dir)).listFiles
+      id = f.getName.split('.')(0)
+      if idFilter(id)
+      predicted <- parseCoreMetadata(f)
+    } yield (id, predicted)).toMap
+
   /** Function that parses XML to produce core metadata.
     * Names are lower-cased and trimmed of non-letter at the end.
     * @param xmlString The XML data as a string

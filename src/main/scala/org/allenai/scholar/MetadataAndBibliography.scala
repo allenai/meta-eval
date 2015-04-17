@@ -11,15 +11,14 @@ object MetadataAndBibliography {
   def edgesToBibKeyMap(
     citationEdges: Iterable[(String, String)],
     coreMetadata: Map[String, PaperMetadata]
-  ): Map[String, Map[String, PaperMetadata]] = {
+  ): Map[String, Set[PaperMetadata]] = {
     val edges = for {
       (citing, cited) <- citationEdges
       citedMeta <- coreMetadata.get(cited)
-    } yield {
-      (citing, (cited, citedMeta))
-    }
+    } yield (citing, citedMeta)
+
     edges
-      .groupBy(_._1) // group by citing paper id
-      .mapValues(_.map(_._2).toMap) // each value is a map from citee's bibKey to its CoreMetadata
+      .groupBy(_._1)
+      .mapValues(metas => metas.map(m => m._2).toSet)
   }
 }
