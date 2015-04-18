@@ -110,10 +110,11 @@ object Eval {
     }
   }
 
-  private def computeF1(precision: Option[Double], recall: Option[Double]) = (precision, recall) match {
-    case (Some(_), Some(0)) | (Some(0), Some(_)) => Some(0.0)
-    case (Some(p), Some(r)) => Some((2.0 * r * p) / (r + p))
-    case _ => None
-  }
+  private def computeF1(precision: Option[Double], recall: Option[Double]) =
+    (precision, recall) match {
+      case (Some(_), Some(0)) | (Some(0), Some(_)) => Some(0.0)
+      case (Some(p), Some(r)) => Some((2.0 * r * p) / (r + p))
+      case _ => None
+    }
 
 }

@@ -70,7 +70,10 @@ abstract class Parser(
       None
   }
 
-  def parseFromExtractedDir(dir: String, idFilter: String => Boolean): Map[String, MetadataAndBibliography] =
+  def parseFromExtractedDir(
+    dir: String,
+    idFilter: String => Boolean
+  ): Map[String, MetadataAndBibliography] =
     (for {
       f <- (new File(dir)).listFiles
       id = f.getName.split('.')(0)
