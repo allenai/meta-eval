@@ -46,8 +46,6 @@ object MetadataErrorAnalysis {
 
   def extractTitleNonempty(data: PaperMetadata): Iterable[Title] = data.title.nonEmpty.ifDefined
 
-  private val YEAR = "year"
-  private val YEAR_NONEMPTY = "yearNonEmpty"
   private val AUTHOR_FULL_NAME = "authorFullName"
   private val AUTHOR_NORMALIZED_LAST_NAME = "authorLastNameNormalized"
   private val AUTHOR_NORMALIZED_LAST_NAME_FIRST_INITIAL = "authorLastNameNormalizedFirstInitial"
@@ -56,5 +54,7 @@ object MetadataErrorAnalysis {
   private val TITLE_NONEMPTY = "titleNonEmpty"
   private val VENUE_NONEMPTY = "venueNonEmpty"
   private val VENUE_NORMALIZED = "venueNormalized"
+  private val YEAR = "year"
+  private val YEAR_NONEMPTY = "yearNonEmpty"
 
 }
