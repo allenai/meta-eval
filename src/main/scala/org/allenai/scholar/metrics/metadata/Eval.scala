@@ -2,7 +2,7 @@ package org.allenai.scholar.metrics.metadata
 
 import java.io.File
 
-import org.allenai.scholar.metrics.{ PaperMetadata, ErrorAnalysis, PR }
+import org.allenai.scholar.metrics.{ ErrorAnalysis, PR }
 import org.allenai.scholar.{ Author, MetadataAndBibliography }
 
 import scala.io.Source

@@ -3,7 +3,7 @@ package org.allenai.scholar.metrics.metadata
 import java.time.Year
 
 import org.allenai.scholar.{ Author, Venue, Title }
-import org.allenai.scholar.metrics.{ PaperMetadata, ErrorAnalysis }
+import org.allenai.scholar.metrics.ErrorAnalysis
 import org.allenai.scholar.StringUtils._
 
 object BibliographyErrorAnalysis {
