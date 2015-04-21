@@ -2,11 +2,11 @@ import com.typesafe.sbt.SbtNativePackager.packageArchetype
 
 import org.allenai.plugins.CoreDependencies
 
+import org.allenai.plugins.archetypes.LibraryPlugin
+
 import org.allenai.plugins.CoreRepositories.PublishTo
 
 name := "meta-eval"
-
-version := "1.1.0"
 
 organization := "org.allenai.scholar.metrics.metadata"
 
@@ -27,6 +27,4 @@ dependencyOverrides ++= Set(
 
 PublishTo.ai2Public
 
-
-
-
+enablePlugins(LibraryPlugin)

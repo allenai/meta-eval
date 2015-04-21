@@ -183,8 +183,13 @@ object Parser {
 
     def extractTitle(path: String): String = extract(path)
 
-    def extractBibTitle(path: String): String =
-      e.extract(path).trimChars(",.")
+    def extractBibTitle(path: String): String = {
+      val s = e.extract(path).trimChars(",.")
+      s.find(c => Character.isAlphabetic(c)) match {
+        case None => ""
+        case Some(_) => s
+      }
+    }
 
     def extractYear(path: String, get: Element => String): Year =
       e.select(path).headOption match {
