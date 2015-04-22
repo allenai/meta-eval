@@ -1,6 +1,7 @@
 package org.allenai.scholar.metrics.metadata
 
 import java.io.File
+import java.text.DecimalFormat
 
 import org.allenai.scholar.metrics.{ PaperMetadata, ErrorAnalysis, PR }
 import org.allenai.scholar.{ Author, MetadataAndBibliography }
@@ -66,6 +67,10 @@ object Eval {
     )
   }
 
+  val formatter = new DecimalFormat("#.##")
+  def format(n: Option[Double]) =
+    if (n.isDefined) formatter.format(n.get) else ""
+
   private def writeDetails(algoName: String, analysis: immutable.Iterable[ErrorAnalysis]): Unit = {
     val detailsDir = new File(s"${algoName}-details")
     detailsDir.mkdirs()
@@ -92,7 +97,7 @@ object Eval {
           val falseNegatives = (ex.trueLabels.toSet -- ex.predictedLabels).map(format).mkString("|")
           val PR(p, r) = ex.precisionRecall
           val f1 = computeF1(p, r)
-          val report = Seq(id, p.getOrElse(""), r.getOrElse(""), f1.getOrElse(""), falsePositives,
+          val report = Seq(id, format(p), format(r), format(f1), falsePositives,
             falseNegatives, truth, predictions).mkString("\t")
           w.println(report)
         }
@@ -104,8 +109,8 @@ object Eval {
     writeToFile(s"${algoName}-summary.txt") { w =>
       w.println("Metric\tPrecision\tRecall\tF1")
       for (ErrorAnalysis(metric, PR(p, r), _) <- analysis) {
-        val f1 = computeF1(p, r)
-        w.println(s"$metric\t${p.getOrElse("")}\t${r.getOrElse("")}\t${f1.getOrElse("")}")
+        val values = Seq(p, r, computeF1(p, r)).map(format).mkString("\t")
+        w.println(s"$metric\t$values")
       }
     }
   }
