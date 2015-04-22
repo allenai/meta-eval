@@ -19,11 +19,14 @@ object Main extends App {
   }
 
   def evalGrobid(): Unit = {
-    Eval(
+    Eval.run(
       algoName = "Grobid",
-      taggedFiles = new File(grobidAclExtracted).listFiles,
-      taggedFileParser = GrobidParser.parseCoreMetadata
-    ).run(aclMetadata, aclCitationEdges, Some(aclIdWhiteList))
+      parser = GrobidParser,
+      extractedDir = grobidAclExtracted,
+      groundTruthMetadataFile = aclMetadata,
+      groundTruthCitationEdgesFile = aclCitationEdges,
+      idWhiteListFile = Some(aclIdWhiteList)
+    )
   }
 
   def runPsToText(): Unit = {
@@ -57,11 +60,14 @@ object Main extends App {
   }
 
   def evalMetatagger(): Unit = {
-    Eval(
-      algoName = "Metatagger",
-      taggedFiles = new File(metataggerAclExtracted).listFiles,
-      taggedFileParser = MetataggerParser.parseCoreMetadata
-    ).run(aclMetadata, aclCitationEdges, Some(aclIdWhiteList))
+    Eval.run(
+      algoName = "Metagagger",
+      parser = MetataggerParser,
+      extractedDir = metataggerAclExtracted,
+      groundTruthMetadataFile = aclMetadata,
+      groundTruthCitationEdgesFile = aclCitationEdges,
+      idWhiteListFile = Some(aclIdWhiteList)
+    )
   }
 
   val cmds = this.getClass.getDeclaredMethods.map(m => m.getName -> m).toMap
