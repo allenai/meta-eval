@@ -1,6 +1,6 @@
 package org.allenai.scholar
 
-import org.allenai.scholar.metrics.PaperMetadata
+import org.allenai.scholar.metrics.metadata.PaperMetadata
 
 case class MetadataAndBibliography(
   metadata: PaperMetadata,

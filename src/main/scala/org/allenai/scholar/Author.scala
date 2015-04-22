@@ -4,6 +4,13 @@ import StringUtils._
 import spray.json.DefaultJsonProtocol._
 
 case class Author(firstName: String, middleNames: Seq[String], lastName: String) {
+  override def toString = {
+    if (lastName.isEmpty) {
+      (firstName +: middleNames).mkString(" ")
+    } else {
+      ((lastName + ",") +: firstName +: middleNames).mkString(" ")
+    }
+  }
   def normalized = Author(firstName.normalize, middleNames.map(_.normalize), lastName.normalize)
 
   def lastNameOnly = Author("", Seq(), lastName)
