@@ -8,6 +8,7 @@ import org.allenai.scholar.{ Author, MetadataAndBibliography }
 
 import scala.collection.immutable
 import scala.io.Source
+import scala.util.{ Failure, Try }
 
 object Eval extends FileParsing {
 
@@ -68,8 +69,8 @@ object Eval extends FileParsing {
   }
 
   val formatter = new DecimalFormat("#.##")
-  def format(n: Option[Double]) = n.map(_.toString).getOrElse("")
-  //    if (n.isDefined) formatter.format(n.get) else ""
+  def format(n: Option[Double]) =
+    n.map(formatter.format).getOrElse("")
 
   private def writeDetails(algoName: String, analysis: immutable.Iterable[ErrorAnalysis]): Unit = {
     val detailsDir = new File(s"${algoName}-details")
@@ -123,3 +124,31 @@ object Eval extends FileParsing {
     }
 
 }
+
+trait FileParsing {
+
+  def parseFile[T](file: File)(parse: String => T): Try[T] =
+    Try {
+      val fileContents = Source.fromFile(file, "UTF-8").mkString
+      parse(fileContents)
+    }
+
+  def parseDir[T](
+    dir: File,
+    idFilter: String => Boolean,
+    errorHandler: (File, Throwable) => Unit = {
+      (f, ex) => println(s"Error parsing $f: ${ex.getMessage}")
+    }
+  )(parse: String => T): Map[String, T] =
+    (for {
+      f <- dir.listFiles
+      id = f.getName.split('.')(0)
+      if idFilter(id)
+      predicted <- parseFile(f)(parse).recoverWith {
+        case ex =>
+          errorHandler(f, ex)
+          Failure(ex)
+      }.toOption
+    } yield (id, predicted)).toMap
+}
+

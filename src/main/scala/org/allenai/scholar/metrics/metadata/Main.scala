@@ -60,14 +60,14 @@ object Main extends App {
   }
 
   def evalMetatagger(): Unit = {
-    //    Eval.run(
-    //      algoName = "Metagagger",
-    //      parser = MetataggerParser,
-    //      extractedDir = new File(metataggerAclExtracted),
-    //      groundTruthMetadataFile = aclMetadata,
-    //      groundTruthCitationEdgesFile = aclCitationEdges,
-    //      idWhiteListFile = Some(aclIdWhiteList)
-    //    )
+    Eval.run(
+      algoName = "Metagagger",
+      parser = MetataggerParser.parseCoreMetadataString,
+      extractedDir = new File(metataggerAclExtracted),
+      groundTruthMetadataFile = aclMetadata,
+      groundTruthCitationEdgesFile = aclCitationEdges,
+      idWhiteListFile = Some(aclIdWhiteList)
+    )
   }
 
   val cmds = this.getClass.getDeclaredMethods.map(m => m.getName -> m).toMap
