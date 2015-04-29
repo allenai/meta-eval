@@ -9,7 +9,7 @@ import org.allenai.scholar.{ Author, MetadataAndBibliography }
 import scala.collection.immutable
 import scala.io.Source
 
-object Eval {
+object Eval extends FileParsing {
 
   /** Eval objects define evaluations of different metadata extraction algorithms.
     * @param algoName The extraction algorithm's name.
@@ -34,8 +34,8 @@ object Eval {
 
   def run(
     algoName: String,
-    parser: Parser,
-    extractedDir: String,
+    parser: String => MetadataAndBibliography,
+    extractedDir: File,
     groundTruthMetadataFile: String,
     groundTruthCitationEdgesFile: String,
     idWhiteListFile: Option[String] = None
@@ -48,7 +48,7 @@ object Eval {
 
     def idFilter(id: String): Boolean = whiteList.isEmpty || whiteList.contains(id)
 
-    val predictions = parser.parseFromExtractedDir(extractedDir, idFilter)
+    val predictions = parseDir(extractedDir, idFilter _)(parser)
     val groundTruthMetadata = fromJsonLinesFile(groundTruthMetadataFile)
     val citationEdges = for {
       line <- Source.fromFile(groundTruthCitationEdgesFile).getLines.toIterable
@@ -68,8 +68,8 @@ object Eval {
   }
 
   val formatter = new DecimalFormat("#.##")
-  def format(n: Option[Double]) =
-    if (n.isDefined) formatter.format(n.get) else ""
+  def format(n: Option[Double]) = n.map(_.toString).getOrElse("")
+  //    if (n.isDefined) formatter.format(n.get) else ""
 
   private def writeDetails(algoName: String, analysis: immutable.Iterable[ErrorAnalysis]): Unit = {
     val detailsDir = new File(s"${algoName}-details")

@@ -10,7 +10,7 @@ import scala.io.Source
 
 class TestGrobidXmlParsing extends UnitSpec {
   val MetadataAndBibliography(metadata, bibs) =
-    GrobidParser.parseCoreMetadataString(IoHelpers.loadTeiFile("P07-2045"))
+    GrobidParser.extractMetadataAndBib(IoHelpers.loadTeiFile("P07-2045"))
 
   "Grobid output" should "parse metadata correctly" in {
     val expectedTitle = Title("Moses: Open Source Toolkit for Statistical Machine Translation")
