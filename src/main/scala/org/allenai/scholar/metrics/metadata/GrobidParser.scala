@@ -8,6 +8,7 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.{ Document, Element }
 import org.jsoup.select.Elements
 
+import scala.collection.JavaConverters
 import scala.io.Source
 import scala.util.{ Failure, Try }
 
@@ -19,6 +20,7 @@ object GrobidParser {
 
   import Implicits._
   import StringUtils._
+  import JavaConverters._
 
   def year(bib: Element): Year =
     bib.findAttributeValue("monogr>imprint>date[type=published]", "when").extractYear
@@ -30,23 +32,23 @@ object GrobidParser {
   ).ifDefined
 
   def extractMetadataAndBib(xmlString: String): MetadataAndBibliography = {
-    val doc = extractStructuredDocument(xmlString)
-    MetadataAndBibliography(metadata = doc.metadata, bibs = doc.bibliography.entries.map(_._1))
+    val doc = Jsoup.parse(xmlString, "", org.jsoup.parser.Parser.xmlParser())
+    MetadataAndBibliography(metadata = extractMetadata(doc), bibs = extractBibEntriesWithId(doc).map(_._2))
   }
 
-  def extractStructuredDocument(xmlString: String): StructuredDocument = {
-    val doc = Jsoup.parse(xmlString, "", org.jsoup.parser.Parser.xmlParser())
-    val metadata = PaperMetadata(
-      title =
-        Title(doc.findText("teiHeader>fileDesc>titleStmt>title")),
-      authors =
-        doc.select("teiHeader>fileDesc>sourceDesc>biblStruct>analytic>author").flatMap(author),
-      year =
-        doc.findAttributeValue("teiHeader>fileDesc>sourceDesc>biblStruct>monogr>imprint>date[type=published]", "when").extractYear,
-      venue =
-        Venue(doc.findText("teiHeader>fileDesc>sourceDesc>biblStruct>monogr>title").toTitle)
-    )
-    val bibs = for {
+  private def extractMetadata(doc: Element) = PaperMetadata(
+    title =
+      Title(doc.findText("teiHeader>fileDesc>titleStmt>title")),
+    authors =
+      doc.select("teiHeader>fileDesc>sourceDesc>biblStruct>analytic>author").flatMap(author),
+    year =
+      doc.findAttributeValue("teiHeader>fileDesc>sourceDesc>biblStruct>monogr>imprint>date[type=published]", "when").extractYear,
+    venue =
+      Venue(doc.findText("teiHeader>fileDesc>sourceDesc>biblStruct>monogr>title").toTitle)
+  )
+
+  private def extractBibEntriesWithId(doc: Element) =
+    for {
       bib <- doc.select("listBibl>biblStruct")
       title = bib.findText("analytic>title[type=main]").toTitle
     } yield {
@@ -68,11 +70,41 @@ object GrobidParser {
         ))
       }
     }
+
+  def extractStructuredDocument(xmlString: String): StructuredDocument = {
+    val doc = Jsoup.parse(xmlString, "", org.jsoup.parser.Parser.xmlParser())
+    val metadata = extractMetadata(doc)
+    val bibs = extractBibEntriesWithId(doc)
+    val paperAbstract = doc.select("teiHeader>profileDesc>abstract").headOption.map(_.text)
+    val sections = for (div <- doc.select("text>body>div")) yield {
+      val head = div.select("head").headOption
+      val id = head match {
+        case Some(h) => h.attr("n").ifNonEmpty
+        case None => None
+      }
+      val text = head match {
+        case Some(h) => div.children.filter(_ != h).map(_.text).mkString("")
+        case None => div.text
+      }
+      Section(id = id, text = text, header = head.map(_.text))
+    }
+    val bibMentions = for (ref <- doc.select("ref[type=bibr")) yield {
+      val id = ref.attr("target").dropWhile(_ == '#')
+      val parentText = ref.parent.text
+      val myText = ref.text
+      val begin = parentText.indexOf(myText)
+      val end = begin + myText.size
+      (id, Mention(parentText, begin, end))
+    }
+    val mentionsOfBibEntry = bibMentions.toVector.groupBy(_._1).mapValues(_.map(_._2))
+    val bibsWithMentions = for ((id, bib) <- bibs) yield {
+      (bib, mentionsOfBibEntry.getOrElse(id, List()))
+    }
     StructuredDocument(
       metadata = metadata,
-      paperAbstract = None,
-      body = Vector(),
-      bibliography = Bibliography(bibs.map(t => (t._2, List())).toIndexedSeq)
+      paperAbstract = paperAbstract,
+      body = sections.toIndexedSeq,
+      bibliography = Bibliography(bibsWithMentions.toIndexedSeq)
     )
   }
   object Implicits {
@@ -93,6 +125,7 @@ object GrobidParser {
           case Some(_) => s
         }
       }
+      def ifNonEmpty = if (s.nonEmpty) Some(s) else None
     }
 
     implicit class JsoupElementsImplicits(e: Element) {
