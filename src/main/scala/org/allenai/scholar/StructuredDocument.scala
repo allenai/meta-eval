@@ -7,8 +7,9 @@ import org.allenai.scholar.metrics.metadata.PaperMetadata
 case class StructuredDocument(
     metadata: PaperMetadata,
     paperAbstract: Option[String],
-    body: IndexedSeq[Section],
-    bibliography: Bibliography
+    sections: IndexedSeq[Section],
+    bibliography: Bibliography,
+    footnotes: IndexedSeq[String] = IndexedSeq()
 ) {
 
 }
@@ -17,4 +18,4 @@ case class Section(id: Option[String], header: Option[String], text: String)
 
 case class Bibliography(entries: IndexedSeq[(PaperMetadata, Iterable[Mention])])
 
-case class Mention(containingText: String, begin: Int, end: Int)
+case class Mention(sectionNumber: Int, begin: Int, end: Int)

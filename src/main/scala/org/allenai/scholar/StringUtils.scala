@@ -21,6 +21,8 @@ object StringUtils {
 
     def removePunctuation(): String = punctuationRegex.replaceAllIn(str, " ")
 
+    def collapseWhitespace(): String = whiteSpaceRegex.replaceAllIn(str, " ")
+
     /** @param filter Determine if a character is blacklisted and should be trimmed.
       * @return String with blacklisted chars trimmed from the right.
       */
