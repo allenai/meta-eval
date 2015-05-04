@@ -12,10 +12,8 @@ import scala.collection.JavaConverters
 import scala.io.Source
 import scala.util.{ Failure, Try }
 
-/** A collection of text processing, normalization, and
-  * Jsoup-based utilities packaged in implicits to reduce boiler plate.
+/** Parser for Grobid XML documents
   */
-
 object GrobidParser {
 
   import Implicits._
@@ -50,25 +48,19 @@ object GrobidParser {
   private def extractBibEntriesWithId(doc: Element) =
     for {
       bib <- doc.select("listBibl>biblStruct")
-      title = bib.findText("analytic>title[type=main]").toTitle
     } yield {
       val id = bib.attr("xml:id")
-      if (title.nonEmpty) {
-        (id, PaperMetadata(
-          title = Title(title),
-          authors = bib.select("analytic>author").flatMap(author).toList,
-          venue = Venue(bib.findText("monogr>title")),
-          year = year(bib)
-        ))
-      } else {
-        // For Ph.D. dissertations, title is journal name
-        (id, PaperMetadata(
-          title = Title(bib.findText("monogr>title")),
-          venue = Venue(""),
-          authors = bib.select("monogr>author").flatMap(author).toList,
-          year = year(bib)
-        ))
+      val title = bib.findText("analytic>title[type=main]").toTitle match {
+        case "" => Title(bib.findText("monogr>title"))
+        case s => Title(s)
       }
+      val authors = bib.select("analytic>author").flatMap(author).toList match {
+        case List() => bib.select("monogr>author").flatMap(author).toList
+        case l => l
+      }
+      val venue = Venue(bib.findText("monogr>title"))
+      val yr = year(bib)
+      (id, PaperMetadata(title = title, authors = authors, venue = venue, year = yr))
     }
 
   private def extractSectionInfo(div: Element) = {
