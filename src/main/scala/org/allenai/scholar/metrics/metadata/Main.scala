@@ -21,8 +21,8 @@ object Main extends App {
   def evalGrobid(): Unit = {
     Eval.run(
       algoName = "Grobid",
-      parser = GrobidParser,
-      extractedDir = grobidAclExtracted,
+      parser = GrobidParser.extractMetadataAndBib,
+      extractedDir = new File(grobidAclExtracted),
       groundTruthMetadataFile = aclMetadata,
       groundTruthCitationEdgesFile = aclCitationEdges,
       idWhiteListFile = Some(aclIdWhiteList)
@@ -62,8 +62,8 @@ object Main extends App {
   def evalMetatagger(): Unit = {
     Eval.run(
       algoName = "Metagagger",
-      parser = MetataggerParser,
-      extractedDir = metataggerAclExtracted,
+      parser = MetataggerParser.parseCoreMetadataString,
+      extractedDir = new File(metataggerAclExtracted),
       groundTruthMetadataFile = aclMetadata,
       groundTruthCitationEdgesFile = aclCitationEdges,
       idWhiteListFile = Some(aclIdWhiteList)

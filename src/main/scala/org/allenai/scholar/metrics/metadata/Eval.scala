@@ -8,8 +8,9 @@ import org.allenai.scholar.{ Author, MetadataAndBibliography }
 
 import scala.collection.immutable
 import scala.io.Source
+import scala.util.{ Failure, Try }
 
-object Eval {
+object Eval extends FileParsing {
 
   /** Eval objects define evaluations of different metadata extraction algorithms.
     * @param algoName The extraction algorithm's name.
@@ -34,8 +35,8 @@ object Eval {
 
   def run(
     algoName: String,
-    parser: Parser,
-    extractedDir: String,
+    parser: String => MetadataAndBibliography,
+    extractedDir: File,
     groundTruthMetadataFile: String,
     groundTruthCitationEdgesFile: String,
     idWhiteListFile: Option[String] = None
@@ -48,7 +49,7 @@ object Eval {
 
     def idFilter(id: String): Boolean = whiteList.isEmpty || whiteList.contains(id)
 
-    val predictions = parser.parseFromExtractedDir(extractedDir, idFilter)
+    val predictions = parseDir(extractedDir, idFilter _)(parser)
     val groundTruthMetadata = fromJsonLinesFile(groundTruthMetadataFile)
     val citationEdges = for {
       line <- Source.fromFile(groundTruthCitationEdgesFile).getLines.toIterable
@@ -69,7 +70,7 @@ object Eval {
 
   val formatter = new DecimalFormat("#.##")
   def format(n: Option[Double]) =
-    if (n.isDefined) formatter.format(n.get) else ""
+    n.map(formatter.format).getOrElse("")
 
   private def writeDetails(algoName: String, analysis: immutable.Iterable[ErrorAnalysis]): Unit = {
     val detailsDir = new File(s"${algoName}-details")
@@ -123,3 +124,31 @@ object Eval {
     }
 
 }
+
+trait FileParsing {
+
+  def parseFile[T](file: File)(parse: String => T): Try[T] =
+    Try {
+      val fileContents = Source.fromFile(file, "UTF-8").mkString
+      parse(fileContents)
+    }
+
+  def parseDir[T](
+    dir: File,
+    idFilter: String => Boolean,
+    errorHandler: (File, Throwable) => Unit = {
+      (f, ex) => println(s"Error parsing $f: ${ex.getMessage}")
+    }
+  )(parse: String => T): Map[String, T] =
+    (for {
+      f <- dir.listFiles
+      id = f.getName.split('.')(0)
+      if idFilter(id)
+      predicted <- parseFile(f)(parse).recoverWith {
+        case ex =>
+          errorHandler(f, ex)
+          Failure(ex)
+      }.toOption
+    } yield (id, predicted)).toMap
+}
+
