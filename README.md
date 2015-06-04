@@ -41,8 +41,7 @@ To run this evaluation tool, the following are needed:
 
 - Download the compressed [ACL dataset's PDFs](https://s3-us-west-2.amazonaws.com/ai2-s2/pipeline/source-data/acl-pdf/acl-pdf-2014-08-27.zip) (warning: about 7.2GB) from Amazon S3. Extract the PDFs to `~/eval/data/acl/pdfs/` folder.
 - Download the [ACL metadata](https://s3-us-west-2.amazonaws.com/ai2-s2/pipeline/source-data/metadata-2014-08-25.json) (about 4.6M) from Amazon S3 to `~/eval/data/acl` folder.
-- Download the [ACL citation graph data](https://s3-us-west-2.amazonaws
-.com/ai2-s2/pipeline/source-data/citation-edges/citation-edges-2014-08-25.txt) from Amazon S3 to `~/eval/data/acl` folder.
+- Download the [ACL citation graph data](https://s3-us-west-2.amazonaws.com/ai2-s2/pipeline/source-data/citation-edges/citation-edges-2014-08-25.txt) from Amazon S3 to `~/eval/data/acl` folder.
 - Create the following folders in `~/eval/data/acl/extracted`: `pstotext`, `metatagger`, `grobid`.
 
 ### Running Meta-Eval
