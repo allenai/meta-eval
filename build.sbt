@@ -14,10 +14,13 @@ packageArchetype.java_application
 
 scalaVersion := "2.11.5"
 
-libraryDependencies ++= Seq(
-  CoreDependencies.allenAiCommon,
-  CoreDependencies.allenAiTestkit % "test",
-  "org.apache.commons" % "commons-lang3" % "3.0")
+libraryDependencies ++= 
+Seq(
+  CoreDependencies.allenAiCommon
+  ,CoreDependencies.allenAiTestkit % "test"
+  ,"org.apache.commons" % "commons-lang3" % "3.0"
+  ,"com.github.scopt" %% "scopt" % "3.3.0"
+)
 
 libraryDependencies += "org.jsoup" % "jsoup" % "1.8.1"
 

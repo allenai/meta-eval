@@ -1,0 +1,11 @@
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="${logback_rootLevel:-INFO}">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>

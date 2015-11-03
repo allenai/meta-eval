@@ -1,0 +1,891 @@
+1b5ede36a88469f43ba690895315385281731bef	GENEVAL: A Proposal for Shared-task Evaluation in NLG
+107c0ab149ed8c34424463fddb1bce40f65f4405	A Constraint Programming Approach to Probabilistic Syntactic Processing
+823a397b29bf596e2734d3dff7ab5abec2f60ac9	Automatic Acquisition of Lexical Formality
+efbb059570f42bbe8e42d34d02048cc80f0be881	Heuristic Search for Non-Bottom-Up Tree Structure Prediction
+54335adc6cf304887ef9bc036927acc8499fecfd	A Flexible Pragmatics-driven Language Generator for Animated Agents
+f5e8d00fcef8fbcc4e2abffb1b545984416bff9c	
+4ec9b9888e6af6a9188e1b8bfc2fb04febc94f98	Online Large-Margin Training of Syntactic and Structural Translation Features
+c516a0af72b9d524c36f7ee09589a252297b2df2	Fast decoding for open vocabulary spoken term detection
+2c1788e31e0cc9c2528f2f9f398a9f1547320cf8	Re-evaluating Machine Translation Results with Paraphrase Support
+3d5b2bf6944104756b78fcfc94264e80d0ab1874	Analysis of Japanese Compound Nouns by Direct Text Scanning
+68a1e6ef7f44c7771cca21da15f914573e61cbcf	Reversible Unification Based Machm. Franslatlon
+5b7fb20aa098fe67d468726f317227409efc3585	A Comparison of PCFG Models
+e156e6a2804b2d41e64f74d413a5058c252e83a0	English to Hindi Machine Transliteration System at NEWS 2009
+5051e54af8c0d6b84f8459c57d55bd19be9f0cee	Identifying Word Correspondences in Parallel Texts
+145472a4b1143a7a96c813991a3fa7d7325a4904	John Carroll and Guido Minnen School of Cognitive and Computing Sciences
+0f2d98a088d555c3f4fd480fee86e214174ed0be	A Scalable Summarization System Using Robust NLP
+19b27d9433e52da20e0b9b347f96ae59641b6671	Bui ld ing a Generat ion Knowledge Source using Internet -Access ib le Newswire
+de8c1d3664a1f97d272139784f50d7b6102d6226	A Beam-Search Extraction Algorithm for Comparable Data
+f0360572458265266c1257b2cf47dd619e57ecee	Identification of Confusable Drug Names:
+a541b231e8d88d701beb1608353209fd82eefdc7	Domain Adaptation via Pseudo In-Domain Data Selection
+bef495a72a7fcfbbfdf8316253b39d15c3e8bc7c	Using LDA to detect semantically incoherent documents
+da039dbc849c4e2ec1b0f2b324adb38dc45989dc	TopicTiling: A Text Segmentation Algorithm based on LDA
+ad2d4ae7b81851242a91475d958793c8809205c5	A Powerful and General Approach to Context Exploitation in Natural Language Processing
+33f3eb3a143447dadeb98914c74f1d9bb88a62bd	Learning the Latent Semantics of a Concept from its Definition
+bcd6bcc366afb3ae98d4ccb3566eceb216c145c1	Supertagged Phrase-Based Statistical Machine Translation
+b630e74c399b4b4217529b5aace43c627ce918da	Toward Statistical Machine Translation without Parallel Corpora
+65e15aa9ad61e568a54857c9a7362ee0bc7b6d88	Non-Monotonic Sentence Alignment via Semisupervised Learning
+87ffac5812e93588fd322e928296b5874052dbf3	Hierarchical Verb Clustering Using Graph Factorization
+1dfe2507b3dee6c1462fcff9b549fc53c219b9c1	
+139e73218407a31b62cd008e4e819a4ff7d6d700	Collapsed Variational Bayesian Inference for PCFGs
+acd9c5d7e4e0fb20690644fb5e8e18b0581f2c20	Soft Syntactic Constraints for Hierarchical Phrase-based Translation Using Latent Syntactic Distributions
+d6bf67fac447ce6e7c1ec546ca56af30a4060040	Quasi-Synchronous Grammars: Alignment by Soft Projection of Syntactic Dependencies
+0410fcb3ab956b19641127d9905dc34762e45fa4	Automatic Segmentation of Multiparty Dialogue
+3fd6bd972712425bec0db99c67f624791240317c	Terminology Finite-State Preprocessing for Computational LFG
+8092749db5df2373f1c531aa3ab4a9b6cbe65840	Unsupervised Word Sense Disambiguation Using Bilingual Comparable Corpora
+f190e98a00ce05acbfc6520e4084e94fa12f0b06	
+d0ddb4cbdc56a40b3b318958d31e383079a6418e	The Inf luence of Tagg ing on the Class i f icat ion of Lexical Comp l emen t s
+df26102fa53dba696838a801506cd0181c8b3d15	Contrasting the Interaction Structure of an Email and a Telephone Corpus: A Machine Learning Approach to Annotation of Dialogue Function Units
+43e416b627d896b866051bbd01fdcc26ad1780e5	Hybrid Reinforcement/Supervised Learning of Dialogue Policies from Fixed Data Sets
+0a0dba86c980d4ba5f881aea0239fa689084e6c5	
+1712a1fe73876f43b3637ef6490b57fae98e7b54	Monolingual Distributional Similarity for Text-to-Text Generation
+8873a91e758bd76e530325a230cc51b1e3b7db2d	Generating High-Coverage Semantic Orientation Lexicons From Overtly Marked Words and a Thesaurus
+073baf7436b91607356bdf62fcfe7aa627331777	Approximate PCFG Parsing Using Tensor Decomposition
+eb29b0ade1984b8d8bc605f506a8f6dc49893f94	Monte Carlo MCMC: Efficient Inference by Approximate Sampling
+ebff2e4bf235e2633a1bafbefd5e611f67eb7f2e	Log-linear Models of Non-projective Trees, k-best MST Parsing and Tree-ranking
+3c12e099d7c69e6b0cb0456dcd2b49eb9d72cd32	Strings over intervals
+1f5dc1b42cfcca0c15cedc8d4789cd17c4575f75	The GREC Named Entity Generation Challenge 2009: Overview and Evaluation Results
+ad9e7b2ee6936ccc31e6c56121f60d73b4d30b61	Causes and Strategies for Requesting Clarification in Dialogue
+8e216434ac6310f63c0e58515dd637c598b60042	Temporal classification for historical Romanian texts
+67d34db34ea0201c4c24ca13b3e6226a97647bbe	
+547f23597f9ec8a93f66cedaa6fbfb73960426b1	The Berkeley FrameNet Project
+2e7865b74bb9dd6637e3d14b7bb31715d685904f	
+8ec29aecd2dbe3ae1d1a8fec3e1aad48a45fb285	First-Order Probabilistic Models for Coreference Resolution
+5910ed62028ae8e1958a3325c6a057cd70423649	A Hybrid Morphologically Decomposed Factored Language Models for Arabic LVCSR
+3eb6684de116233ebecf0aa59be5654621313a49	Estimating Linear Models for Compositional Distributional Semantics
+e1e8ec02bfca20ebe030f61dd94ca340ac5b0c67	
+c9eba6cb547421b5c40a0fd97fde409cacf8ed46	Mining New Business Opportunities: Identifying Trend related Products by Leveraging Commercial Intents from Microblogs
+5629efbf95298d2ee5a6fe697491445940f332f2	Input Specification in the WAG Sentence Generation System
+16a2920fa4d6a0d3ab2b5c8c3a08d1008cdcfeb3	Extracting Semantic Orientations of Words using Spin Model
+671b32aa85cbf15b36ca05cdc7516549b043b168	Learning to Translate with Multiple Objectives
+621b34498735b9ca497ab1e0ae4219708b8370ae	THE SRI TIPSTER III PROJECT
+4c0f871bb4c19ec525cd895e2144a4a232aa69a9	Machine Translation System Combination by Confusion Forest
+bc0176c5dcdeb1b1ee2680e69eb52afee3b0b4f0	
+fc120f3cb5c65928392a1f05d3ae97d708a70ca7	Identifying Broken Plurals in Unvowelised Arabic Text
+d4080401492905275e6faa12ef3adafaccd29203	Effect of Word Complexity on L2 Vocabulary Learning
+af30894cdb9fcd6b43e41268a946735a5b67a558	Learning N-Best Correction Models from Implicit User Feedback in a Multi-Modal Local Search Application
+a0ed80f553f3a77a5b17542507bfc062eaf2c900	Tree Representations in Probabilistic Models for Extended Named Entities Detection
+5d6b2844c17c4f2e7d4c24411eb619073223db15	Linguistic Models for Analyzing and Detecting Biased Language
+9e7a0cc841b3851e1135b2ebeb12982f1eb340ed	
+7171a67ca2f538ac8b8fb62f10eff8b9e4b1684f	Combining Syntactic Co-occurrences and Nearest Neighbours in Distributional Methods to Remedy Data Sparseness.
+08f543031da43edbf0f3fe91cb6b5461a788e85b	A Model for Robust Processing of Spontaneous Speech by Integrating Viable Fragments
+59bf62f4634768845a556cd420c93ed5d093649a	Distinguishing Contact-Induced Change from Language Drift in Genetically Related Languages
+253e28922dcface478c43fee9e33ea1137fdcabf	Answer Sentence Retrieval by Matching Dependency Paths acquired from Question/Answer Sentence Pairs
+a3df63bd6b16615b0858dbcaad0cb7336fb42214	Efficient Collaborative Discourse: A Theory and Its Implementation
+a5503271a21c590a35df4d87876e839fedf4163f	
+6ea36d17c8ecacbc35e2161a2c28a59b09c7ebb7	ABSTRACT
+8abb1cbb1b701140e247070a47625f42d91f0615	Efficient Parsing of Highly Ambiguous Context-Free Grammars with Bit Vectors
+56e650efe9a15002488cb393bc0ff956fd00adbf	Partial Parse Selection for Robust Deep Processing
+d89ca6df26fb377d89acc815675acd18b158549b	A Hybrid Model for Annotating Named Entity Training Corpora
+c19b7eb573b1259cc335f567baa56d28cd5fdfa4	Generating Synthetic Speech Prosody with Lazy Learning in Tree Structures
+9cd3bf0bdb27b7b58cbd27e456b58eab26a16986	
+b4f230a88e09bd1d577dee8a225d1d3863d99a3b	TTT: A tree transduction language for syntactic and semantic processing
+6d512066d8359880c675fbf6d0f48692d4bc9ae2	Towards a computational approach to literary text analysis
+67fc65e8957dcd949141ad75ef19c10ae5fd8609	Applying Computational Models of Spatial Prepositions to Visually Situated Dialog
+23c8d01e1d1488f91683f1e95988091ba6bcd68f	Global Learning of Labelled Dependency Trees
+2e5b428cc51d93201ac74afc6a645dd9133bf26f	MUC-7 EVALUATION OF IE TECHNOLOGY: Overview of Results
+5cf9c507b342108f256ec3492344339a1821123c	
+12cec5b797d262eff9b4d17c6f272cd02d81e5c5	An Unsupervised Method for Extracting Domain-specific Affixes in
+55ad34fbac347503004d15ced039751b22334a51	Feature Subsumption for Opinion Analysis
+0236eb203e050eb4883a7918d27ffb03e6986fca	Penn: Using Word Similarities to better Estimate Sentence Similarity
+2ad0f706990031a5955e7c641e351d1eb6ea0c93	Learning to Rank Answers to Non-Factoid Questions from Web Collections
+a8b6a53b46125483891d27ca6e2ad2f353b6a26e	Phrase-Based Backoff Models for Machine Translation of Highly Inflected Languages
+6235605746267788fa3635fe55856b2d81d1c4ee	Intra-Speaker Topic Modeling for Improved Multi-Party Meeting Summarization with Integrated Random Walk
+f909024c2fa4545a6214e8aeadcd3dc90cfa061b	Referring Expression Generation Challenge 2008 DIT System Descriptions
+10f0215d3270075bab7f53b569861f9797ce378f	
+2ae47a1578d57d49f66fee6cc2bc5b7734bcd8b8	How Should a Large Corpus Be Built?-A Comparative Study of Closure in Annotated Newspaper Corpora from Two Chinese Sources, Towards Building a Larger Representative Corpus Merged from Representative Sublanguage Collections
+77727365299413c51d85a0a7848bbcbbcce824d4	
+e0a199194e88f93acd5bbd6297a8faff4eb82f9e	A Kana-Kanji Translation System for Non-Segmented Input Sentences Based on Syntactic and Semantic Analysis
+21525b2f4db1219b1f2256c964f5baceeab6dffd	Grammars and Topic Models
+1781f7ce9fbe8bbc1840b35d0754d8d225b1f54d	
+be4f6e467cff26d848ab7698187b0a694000f6d7	Bilingual Lexicon Generation Using Non-Aligned Signatures
+cdf7f68cf677be0045123a87329115f4b765c288	GRASP: Grammar- and Syntax-based Pattern-Finder in CALL
+bd484e3f62dbd7d8247359a6c817dbaf0fa07148	HEURISTICS FOR BROAD-COVERAGE NATURAL LANGUAGE PARSING
+b30a3ddc69814ba1459e8dc4f62c968b620e4a0f	Pastiche detection based on stopword rankings. Exposing impersonators of a Romanian writer
+bf9ac5bb2de6f49b5cf076cd51bd687fbf690f19	Practical Linguistic Steganography using Contextual Synonym Substitution and Vertex Colour Coding
+e70c43609f6fc78acf5c981bcefda2dab1576b6e	Par où couper pour aller à la plage ?
+2c23db397ee3295d976a7b1ea5c773645f3630dd	On the concept of diathesis alternations as semantic oppositions
+cf76c1da776ac22c1a55c41ee472fe3d1e1e2b37	Using Soft Constraints in Joint Inference for Clinical Concept Recognition
+cfa2bba908c93b6975827cffde4850fc20e48c06	Expressing Rhetorical Relations in Instructional Text: A Case Study of the Purpose Relation
+9e05bbfd8b36ec5d5122c78d7e415bbfaa4d0e3e	Long-Distance Dependency Resolution in Automatically Acquired
+6281343019aa47e308f03483c651bc2d6d296015	
+5b31e43f8b0490779d8013e0705ae4df8f0488c9	Shallow Parsing with Conditional Random Fields
+ad493769d37e41bb5d4ac1e04095a5abd14419b9	Japanese-Spanish Thesaurus Construction
+9b1f2e408885ebc3b1f9790d94ae0bc9c71535e2	A Computational Model of Memory, Attention, and Word Learning
+bb40a5dc46670721a50e91f7cf5b04cab3efba97	TRANSLATION BY STRUCTURAL CORRESPONDENCES
+56769bc41e6bcc04d8195256b03ad7bf8652b1d6	Bipolar Person Name Identification of Topic Documents Using Principal Component Analysis
+c578f1823e7d7fb95d3e5c69fe4fab36d5a384e3	
+6045b079fbe2c97d394214b50059c61895639204	Modelling Human Clarification Strategies
+ee0488ab9599529ca12d66598522d14e2ef585cc	The Use of Monolingual Context Vectors for Missing Translations in Cross-Language Information Retrieval
+93eb4f5317f946b7691dab7ef1af43882716f812	Model With Minimal Translation Units, But Decode With Phrases
+38a24b5978f49e3696bfbc35ffe1d7752a9afd06	Centre de recherches math~matiques , Universit@ de Montr@al CP 6128 Succursale Centre-Ville Montr@al, Qudbec H3C 3J7 sankoff@ere.umontreal.ca
+58de2e457b0f664e6b2205614350fb2a987e74c5	SHEF: Semantic Tagging and Summarization Techniques Applied to
+b92309d04f439ca3625feb3bca38db57596f6948	Syntactic and Semantic Kernels for Short Text Pair Categorization
+c806a347a16c389b35534ddb2d8ac8826d4bd258	Local lexical adaptation in Machine Translation through triangulation: SMT helping SMT
+8b6e063ea1d8ee1f742de144fa67ab2f5542e9f0	Speed and Accuracy in Shallow and Deep Stochastic Parsing
+b3e3552caca4a621ea16273e94d48d4abde43503	Learning Condensed Feature Representations from Large Unsupervised Data Sets for Supervised Learning
+0e429a43ecc59535aa0c447361c6b0ef0b9f2bdb	The UI System in the HOO 2012 Shared Task on Error Correction
+837c2bf28887fc1a00e1b1148e5df748809da242	The Proposition Bank: An Annotated Corpus of Semantic Roles
+c9a2b4d3e6111cbcf8422574c260878c820c7887	
+fdc10c3694c6e4c9fd4b82e14945f652ec0db99d	Topical Clustering of MRD Senses Based on Information Retrieval Techniques
+f29dbbcba81529cb93f59ab48eaaefb296584864	Investigating the cross-linguistic potential of VerbNet -style classification
+b650f7472ac2444066ac57cdeeb198d08ee52e7d	A Uniform Approach to Underspecification and Parallelism
+ad46b42a7f7a709ed8f4d2dd86902260d3e75195	Guiding a Wel l -Founded Parser wi th Corpus Stat i s t ics
+941859fbe315c85cd13fa00667f4a83f7f836797	Some Facts About Times, Events and Subjects - Invited Talk
+075942d047d2e2b549f58cfb82b621ff6febba3f	Dependency Constraints for Lexical Disambiguation
+e55e5df3dd48e913d9c2a1704a5c1bf6d8e5ba1d	Unambiguity Regularization for Unsupervised Learning of Probabilistic Grammars
+78293ddc35876972f788caf7add2a032f67faf56	\¥c fldy 17{.c, trlct, c.d St,()chasti(: ( ; ;rammars
+db22ce6894d2319132dd9a465262bd65f99c71af	Sexual predator detection in chats with chained classifiers
+d895647b4a80861703851ef55930a2627fe19492	Biographies, Bollywood, Boom-boxes and Blenders: Domain Adaptation for Sentiment Classification
+cb783b86593baf30cd30fe054f557194e760eb47	Dijkstra-WSA: A Graph-Based Approach to Word Sense Alignment
+c32f3e0d9de121417319440239d9401a14c02cff	Efficient Transformation-Based Parsing
+1136dc552ac2314b4d5fc0ffc82cbcbeac3f66c2	Topic Adaptation for Lecture Translation through Bilingual Latent Semantic Models
+f55bf60fa2ffe82395e859fb9e2e89015da349c8	Glen, Glenda or Glendale: Unsupervised and Semi-supervised Learning of English Noun Gender
+cf4362da2bd293cc9f92db3544d9c4c302ad07ee	Exploring Normalization Techniques for Human Judgments of Machine Translation Adequacy Collected Using Amazon Mechanical Turk
+6a547d8629589c21ba85ff9182f255fdd6933e67	Creating an Annotated Corpus for Generating Walking Directions
+363f92f95c86d0ee6cd5cfd26f1f542e311aab6d	
+b78b881dec3334abf5b8c6390c40a2d93a177294	
+cb9bb57578d6759fcbbef7e436581ea45f08c367	Addressing Ambiguity in Unsupervised Part-of-Speech Induction with Substitute Vectors
+6f46bb1360a4f682cf71a50596cade486bdaf038	Fast Computing Grammar-driven Convolution Tree Kernel for Semantic Role Labeling Wanxiang Che1∗, Min Zhang2, Ai Ti Aw2, Chew Lim Tan3, Ting Liu1, Sheng Li1
+9076183dcdb28ebb3e547f7ffd3f9d5d0faec531	Describing Video Contents in Natural Language
+28ac8f68df97220c7078c1caedfe2f330397bb12	Never Look Back: An Alternative to Centering
+56e650eee11956c2d95db454c0b1ce04837a9f3f	Joshua 3.0: Syntax-based Machine Translation with the Thrax Grammar Extractor
+e1e3ce99f3230901339bd528ada5f9b7bc887f23	Discourse Obligations in Dialogue Processing
+07e8cae9c12b2d692c0767e04254e3793765d8bb	
+f44cbb22fe79a4cf74b91ede038bd60e24c8567b	Semi-Supervised Representation Learning for Cross-Lingual Text Classification
+0e68fc0acd86e47e7882416c63bdedc323907517	The (Un)expected Effects of Applying Standard Cleansing Models to Human Ratings on Compositionality
+2f39ea8457f3c8ef100f314a8fa580cd4108a984	Investigating a Generic Paraphrase-based Approach for Relation Extraction
+28fe44e8fbadfda7e225e0fa67b30fbb2119e5c8	Pseudo-Projectivity: A Polynomially Parsable Non-Projective Dependency Grammar
+261dd4cdd47123fdfb48d79fa1e4607c41977ab1	On the Role of Morphosyntactic Features in Hindi Dependency Parsing
+c778ed6a6b4fec4a4baaf7815db60b88fc31cb44	Inducing German Semantic Verb Classes
+5c3547fc46664dfeb021a844dc1f1a457c7e5cd8	Department of Computer Science, Illinois Institute of Technology 10 West 31 Street, Chicago, Illinois 60616 (csevens@rninna.iit.edu)
+7c09296d1e4f2956d0b86af83c41cabf5b0a4980	A Two Level Model for Context Sensitive Inference Rules
+54547b5b16d20d6db338b8983964be1931c60af6	Computer Laboratory
+cf28169234e32311d6a90ec39908e3dcbb54f62f	Quality Estimation for Machine Translation output using linguistic analysis and decoding features
+3f40a9564c3b45930a5f6b6db89d02ff1b8cf4cf	Sussx: WSD using Automatically Acquired Predominant Senses
+6d8c40ace9cb9d79680815950144bee7a0555a02	A Unified Statistical Model for the Identification of English
+0c9427a9c339b7c11a03d196d8c4035b84d6747f	Department of Computer Science University of Rochester Rochester, NY 14627
+9b0ac12c8db71ac501dffcdbdbe129f96c7285de	Interactive Incremental Chart Parsing
+07d4fb5ef7555b20cdeae37b6a6c51b0852e5846	Analysing Lexical Consistency in Translation
+082bcec29d021ef844736565277cfc3a0c9c3c43	Supervised Bilingual Lexicon Induction with Multiple Monolingual Signals
+64ea6b4fcc048e128b2aa8794ee2be379c0c415d	Unification-based Multimodal Parsing
+50bbdf10e0eee6ee9652deaf72380b3fc8bcf307	MIT Computer Science and Artificial Intelligence Laboratory
+3760a79b260505aa34c4d63b8daca348e8c8a100	Thierry POIBEAU
+0cecabba86326f925e9834acedfc8a18b33762d4	Da ta n o n lin e a r ity in e x p lo r a t o r y m u ltiv a r ia t e a n a ly s is o f la n g u a g e c o r p o r a
+101063158fbdc03c72767f52904b245808212147	Robust Segmentation of Japanese Text into a Lattice for Parsing
+22dba0ff2f3221ccd03e92de9c306fc44dfee182	Exploiting Parse Structures for Native Language Identification
+61fbdf613c3ba58c6ee849391ad678bd902d288c	The LinGO Redwoods Treebank
+d48edf9e81653f4c3da716b037b0b50d54c5b034	Knowledge-Based Weak Supervision for Information Extraction of Overlapping Relations
+595e36d16e25c0c04d0eacfe6ec0402721fe1b81	Joining Forces Pays Off: Multilingual Joint Word Sense Disambiguation
+50061de29dda21608176f3977fa270e072a6a90a	Simultaneous Identification of Biomedical Named-Entity and
+2d30aa623fd96da99a16c0c3bde73f50c92a5c42	Poor Estimates of Context are Worse than None
+2098470b7d21724fd9d9d828e8c3cc0b399576a0	AN IMPROPER TREATMENT OF QUANTIFICATION IN ORDINARY ENGLISH
+f896acb9f7f09ac3eb3f0d58cb885d2f7f9d8ab1	Position Specific Posterior Lattices for Indexing Speech
+a8c036b8fe854cc08b6931a8e8c43c0bc2d2abe6	Semantic Roles for String to Tree Machine Translation
+41bf66717feeaca005a9e579652b870d1c8da99d	
+15c1f61aa9ce9e5ec425c81a1794e43fe850c36c	
+18a77f81a98a811159e09c127b82c68921ffa2d8	A Prototype Tool Set to Support Machine-Assisted Annotation
+2c0257f3781bb00d76e0eafe8cc9a6964b106b00	Detecting Pitch Accents at the Word, Syllable and Vowel Level
+7476d0013408d70106e65b39a42df4f71ff557f0	Hierarchical Text Classification with Latent Concepts
+1267879e1caf9627271dcdcf428eac4555b800b7	Recognizing Unregistered Names for Mandarin Word Identification
+89dbb817c06ff29bfc2bc9790b1a7af23374aa11	
+fbd5e013ba99b7ee6d2cf95201471bbe48f0aac2	Spanish Adverbial Frozen Expressions
+347d58f011efd9d6dd375e1840341ec37e68f55a	A Local Tree Alignment-based Soft Pattern Matching Approach for Information Extraction
+8f03655ce0c0ea7f640be886807f525f0c9f1a50	Computing Genitive Superlatives
+69672bd4dd4dc0155f9deb0e48e555fc42b7c744	UZurich in the BioNLP 2009 Shared Task
+8297a2bd752836fbbf2029fa6686f2f03b89dfe2	Randomised Language Modelling for Statistical Machine Translation
+c0e2e16aae101561680b392acb3a5cf27bf2b00b	Evaluating the Use of Prosodic Information in Speech Recognition and Understanding
+ed4a7e7a45dae98461fef443a32a5fed56c92d89	
+9a4f294f2740d5e1e8a67e0097d284575a1c6660	Demonstration of a POMDP Voice Dialer
+378d8752535f9361db73c713eda2b91a05a8b42b	Geo-mining: Discovery of Road and Transport Networks Using Directional Patterns
+ae946b252bf1d58a906935f2f4a8bb7fb9e441f2	Black Box Features for the WMT 2012 Quality Estimation Shared Task
+5cfe9bb78fa50955be5a99e6966dd5ba5b4d4f80	Complexity Metrics in an Incremental Right-corner Parser
+b9c20eeb97baa7776f60cba2708a5ad4111c53c4	Word Sense Subjectivity for Cross-lingual Lexical Substitution
+8fa35211be0e45446476b06bcf3913ba4bfbbc3e	Simulating the Behaviour of Older versus Younger Users when Interacting with Spoken Dialogue Systems
+ca7430b99b10f5d0a9434918eb65505f5c53d473	Correspondence Seminar: Bringing Linguistics to High Schools
+3c70a4ef38b71d2b406bf5e61b3d55748088cdf1	A Chinese Efficient Analyser Integrating Word Segmentation, Part-Of-Speech Tagging, Partial Parsing and Full Parsing
+4dede6ead7ba5c85c6ce8d6a0bc53a8f9738a782	Parser Showdown at the Wall Street Corral: An Empirical Investigation of Error Types in Parser Output
+324731791726745ca1b9005b53291b8d3d740256	FromChunks to Function-ArgumentStructure: A Similarity-Based
+590957df2a37c8dd3876b06f6bd31acff33a6f1d	Detecting Erroneous Uses of Complex Postpositions in an
+c2f6dffa87b43b83caab964c620d36c77ddc7b86	FLOW: A First-Language-Oriented Writing Assistant System
+36dee4594ab935092d8ee96bf99e025a9c148ac2	
+a877c6ce4daec0721e0d2f226ebe8e27355835da	Topic Models and Metadata for Visualizing Text Corpora
+c6db8225161eebc2f2f8c7f5c82a1a12efe48ce3	
+226966243877f186d346be01047cf71cee1b5ec4	Online EM for Unsupervised Models
+e4493e77bec26bb5a36e940895dec1960369dca6	Bayesian Synchronous Tree-Substitution Grammar Induction and Its Application to Sentence Compression
+0c307ef6930fc80c14199fdea46b269aa329dd1f	Using LTAG Based Features in Parse Reranking∗
+aea11378ac0d9a85e5278bc92bfd39a682eb0613	Event Discovery in Social Media Feeds
+cf7737993356b9d077e6fb297579e77d80b802ba	MORPHOLOGICAL ASPECT OF JAPANESE LANGUAGE PROCESSING
+14ff2dfebb886455afb061868be947e12d072f30	Annotating Underquantification
+62c946a9df271854460c26d1a2ff05919bab2690	Language Models for Machine Translation: Original vs. Translated Texts
+4df1de025f9e93b676182cac8db9fc0d41ad0de1	Indexing on Semantic Roles for Question Answering
+9b7696b69fb61994daa83e9e089b60fcefdbb234	Categorization of Turkish News Documents with Morphological Analysis
+c2a6dc38bfef3eec09378d4f1daf52860f7d79b8	EAGER: Extending Automatically Gazetteers for Entity Recognition
+f760d1987c63d747326cc77ee2fcb6028781c888	Binding Constraints as Instructions of Binding Machines
+7ed8b27291103b782fb735a685335f2d4a39931f	Word Association Profiles and their Use for Automated Scoring of Essays
+fa151b76fcc02467ae3f0492f8d6c4b5f96ee577	Machine Learning of Syntactic Attachment from Morphosyntactic and Semantic Co-occurrence Statistics
+b7971672c12f60063923bda798833bcbf3f6801a	Managing Multiword Expressions in a Lexicon-Based Sentiment Analysis System for Spanish
+d0eed670a33bbdfd21baab0209e5e1d5f4f49742	Using character overlap to improve language transformation
+df7fe4c5d1a375bd3dc5b62d9bdd6ae10f6a6f6d	Linking Tweets to News: A Framework to Enrich Short Text Data in Social Media
+aa7bfdc7638d93607d0f881b9196cd8f489b39d2	Edinburgh University Data Library
+0222b108dd18431daccec3f4e1b038fac8f0cddb	An Unsupervised Method for Multifingual Word Sense Tagging Using Parallel Corpora: A Preliminary Investigation
+93ec9e1875fbf48bbc69d81ff2ccb4c3da7d8886	Developing a Typology of Dialogue Acts: Some Boundary Problems
+bfbedc68f63ccc66c1b2979c71f95748f8d745f5	Goa l Fo rmu la t i on ba s ed on Commun i ca t i v e P r i n c i p l e s
+f487c68b1970cedfdd53a534830fa2c85ad2ed07	GlossBoot: Bootstrapping Multilingual Domain Glossaries from the Web
+fabaddd152d047cac54f004d9103b5662bb843e3	
+aa9b321c64aabdf4ec97b9a8571860c95c9f9a68	Design and validation of ECA gestures to improve dialogue system robustness
+94a9af119df61f501980cf095700f35c2a7762a3	Question Classification using Head Words and their Hypernyms
+cf42f1c29cd54269f9e38cd281d510bae11fa111	Measuring Word Relatedness Using Heterogeneous Vector Space Models
+f25d19ba09f9fe942e4e9458d54176caf9842994	An Active Learning Approach to Finding Related Terms
+2a78bfc096470d4e68a8e221b9285f427797d991	Clustering voices in The Waste Land
+4a19612cc1e5a56796749b8beaad7be4d66d3af9	Discriminative Joint Modeling of Lexical Variation and Acoustic Confusion for Automated Narrative Retelling Assessment
+0032594cad315f9d42dca406f6c03b78f6185cc5	Effective Morphological Feature Selection with MaltOptimizer at the SPMRL 2013 Shared Task
+97581d3160730105e5dd48551d893085eb3816dc	Edinburgh’s Submission to all Tracks of the WMT2009 Shared Task with Reordering and Speed Improvements to Moses
+335dee2515f0eae9775475e9f10764ea6d84729e	Re-examining Automatic Keyphrase Extraction Approaches in Scientific Articles
+1195bd0c86c7758a73aa0c7112e1405a12868028	An opinion about opinions about opinions: subjectivity and the aggregate reader
+1cf53c62906a48b9d607f94468bf777855199a28	IBM Research – Almaden
+2e0264c4a6b31f1032a4079b7f259d07d13cf4d9	The ACL Anthology Searchbench
+8dd8442b68228a0c23af40e5319f0ea43c58b52f	What Determines Inter-Coder Agreement in Manual Annotations? A Meta-Analytic Investigation
+980ffba18d4f7ee642697351f2488bdc818be522	Unsupervised Syntactic Alignment with Inversion Transduction Grammars
+29641f9854f7fea354cdea35075ed7c9d90eaf60	A unified account of the semantics of discourse particles
+84f338d11c957ddd1487280fc27ef4a4713c2bdf	Beyond Skeleton Parsing: Producing a Comprehensive Large-Scale General-English Treebank With Full Grammatical Analysis
+8d1d98807843fad7de1734629edb0c873015c14a	Online Learning of Approximate Dependency Parsing Algorithms
+e1f142703524dd8e4575bff242adfc02b34cd3a4	The Uppsala-FBK systems at WMT 2011
+62b3b3c1036f15a88c3ef04daf69997a4c7eb625	Search-based Structured Prediction applied to Biomedical Event Extraction
+385cfb178c86c1aad425777fce81b66b4909d4d2	
+31cc2401fd72b8c88ca932111160a0660f15f01e	Exploring dialect phonetic variation using PARAFAC
+6fddbed091394a6ef4360efdab1f746a67230e1b	Supervised Ranking in Open-Domain Text Summarization
+368633557ebc054bbfb44046a571fa6fc22de43a	Summarizing Complex Events: a Cross-modal Solution of Storylines Extraction and Reconstruction
+7a5b3d20b437c73fca5d6a2cd3c29f0aa7cec710	Joint Parsing and Disfluency Detection in Linear Time
+a6b58646dacdde04c6d5594a986d2241cc60d11f	
+8de4164931eea9c4ebea42091e31e334e9acef11	Cascading Collective Classification for Bridging Anaphora Recognition using a Rich Linguistic Feature Set
+8403eb9b80cf4ea275473c7f11b79b45f61a1dd3	PyCWN: a Python Module for Chinese Wordnet
+df2d81a27743af801c8e8c69fa68b9a610a7e0c0	Active learning for interactive machine translation
+1b060664a53d8feec11ce494b424f47315bb3130	A Hybrid Model for Urdu Hindi Transliteration
+4d135641931a6efce82bd9c1d69d86e08d3cd28d	Extracting Opinion Targets in a Single- and Cross-Domain Setting with Conditional Random Fields
+a09b27d687f33833418738bd8219b4d4d7fe0f0e	Word-for-Word Glossing with Contextually Similar Words
+ccca3c78f8b8e011fd328bd40116014b1065fa5f	Automatically Learning Source-side Reordering Rules for Large Scale Machine Translation
+019933f4b4b78346f9256849cbee4c30387f8174	Dynamic Knowledge-Base Alignment for Coreference Resolution
+f1e832d7cdb2c9a33e25752bee84771457eadde4	IITB System for CoNLL 2013 Shared Task: A Hybrid Approach to Grammatical Error Correction
+958b97764dcfe3dfec2483c2cfe443b0d9cc769e	
+842d01a781669143ba8b0b20fa40a81ca9f04901	UNDERSTANDING OF JAPANESE IN AN INTERACTIVE PROGRAMMING SYSTEM
+c54d225fa41fe4c86f4c96d391b5d8485dc7f1a2	A Simple Automatic MT Evaluation Metric
+f18eb72bbde7c657095310200d5a928b29712e0b	Shallow Semantic Analysis of Interactive Learner Sentences
+7003d7252358bf82c8767d6416ef70cb422a82d1	Multidisciplinary Instruction with the Natural Language Toolkit
+5209c6fb3efee27cddcf0203628c41776e42fe4c	Summarizing multiple spoken documents: finding evidence from untranscribed audio
+c624f625c0f717928e52fe75ebd2060334364203	A Data-driven Model for Timing Feedback in a Map Task Dialogue System
+d8a38c82bb8da9d4428886fc9acdae67c40615d1	TO BE SYI~S~ZED:
+0fa6cc19d13bf442e6b9469b737ba47d3888d62c	Learning Local Content Shift Detectors from Document-level Information
+3c58cb9527ae19f8f9ded5f0e3a2921e970a327e	Arabic Cross-Document Person Name Normalization
+d9da9be266b1739dea7691302dc7eb4d33677802	Models for Sentence Compression: A Comparison across Domains,
+581cfcdcc17eb87125226997cd2b4e067218c577	A Hybrid Hierarchical Model for Multi-Document Summarization
+4513ade434ac24913852d4fd74e31b91920f8029	Finding Word Substitutions Using a Distributional Similarity Baseline and Immediate Context Overlap
+8ae3e7c94bb2737a5ce806f887b8b62780c7ff29	
+89ec29aea244e5f81f7316c5f8d565bd61429374	Cross-lingual Word Clusters for Direct Transfer of Linguistic Structure
+57720f21645856af306da3cb94238fe296574896	Language-independent Compound Splitting with Morphological Operations
+09ed02b87e6219ceab87d1b75fde6c8f7f2994e3	Turn-Taking Cues in a Human Tutoring Corpus
+f8f92f791d67883f77525c5aecdb7b10b3488b29	The CoNLL-2013 Shared Task on Grammatical Error Correction
+b2f8b50b06a2d9f5f468b80338f32ba0ec43fb02	Classification of South African languages using text and acoustic based methods: A case of six selected languages
+e55ea57a4d6fa1991b5eb95a0785d63c7b859203	
+45d5102e328281c668574e25b6195f1eed72767b	Learning General Connotation of Words using Graph-based Algorithms
+6f5eb354097459d211861f24e11b0cca1bef2ac1	DOCUMENT DETECTION OVERVIEW
+ed6ae9a1af4a8d92b0223b526d67a902d947b7a8	A Statistical Model for Word Discovery in Transcribed Speech
+3839fb041c3698dc93cb93803235dc6d05c81bcb	Natural Language Generation and Summarization at RALI
+511052cc578daf30219bed58a8ebac795c0fcbaf	Stylometric Analysis of Scientific Articles
+edfbf28993ca31aca6a31e3f213594dc3e80cf07	Exploiting Syntactic and Distributional Information for Spelling Correction with Web-Scale N-gram Models
+6282976d5df937826e5add9429ca459be32586cf	SemanticRoleLabelling With Chunk Sequences
+13f235c1a14e3843bf880ff8b59ba6a8adf015b6	A SENTENCE ANALYSIS METHOD FOR A JAPANESE BOOK READING MACHINE FOR THE BLIND
+02e2b6bcf6a87fef41f029b9170ab84656774896	Language Model Adaptation for Statistical Machine Translation with Structured Query Models
+c03c806d3e38c4ef0450920deb3f17d3905cbd91	Rule-based Translation With Statistical Phrase-based Post-editing
+88b112ef2ceedbff9d28c01f30ee734ecde9172e	A Fully-Lexicalized Probabilistic Model for Japanese Zero Anaphora Resolution
+e3704086f57bdda37723a49a70a28ee4dbf701b6	Adaptation Data Selection using Neural Language Models: Experiments in Machine Translation
+7517b34c903ff244057c70e0b2aedcc8d13352fc	Using Syntax to Improve Word Alignment Precision for Syntax-Based Machine Translation
+15781aa355315f5b088fb58a2447ccc426f7b01b	Aggregating Continuous Word Embeddings for Information Retrieval
+6d3e1c2db206d54c91e15f83f46b07a6601fcae6	Cross Parser Evaluation and Tagset Variation : a French Treebank Study
+c2dda9481c9b8c4731e79501b2febf7957efcb05	ROBUST TEXT PROCESSING AND INFORMATION RETRIEVAL
+abba83b5747e98d10ab982df9ae94cc799668f16	Simple Coreference Resolution with Rich Syntactic and Semantic Features
+87f09ba5b9fc91b2f0ec90406b41fdd26359b812	Long Distance Pronominalisation and Global Focus
+58fdacf0d40ddcb304536992a04fa2000022d8de	Identifying Broken Plurals, Irregular Gender, and Rationality in Arabic Text
+73fd51efd897b86f405bcbc07d10cbfbec54fb8b	On the Use of Homogenous Sets of Subjects in Deceptive Language Analysis
+bb51be4a096abc42fe00e89d97691c0ec17fa7a3	Instance Weighting for Domain Adaptation in NLP
+a89c14364fc184d735601e620348d366869640c3	An Exploration of Forest-to-String Translation: Does Translation Help or Hurt Parsing?
+92881ec2d0bad824c4eaad0360c6f2749c3a09c6	rE-mail address is C.NellishQed.ac.uk 265 (e.g., Skilled), and the discourse in-focus list. The
+b3d24934b4f7facd35a506475561a0f1e185ef82	Un système de segmentation automatique de gestes appliqué à la Langue des Signes
+1c05ee24a7c80cfe0fe7153dd498eaf61b2686fc	Comparing Rule-based and Data-driven Selection of Facial Displays
+7b87b82cfb042854e6a98d63c699f6b32d9f40d3	COMPUTER-ASSISTED MORPHOLOGICAL ANALYSIS OF ANCIENT GREEK
+bfc4d37a491f0aabccf83c0a85c390c127c37c02	A Tree Adjoining Grammar Analysis of the Syntax and Semantics of
+62fe8d3e79a3f0f3df7a5d33ce1af9164c933cee	Orthographic Errors in Web Pages: Toward Cleaner Web Corpora
+2fc7071017c24ad34f0bae77117ee734d90f97a5	
+fb37fd9120fde7cc03cfd05a422bf59c97a27bd1	Not All Seeds Are Equal: Measuring the Quality of Text Mining Seeds
+9a9cfb645f150868f17ab401dc04490c9420928a	
+3aead3586252eb53754204662f219a033dfe6969	Chinese Named Entity Recognition Combining a Statistical Model with Human Knowledge
+52a490e3d767e424a77b03fe9e327ba86c26accb	Statistical Dialog Management Methodologies for Real Applications
+93a3f13500aef890fd2e97a91c314d588fef9630	Detecting Promotional Content in Wikipedia
+20c4d88b1b3bbeb382985166b8fa267440197ff8	UNITOR: Combining Semantic Text Similarity functions through SV Regression
+110443841ae2a5466d5cdb3e417491573c0e1151	Squibs and Discussions: Memoization in Top-Down Parsing
+3f65195f380bc556c3c8224c39773faf07d4c552	Unsupervised, corpus-based method for extending
+235e2a54ad7dcb802a9ac39d9a8d710c633ecbb6	4300 Fair Lakes Cour t Fairfax, VA 22033 703-502-1180 (tel) 703-803-1793 (fax) h t t p : / /www . s r a . c om
+ad890a3ac524282d54cfde9f2fb1fe37e7912ba7	Email Formality in the Workplace: A Case Study on the Enron Corpus
+ddeab6770134141415e36d3f0427aea11bc62697	Some Empirical Evidence for Annotation Noise in a Benchmarked Dataset
+ee2f956b0e5bd55b8b4bf696aa50a585668b4906	Demonstration of the Parlance system: a data-driven, incremental, spoken dialogue system for interactive search
+c033c647b47c06792cc951f2c902b01112ea5313	EACL 2006 Workshop on Multilingual Question Answering - MLQA06
+eb46ac0f13f8c911588459b4eb7da2538376873f	
+c384adddcad3a017f8dad14c9847dae0e6dde323	Fully Unsupervised Word Segmentation with BVE and MDL
+1c121673845b9e95d9f58a14a160fa6fc6b97158	ABSTRACT
+ecbebc40b4eba1b3660c951ea99376dcfcb8b22a	Spoken Dialogue Systems for Language Learning
+74cc22ca9eeee2997b0ecf2883b57d1a81842299	Improving Chinese Semantic Role Classification with Hierarchical Feature Selection Strategy
+0678c73ff855c93f238538735fcecc1ee6bc8379	of V × V . For a given vertex Vi, let In(Vi) be the
+259918795730b7d7b041582ca038e241b9a26ffe	TELEGRAM: A GRAMMAR. FORMALISM FOR LANGUAGE PLANNING
+17ea4e556449bf78e7714f0a0d1bcf4195774b32	A Model for Processing Temporal References in Chinese
+d698d6e8bce2193e8814ef815f1c5b8e4a541d23	Department of Computer Engineering and Information Science Bilkent University, Ankara, Turkey Fax: (90-4) 266 4127 e-maih ko@trbilun.bitnet
+1b294f3ce78a9fd65b288cda2d0d9f939ad1cf9e	
+09e941ab733b2c6c26261cb85f00f145d9063b0b	Automated Text Summarization in SUMMARIST
+57a2a5be0cd72cc00f5def2e1e67ed4f2bf63fe7	On Log-Likelihood-Ratios and the Significance of Rare Events
+a43f90d59941e914da63999910c99f4966dc4bd5	TECHNICAL CORRESPONDENCE: THE EXTRACTION OF A MINIMUM SET OF SEMANTIC PRIMITIVES FROM A MONOLINGUAL DICTIONARY IS NP-COMPLETE
+cc48491d5526eccf81e6883090961e8004bbd289	Robust Multilingual Statistical Morphological Generation Models
+5afe9a3e3a7bd1f863c96fb3df00b8af95d2a4fe	LIMSI: Learning Semantic Similarity by Selecting RandomWord Subsets
+fe3cb0c53c526567e18569dd3c9fb3e66f93ed85	Affinity Measures based on the Graph Laplacian
+f6e976d662d69f37e2fbb642db0b5952f0abd940	Predicting the Micro-Timing of User Input for an Incremental Spoken Dialogue System that Completes a User's Ongoing Turn
+26b8d6c1fe77c4b259eaaa03ac55657ca0ec378c	Extracting and modeling durations for habits and events from Twitter
+b37d4304484d0763adc28609c9c1636c1c7245d0	Toward Asian Speech Translation System: Developing Speech Recog- nition and Machine Translation for Indonesian Language
+aec878ecba20af946a61f4d3bc4193338d35887e	Bootstrapped Training of Event Extraction Classifiers
+a13743237e9d8b320baebba1daa6010f82991ea4	Strategic Conversation
+db5940ba776f5acf30fb8f58b498885131246ca0	Compilation of Specialized Comparable Corpora in French and Japanese
+31e43eb5d49824963434b4c4c9047cf8e37e2b5c	Ying Zhang, Ralf D. Brown, and Robert E. Frederking
+09e5678aae479eafcdf1e005a3273245894c638b	Do We Need Chinese Word Segmentation for Statistical Machine Translation?
+927ece71d6bfa0789ba1eea2c215c9afb90f0dac	A Linear Programming Formulation for Global Inference in Natural
+d7a753b3b733cd098ec29869a09032b637096af6	A machine learning approach to relational noun mining in German
+d77cbdd35d3981c4293c107f5eeb46c08f47b07e	Six Issues in Speech Trans la t ion
+4ea4f6200a919451d36363fb6f5c6cbc9b555195	Improved Extraction Assessment through Better Language Models
+a730de25ab201c3e3355d2e7bcffba44e9c69e10	Adaptive String Distance Measures for Bilingual Dialect Lexicon Induction
+4f5cd4c2d81db5c52f952589a8d52bba16962707	Connecting Language and Knowledge Bases with Embedding Models for Relation Extraction
+aa1438dcaa61b4600c41d02ffa07d51f37473abe	CoMeT: Integrating different levels of linguistic modeling for meaning assessment
+c108531fbf3218787cc9d779d3c06ec9e92c0e10	Model Combination for Machine Translation
+c865c7e5d815fba08a69dc4fee327d63646df009	A Word-Order Database for Testing Computational Models of Language Acquisition
+9fb7b89164276b5804eb013309a899fcb0c635df	Exploiting Domain Knowledge in Aspect Extraction
+301f8346f5a5bfe34cad24caf2e480b54b1e0e32	Determining the Position of Adverbial Phrases in English
+3e9148d8c6724ad5d66d247b14fa3b0ad19c3b34	Annotating Wall Street Journal Texts Using a Hand-Crafted Deep Linguistic Grammar
+debae263811ca372354533a6ba7913061148f4c9	Reranking with Linguistic and Semantic Features for Arabic Optical Character Recognition
+3aa02a820ac94bb9387ab1cb6e00ce9aef53aa2b	langid.py: An Off-the-shelf Language Identification Tool
+2e174c368e4c58d3cf9e792c1c778621ede39a09	The Answer is at your Fingertips: Improving Passage Retrieval for Web Question Answering with Search Behavior Data
+4d8279d1a4a9e892c1b9f7e22df7bf2d300e00b2	Building a Large Annotated Corpus of English: The Penn Treebank
+edc5e6f85dca2dd16feed457c87ff6b83bf16508	Multilingual Semantic Role Labeling
+6199a1997612f92ef8727f97a7c44b282c2cd124	Vowel Harmony and Subsequentiality
+7230405e170e98d0823ac46dfd08597219a1eb12	INQUERY System Overview
+c004bf7ba0e03ea0fe8c71f82ad24be6cf83504f	Using Speech to Reply to SMS Messages While Driving: An In-Car Simulator User Study
+dd2c59f6b8a99cd7b0d593b9af0e889ec23f6312	
+e556f546574f82d06bb159aec3ac2f862a1485cd	PLANNING COHERENT MULTISENTENTIAL TEXT
+2a0e0629dbca2592084955fd809ebe18ad1ce105	1. INTRODUCTION
+f828dec15b45d0c03b2fc3081673ea67c532deb2	The Replace Operator
+42e085ce92ffe63313690439a71fd52752eccc24	Training Tree Transducers
+aae01fd0efab4ec60d92eb7233d10bd573ef67e8	A Machine Learning Approach to Automatic Term Extraction using a Rich Feature Set
+adaeaf18fc9da2dd49695059755bc959342c2325	Towards Dynamic Word Sense Discrimination with Random Indexing
+de937372b5e0f96e783ae4c7437ef5005b77b882	Evaluation in the ARPA Machine Translation Program: 1993 Methodology
+25f1fafe6e2840cf77ccf8ced2ddbaa6d0b00414	Named Entity Transcription with Pair n-Gram Models
+ee5af3ea5cc91c966b8ef55f81f2d9f27600ad87	Discovering Factions in the Computational Linguistics Community
+09b93e5ac95647dabd3397b1883dacb4469352d3	Modifying Beliefs in a Plan-Based Dialogue Model
+5d97c0de30832d5e828c4b779f99b0d3f180727d	Influence de la segmentation temporelle sur la caractérisation de signes
+7fd3ee0929f310cfe80b321e62737a3a7e4ce3f1	Using Distributional Similarity to Identify Individual Verb Choice
+7d99ad3a64a78199c2d4090c735943f1a5cf2522	Expanding Indonesian-Japanese Small Translation Dictionary Using a Pivot Language
+0525bbe83d45e9e34f5b607bc7480f58d795041b	Demonstration of Joshua: An Open Source Toolkit for Parsing-based Machine Translation
+c2587d65304d8d4836a4c2a1a287968005ee7eed	Predicting Unknown Time Arguments based on Cross-Event Propagation
+cb89c54521605a9957c5df86b113625c4c43bfc9	Semantic tagging for resolution of indirect anaphora
+6b1e751720599a562ec99e112193c5880cb3aefe	Domain Specific Word Extraction from Hierarchical Web Documents:
+de7bdbf80c80831c9df8b8f82dd002fb91bb439d	Unsupervised Domain Tuning to Improve Word Sense Disambiguation
+50a4f82ea66183c68ba5fcaf37240c860966e519	Subjectivity Word Sense Disambiguation
+78f8901f907e1b2a6ceff139aabeca5a438a12b4	The Role of Syntax in Vector Space Models of Compositional Semantics
+bf0fc4a7a5ccf51aff40630c297db61d3fb0b50d	Generic Text Processing: A Progress Report
+ff34eda45c123782708a564d5fbb232b192ef937	Optimizing Semantic Coherence in Topic Models David Mimno
+f9a0cd1e0bff75507f0290b196c8e3eff5c3d675	Docent: A Document-Level Decoder for Phrase-Based Statistical Machine Translation
+6fd398dcb4c0a20de0d10c7a30b36fa8e1b24ead	SRA :
+c73cd47ff738d39520703ede9f5cc2969f4f4bc2	Perplexity Minimization for Translation Model Domain Adaptation in Statistical Machine Translation
+f94161fe0672a74e5088d8f67491af28b2949e9f	Learning for Semantic Parsing with Statistical Machine Translation
+e4adb6ce787ffbab561bad6484130e7d0b3b3797	Automatically Learning Measures of Child Language Development
+5ff938ef23c7a395993f309dffe43ecba4ecdec9	
+d8e397a77f12b627685e86460df4463ecc032b7f	On the segmentation of requests in spoken language
+28a418253205fa24ac8d16dca0ef9c8ebac3beb4	Insights from Network Structure for Text Mining
+b9681cd07ce0590aaaa8bb0f0d417413a0cede9c	Summarizing Short Stories
+5262cf9a11c5ecb2215d8107528f5faf07e051de	A Nonparametric Method for Extraction of Candidate Phrasal Terms
+5cb655df520c00746a3d44fe3b3be48014b0baac	Source-Side Classifier Preordering for Machine Translation
+7f7e2354ff234d408855dd0ec5bd75f9c12d7bee	A* Parsing: Fast Exact Viterbi Parse Selection
+b40818bdd90b7f51cb74e065a1fb0972e94406b2	Robust Induction of Parts-of-Speech in Child-Directed Language by Co-Clustering of Words and Contexts
+2f0ba3763db6159da2a3186dbedf7a48d4df53b0	Tagging Icelandic text using a linguistic and a statistical tagger
+56a6af937507bf1e8a4d4089c01272c73698c8ea	Analyzing models for semantic role assignment using confusability
+b2fb57acc544352677ac083d01f2e78c4cfc20f8	Is the End of Supervised Parsing in Sight?
+ecdc95111b0cb8b095ad531b4c3ad34d74c96651	A Robust Cross-Style Bilingual Sentences Alignment Model
+5c130a0dfd4d7a267560a811f2dc739cad6be042	Countability and Number in Japanese to English Machine Translation
+f1144e7f31b876453c73012b20843b92be818205	Cost-benefit Analysis of Two-Stage Conditional Random Fields based English-to-Chinese Machine Transliteration
+d18248c0b6fd887b795be11ff53a8265bb29d62e	A Lightweight Semantic Chunking Model Based On Tagging
+56a59cdda81bc697ea933cccb727accc58577a56	Annotating Change of State for Clinical Events
+63d8f9aa61138c2225e51d7360c2a1b4feac5831	Optimistic Backtracking - A Backtracking Overlay for Deterministic Incremental Parsing
+2c3411a5ce97d58e3a94667b4d9b7f1b42d982bc	MACHINE TRANSLATION SYSTEMS AND COMPUTER DICTIONARIES IN THE INFORMATION SERVICE. WAYS OF THEIR DEVELOPMENT AND OPERATION
+798b8661018dd7d0652e46e1b3c813e892187e23	Efficient Bottom-Up Parsing
+08c90e7d935af30f6f60edb987e99ab073998712	The Importance of Sub-Utterance Prosody in Predicting Level of Certainty
+e585e55ab28bfedbbaffcf8c5bce4cabad164e7e	Better Synchronous Binarization for Machine Translation
+4352bbd2cb56e659e3fcc148d998976a5e933f35	Syntactic annotation of spoken utterances: A case study on the Czech Academic Corpus
+c8c5eacc0c2c2d95ae3c6d43ed1dc90e7af369a3	Build Chinese Emotion Lexicons Using A Graph-based Algorithm and Multiple Resources
+01fa67ac73e0e1de98b5ad22cb88c48bc9d8cc9f	Graph-Based Posterior Regularization for Semi-Supervised Structured Prediction
+132bb9dd928749af370a87ecb939bbb0b05d7aff	A Statistical Approach to Automatic OCR Error Correction in Context
+3fcf5ec992c50ccd27d04a5e0fb5d804de1f8da7	Argumentation-Relevant Metaphors in Test-Taker Essays
+af4b7781cfa6d0aadf2993202fa9b31fe5b5e846	Machine Translation of Sentences with Fixed Expressions
+8c5aff386f1a29c4298f555db92d3215083f33e8	A Systematic Comparison of Phrase-Based, Hierarchical and Syntax-Augmented Statistical MT
+8c14c4ad39f3e006fbcdab8031ebcea808ded8b8	Modeling covert event retrieval in logical metonymy: probabilistic and distributional accounts
+c33ca9fe5b5ac308cfbdfd65ea8b6e8bb7db82d9	Improving Statistical Machine Translation using Lexicalized Rule Selection
+1ed03e95cc2041a18b80415eea1b410af7f0f9c1	A machine learning approach
+ca63d82f9f6bf5be67827b6385026c9001161ace	Inducing Temporal Graphs
+ec27735be771c85ad5c46cb8175b88bd5a3d8acd	A RATIONAL RECONSTRUCTION OF THE PROTEUS SENTENCE PLANNER
+146b3649b693ae591c8953c0aae5264512c26ea3	Solving the Problem of Cascading Errors: Approximate Bayesian
+7db5baf284deb1d71bc1934add9aeb25874036e2	Exact Sampling and Decoding in High-Order Hidden Markov Models
+6a6cecd75818f15e9814ea7bf137897638dc7139	Large tagset labeling using Feed Forward Neural Networks. Case study on Romanian Language
+37aa36f45cb9156213aa37225379ee3ecf50f3e2	A Parsing Algorithm That Extends Phrases
+a502b02abf257612d15fbc635b59d526afb9b738	From Grammar to Lexicon: Unsupervised Learning of Lexical Syntax
+f0196323951558f251a36479d8a0a310658eac4d	Enabling the Discovery of Digital Cultural Heritage Objects through Wikipedia
+a4d32e742db4fe7a04408428c3e5f3bee7f7f3d6	Integrating a unification-based semantics in a large scale Lexicalised Tree
+685577ccc5677d651eacdea0cdf6ef2b51e64766	Quality Estimation: an experimental study using unsupervised similarity measures
+b2e761fc32c610f3bfb6579e385e2b2e2ecbd0b5	Cross-discourse Development of Supervised Sentiment Analysis in the Clinical Domain
+a8ff6cd4336b8613e2a38bdf4d873533153031c1	Parsing Noun Phrase Structure with CCG
+6ec09ec28e3519975f2868bc5191b84342e18870	Grammatical Error Correction as Multiclass Classification with Single Model
+f08634e6b3117e3c44c79782181a9e4c9af62662	
+8450e793c41e20e1e5cdc202b7124c924bfeb70e	HOW DO WE COUNT? THE PROBLEM OF TAGGING PHRASAL VERBS IN PARTS
+bad935dd6f10d038e462bea42b5d5f9dd0ffcf19	
+38049109d8f6ecb93d5137191d6d5178f7de50b2	Contribution à l’étude de la variabilité de la voix des personnes âgées en reconnaissance automatique de la parole
+957ba9a5696b048decad630126242b1a3415fc5a	Error Driven Paraphrase Annotation using Mechanical Turk Olivia Buzek
+34607b4ecec2c7c20fa9d7a7fd2c90ab0ca9083f	High-precision biological event extraction with a concept recognizer
+a04b4aab78f1b8a3c2e9420167c12c293dd1b1ef	A CCG APPROACH TO FREE WORD ORDER LANGUAGES
+5026e6e570a62ed0244742306b24ce9276b0ee19	Domain-Specific Coreference Resolution with Lexicalized Features
+71b4a16fb6978ebefebde80cc7fc198f2a12ad28	Reordering with Source Language Collocations
+56fca48ea274d1569c3c46198064b4cd7a3c2076	Multiple Aspect Summarization Using Integer Linear Programming
+8279fe474e25ee954d71f34f310a6dfdc09e5438	A View of Pa r s i n g
+13391bba69162b7062ca070bb2a509505c3ca724	NLP-based scripting for CALL activities
+66087769e3379f06aa0eef1f5d06a7ef6e9fc7a7	J avox: A Toolkit for Bui lding Speech-Enabled Appl icat ions
+a12e9956603de945071f18fe5dedf0648fc0783f	Extractive Multi-Document Summaries Should Explicitly Not Contain Document Specific Content
+10ce58375314f90f83ca3bb88840cbc67bf8050f	Learning Entity Representation for Entity Disambiguation
+b510b3778d7f9c500042d04a9fd5c8800e944734	Japanese Named Entity Extraction
+fcf00320b3fda525968307efa08d2a6882d4ceb5	Extrinsic Parse Selection
+fce3f58fd20877ff5c42738818631ad0ec26a7ee	Reference Resolution beyond Coreference: a Conceptual Frame and its Application
+b51f7b859b1583bfaddb0dc55863fa29d4daa43f	HeidelTime: High Quality Rule-based Extraction and Normalization of Temporal Expressions
+35aa29cd9183fca6ccd7d509500083c7fc3a54cf	Enhancing the Expression of Contrast in the SPaRKy Restaurant Corpus
+e8fe08c7965921c1f0b9f17921f4a0e996f36401	Sentiment Relevance
+1a6c5a1d99ddd1de0ff0681e13fd73f9771cd2fc	Semi-supervised Relation Extraction with Large-scale Word Clustering
+0880935a8eaf7f86102810ba4d87e4ba912f133e	A METHODOLOGY FOR AUTOMATIC TERM RECOGNITION
+2bb76e612925b56ff2e62070a43f530490996d1f	On the Importance of Pivot Language Selection for Statistical Machine Translation
+46e06cf27255dedcd40a99751dbc14d7fd44f80e	A Gibbs Sampler for Phrasal Synchronous Grammar Induction Phil Blunsom∗
+471986880bdc1ce94e6e8120cb81403c2b3fca18	Development of a Persian Syntactic Dependency Treebank
+236abcdf756ad683fb563df22e0a45459758f25a	Institute for Research in Cognitive Science/Computer and Information Science
+1c9f2beef42f4023911f62311c53ed43d77948bb	P(θ|D) ∝ P(D|θ)P(θ). (1)
+f315462e88faa4c625646393865b22a4045cebf3	Disambiguation of Biomedical Abbreviations
+c5710531ebeed0e9d261450f5a4eedd1569a3bdf	Reducing redundancy in multi-document summarization using lexical semantic similarity
+2ad7d42ab5c3b442ff8cdb61e5db9b5ed046f9a5	State-of-the-Art Kernels for Natural Language Processing
+6b5b6ea5b2b56c769095f2e98c44cc5a6aac4ddf	Thierry Poibeau and the INaLCO Named Entity Group'
+e672186ff80682e97fb0882fc5aa85e8c9997d23	A Flexible Architecture for Reference Resolution
+3f9009500065dc965f198fb3cafe06abdf079fed	Characterizing and Predicting Corrections in Spoken Dialogue Systems
+ace4eeebb008eca2671a1c50121106f5debcda32	A Semi-Supervised Key Phrase Extraction Approach: Learning from Title Phrases through a Document Semantic Network
+24e40ccd96a54126ba544b2afe93df7294168608	Analyzing and Integrating Dependency Parsers
+18d67be0211180dbfe79241d26635e3955fa5076	ON THE USE OF TIED-MIXTURE DISTRIBUTIONS
+0f1970214a41413ee1638c40fc0584bc98bef6ea	WordNet and FrameNet as Complementary Resources for Annotation
+4d47cc69c22a703cc0c3660db3273b123cf6db84	Japanese Zero Reference Resolution Considering Exophora and Author/Reader Mentions
+28a83e50b206512ef5712508ab020078fd1a144d	
+b3677f2e9526c47f647b6ebef76d3fa0fe536be1	Speech-to-Speech Translation Activities in Thailand
+3c1d61591b8d1b80e6126f3f2e286f5162471156	Automatic Parallel Fragment Extraction from Noisy Data
+177bfa5b71e3e4fff964c4c96f08d971885b41a9	
+75ff8108db27cb43460c23de4deb3423a875a4f8	Tweet Recommendation with Graph Co-Ranking
+055e8f573d32ed3eca74015de4d0825abf86486e	Improving MT Word Alignment Using Aligned Multi-Stage Parses
+1c5fe949b0e172608c90a62f54cc57c2e99a6148	A quantitative view of feedback lexical markers in conversational French
+e55a4a1bde215726969313368afcdc1d57777034	POLITICAL-ADS: An annotated corpus of event-level evaluativity
+a6109618caa42b7318884b5418cec4c8c06a96fd	“Ask not what Textual Entailment can do for You...”
+99645cd35f328ec79355617788498eb38d556d1f	
+799432c55bc6a22d13943defb3810bba334fc60f	BioAR: Anaphora Resolution for Relating Protein Names to Proteome Database Entries
+f0f0489f8b51cfcd55f69d285e4792628a596d08	An Algebra for Semantic Construction in Constraint-based Grammars
+9f576b2f26b85467606e1f6ade9335b5db4d8ec5	Minimum Error Rate Training by Sampling the Translation Lattice
+fbeba04040946f0201f74055b57148913d21eb03	A Robotic Agent in a Virtual Environment that Performs Situated Incremental Understanding of Navigational Utterances
+bea44eadbc3e380835df1701251c6aa89d03fe0c	Department of Computer Science
+a1c9da674d8efd88b650ece67bfbf1143f81780c	A Forma l Compu ta t i ona l S eman t i c s and Pragma t i c s o f Spe e ch Ac t s*
+217f56a75f5484884f5f1fe3fd24cabab3c6926a	Unsupervised Type and Token Identification of Idiomatic Expressions
+f981ec0efe639c2eedfd59771fb024f233bdbc24	Deductive Parsing with Interaction Grammars
+64b1110fa97c099b1c8c0784013c79f1ade490a0	Large Scale Diagnostic Code Classification for Medical Patient Records
+e087da86cc4856cf8120349308c435bd83faf744	Sketching Techniques for Large Scale NLP
+2b4dd276f4a8c1b0ba2670331364f7b4885322b9	Cyberspace Laboratories
+fdf4895f4c7a4df1823de277632c4ebea9f50f4d	HITS-based Seed Selection and Stop List Construction for Bootstrapping
+91162f5a4ffe7227d1649c823d7c1120e550f51e	English→Russian MT evaluation campaign Pavel Braslavski
+86031fe45c9908e1a951456c33ff4462e22a5039	Portable Features for Classifying Emotional Text
+9aa5f1ab2639547063190ade80fc52407c3f62a8	A Tree-to-String Phrase-based Model for Statistical Machine Translation
+fef2b30e20c613a233011a4306362e61c082c475	Preemptive Information Extraction using Unrestricted Relation Discovery
+9c6618a83c16567e5e949b22fae48d36269108e8	Simulating the acquisition of object names
+51289ae4a00edb40bb4830e56483ed386c0c0997	QuickSet: Multimodal Interaction for Simulation Set-up and Control
+1d27da6f431d57a59f60a2be12594c876989f52c	
+08d8ea305a3a7dc084f1bf30f8e0a5168aadf650	A Visual Analytics System for Cluster Exploration
+8c33c90083c9bd32db350b1910a616f9e52d7d16	MINT: A Method for Effective and Scalable Mining of Named Entity Transliterations from Large Comparable Corpora
+cafc8836c3ed6e511cfb81e7cf9c0c018237838e	Meh ry a r Moh r i and F e r n ando C. N. P e r e i r a AT&T Labs - Research 180 Park Avenue F lo rham Park, NJ 07932, USA
+3d7d3706154cf4ac2363a369354fd3e53843f30e	A Parser That Doesn't
+546de45c614bee7626a00ab18c7ff68a5d77d6fd	
+07a78850c0c2ff11acf21fccca40bfcb79da282b	Building a Discourse-Tagged Corpus in the Framework of
+7a6e35233481f78d828c8cefb585567e3b089a23	Active Learning for Multilingual Statistical Machine Translation
+a03d2f53cd9938c595776dd41a62c515bd3dc060	Probabilistic Word Alignment under the L0-norm
+6c61f738c6e2b8b27e9979b9952270879561a992	A Web-based Instructional Platform for Constraint-Based Grammar
+c407adc375a5df2975f88e8c6658acacbe08a97c	Assessing Benefit from Feature Feedback in Active Learning for Text Classification
+26d061ba705b850bcb7e857c549f21d6badf1f42	Context Vector Disambiguation for Bilingual Lexicon Extraction from Comparable Corpora
+79b5d358d65251fd8aceecfecac8e4834855d3aa	UN ANALYSEUR SYNTAXIQUE INTERACTIF POUR LA COMMUNICATION HOMME-MACHINE
+74a300cb4fd909f32d82e75ec21fea30b1159fa8	Lexical Co-occurrence, Statistical Significance, and Word Association
+86b3caccfd94fad5a6f984b6d31667f2b6552e98	A Robust Dialogue System with Spontaneous Speech Understanding and Cooperative Response
+09bd7a01202263a130bc2562452feb31b92d8389	DCU-Symantec at the WMT 2013 Quality Estimation Shared Task
+5c6344b7a38672ddeb570e07e7a4befb2801b6ec	Asynchronous Binarization for Synchronous Grammars
+04ade8d0f5d563126f446b558dd4d1e7388eaf2f	Factored Machine Translation Systems for Russian-English
+0ae8819c1468177265f502265fddd77ae6c4820e	Speech Retrieval in Unknown Languages: a Pilot Study
+a6bbb67a4993d0aae9bcceb5de461196314b79e6	Just Title It! (by an Online Application)
+a102aea32498d0a6589d6b4c512c4996236ef26a	
+370702b927a78128c390e10ab92a8149dd8b1ca4	Squibs
+af9c5653efb9e2d08c23cb26c7af5e5dd1f50e4c	Towards Open-Domain Semantic Role Labeling
+cd96a6e0b6bb099c515be8770764d2fd18e7b878	Recurrent Convolutional Neural Networks for Discourse Compositionality
+8e6f113139d2956b43e973d508f5dbecb5a31fdf	A Practical Approach to Multiple Default Inheritance for Unification-Based Lexicons
+9eddfa02e821d664c0d9b5afc4c1889d2b0ca40a	Complex Lexico-Syntactic Reformulation of Sentences using Typed Dependency Representations
+b4943e859d7189933f8ec5dd6d219fe538a3f895	Finding Taxonomical Relation from an MRD for Thesaurus Extension
+33a43c9534418a4e0fbd8fea80b33c43883759a7	Mining Equivalent Relations from Linked Data
+f671eb22a3af916fa580dbe370ec1aa752fcefb9	Semi-Supervised Cause Identification from Aviation SafetyReports
+d1fea990f5af8f97b7ac652327284be8bfa27013	Translating Dialectal Arabic to English
+e694fff394731ffa762d4678723c574cc09ea698	Translating a Unification Grammar with Disjunctions into Logical Constraints
+546d0dd34c42b862fc5f07a129bb466948206a45	THERE STILL IS GOLD IN THE DATABASE MINE
+b7c230cd358c2de4944c575c85ec334df4d5292c	Phonological Factors in Social Media Writing
+1e025c119bb760c5bd80f792b598028e5da9a304	The Automat ic Extract ion of Open Compounds from Text Corpora
+e3a77b604cc714df59c506b26d3fd2224d346be7	Adaptive Parser-Centric Text Normalization
+600c28e993851971fef612e37e9eb93c0b7492c9	An Open-Source Natural Language Generator for OWL Ontologies and its Use in Protege and Second Life
+5dee9c97286916ebaeed2c35eac02f8c33fbf959	Letter-to-Sound Conversion for Urdu Text-to-Speech System
+bd8bac63151edcb4ba44cee5f87423c382e43d66	Lexical Selection for Hybrid MT with Sequence Labeling
+6c01844baa06d087f8f60b64122a2195628e2ded	Discourse, anaphora and parsing
+91e4ba886ce779a6e80a3292ed70c5386c5e86d6	Generating Coherent Event Schemas at Scale
+c9f347143e43ff7273f32e7695cf566e023f4b4f	A Finite State Approach to German Verb Morphology
+0e5f268a5145c3b6bbb9ecb1423c21bac4262df7	Applying semantic frame theory to automate natural language template generation from ontology statements
+37ded3193329e89229529ced271034d15ca04d4c	Evaluating N-gram based Evaluation Metrics for Automatic Keyphrase Extraction
+3cb58c4c5e79b6465d1709687b282138a1d463fd	A Fast and Accurate Method for Approximate String Search
+bff5f0785ac1daa2b36d4a77fb8fa1963e97ac92	POS-tag based poetry generation withWordNet
+dd63999e0a6c141a438d0158c2a0df28c11af31c	Ecological Validity and the Evaluation of Speech Summarization Quality
+b8b267ec584d60140247dfd313bc57a134a5367b	
+89f477a6464c6230eb638a95a5681c49e880ffff	Quantitative evaluation of competing syllable parses
+92266ad5bf1aba1257053d805df40a599fe99205	Abstract
+3b527be9f9b7ac29f18f32a8f9e9ff4fa5231df0	Lyrics, Music, and Emotions
+92abe8c520ab5b1d9ad99cd7be5af6a0e040c84f	Sense-Tagging Chinese Corpus
+4e2acbda150068debb30df1da54b50b0820355ad	Automatic Discovery of Manner Relations and its Applications
+aa3085f92a9b20a30fe9a07d7193ff46b6b02da0	Making UIMA Truly Interoperable with SPARQL
+a471fbbd8638258f127bac07bf17f1ada0e3d01d	The PASCAL Challenge on Grammar Induction
+c0b353701dacd7869bdd42809635f068acd6f50c	Exploiting Web-Derived Selectional Preference to Improve Statistical Dependency Parsing
+ba30ce81d5e35babea68ce223a12b560d5785a36	Pronominalization revisited∗
+0d1d0b69ab17b8a781904f42a6987dc99c12f123	Abstraction Summarization for Managing the Biomedical Research Literature
+24ca4716b49f4dfd76eb8d5fd660fcb0d0da7f06	Minibatch and Parallelization for Online Large Margin Structured Learning
+f462960630f19d836c74127a849ecc681c617b2e	Learning to Annotate Scientific Publications
+3a3b3925f2ce7a8ab311f89f07d5bd96742a4f4c	Optimizing Endpointing Thresholds using Dialogue Features in a Spoken Dialogue System
+c860429b2553536ecdeec21ca2192d861561540a	Sameer Pradhan, Wayne Ward,
+711525b09091b3f2c4bc9a44331cacb6f48559b4	Learning Dependenc i e s b e tween Case Frame Slots
+f5e47cf3c84b8e1614d063d19d28e1d4a405a620	Matching Readers’ Preferences and Reading Skills with Appropriate Web
+ba786c46373892554b98df42df7af6f5da343c9d	Large Language Models in Machine Translation
+8418f8a21b9e8299b097564013f6f65d6ae3e29c	The weak generative capacity of linear tree-adjoining grammars
+aa0ca646a3f2cbf94bb4085f8c8c28c660232d73	Automa t i c Ex trac t ion of Ru l e s for Anaphora Re so lu t i on o f Japane s e Zero Pronouns from A l i gned Sen t ence Pairs
+a6349582257d500a6b07be09a1ecc5b5ff9ed06a	Combining Tree Structures, Flat Features and Patterns for Biomedical Relation Extraction
+c18f7e91ffcaae7ac2b57a8d4779ed5c19e59dad	Two Statistical Parsing Models Applied to the Chinese Treebank
+37a0db4cde26750ea0b062112eb83ed8b8822626	Treebank Transfer
+e95353d65cdad3ca73e6e70634f1964bb14e31de	Parsing Time: Learning to Interpret Time Expressions
+9704a31928ae64e337a0fb6726221f2602f69c2d	Learning Context-Dependent Mappings from Sentences to Logical Form
+ac0f1b39452bef430b044434b91f8b0078941b1d	IMPROVING BRILL'S POS TAGGER FOR AN AGGLUTINATIVE LANGUAGE
+13fdafac4063e1e053f9886a189721eb0d435594	Performing Integrated Syntactic and Semantic Parsing Using Classification
+1d96469fd34319bf5ef7761fdd8cd7f9a8c7dcbb	Chinese Comma Disambiguation for Discourse Analysis
+940d4df05a90c0b7b376f61b483c123600d39629	Machine Reading at the University of Washington
+657fa0e42afe60847af6b9dd5b5d14632e8793f8	{dpb , e c }@cs , b r own , e du Department of Computer Science
+42adab10d34e359087b0b0e86b92f13d23db183b	Linear Complexity Context-Free Parsing Pipelines via Chart Constraints
+7a7b61b5bbaea74f499c93e07c21f172c5598261	Building a training corpus for word sense disambiguation in English-to-Vietnamese Machine Translation
+4263524239c86acee08d35136d4f14639b911e85	From Words to Corpora: Recognizing Translation
+5fb28a8a145c7d2205a55353393e7323d2d571f6	A. L inear Obs e rv ed T ime S ta t i s t i c a l Par s e r Ba s ed on Max imum En t ropy Mode l s
+bdc4301e74f69395434dbb35137c554822a6fc21	Humor as Circuits in Semantic Networks
+c6bc065d25abf8342cf7367c5f885e6543e03319	Learning Dialogue Management Models for Task-Oriented Dialogue with Parallel Dialogue and Task Streams
+c64333c7c770dac91682aefcc58a432ee5bc2d95	Coreference Resolution with World Knowledge
+257f0184a7f2be67e066c9bd57c9c10ee5ff4494	Multi-Speaker Language Modeling
+cad50bc232c4f1577c52cb06ebc7109892da02a6	Graph-based Local Coherence Modeling
+bf316e912f7971e8d4bce2cc2eb01c96ea2fe1ec	Deirdre Hogan
+12cbf917b9ff1d6927555f74203c9b656e841d1e	Chimera – Three Heads for English-to-Czech Translation
+33aa559a8836e2df65aaed698760182e9965f27f	A Japanese corpus of referring expressions used in a situated collaboration task
+51c8fd070a479df71132b43768d541159f80a2b0	Boosting Cross-Language Retrieval by Learning Bilingual Phrase Associations from Relevance Rankings
+cd6cf1c604b8aac99b96be0f1541218897af6ab4	Joint WMT Submission of the QUAERO Project
+066f11467e857bdf546d7fa4e0f9153fa8fb5dee	Attacking Parsing Bottlenecks with Unlabeled Data and Relevant Factorizations
+83dc3d673da9e2a488a09452b3b2d41e0d558dd6	Automatic Temporal Expression Normalization with Reference Time Dynamic-Choosing
+9b78a72bdd20befea393dd3a7fa0055c5da5ec3b	
+02c6edb92d9e177ed74eac0afe675b97efb2b7c5	Selecting an Ontology for Biomedical Text Mining
+071da05dfa9850ab985af282633a051831023224	An Integrated Architecture for Example-Based Machine Translation
+a00cdaba2eb99a324284ba9f915572b6279cfdb3	On Dual Decomposition and Linear Programming Relaxations for Natural Language Processing
+c1285095e8fe8f29df08c8fba97dc2f1b07aaccb	WordNet Nouns: Classes and Instances
+f72fc3de9c493dd8de5dcd852a8eaccbdd482094	Functional Centering Grounding Referential Coherence in Information Structure
+d7fd48b4b028ff6243354ee60636dfd7a71cec9b	
+4ff4c46e9dec9e58ab2a775d1f5c46006c5b9eda	Combining Multiple, Large-Scale Resources in a Reusable Lexicon for Natural Language Generation
+45310c0d674f7b63b56e83ce466af1164b4c07b4	EMPIRICAL STUDIES OF DISCOURSE REPRESENTATIONS FOR NATURAL LANGUAGE INTERFACES
+1fcd3ae8340d3eafe059d7018290f3c47d6f9a0b	Can Machine Learning Algorithms Improve Phrase Selection in Hybrid Machine Translation?
+f1b4e9ccea901e3256f0e45c831ec856ecbc969c	Text Classification based on the Latent Topics of Important Sentences extracted by the PageRank Algorithm
+34cd587d1e7c871eb0cd11437629ce62cb4ffd94	Opinion Mining in Newspaper Articles by Entropy-based Word Connections
+eea153a25d849bcc3bccbcda189b448b500cf445	Building and Using a Lexical Knowledge Base of Near-Synonym Differences
+bba3d23669dfd15c24c3094ce52daba3e55fd427	Linguistic Cues to Deception Assessed by Computer Programs: A Meta-Analysis
+6cae60d69ebc0d7feb6b50fa83f23f6a300b0c6d	VTEX System Description for the NLI 2013 Shared Task
+37ec39e39cbb705a8c9ea78f0957ac329d4ca1a7	ATA-Sem: Chunk-based Determination of Semantic Text Similarity
+571596a4075c408e3738e858d9b781847825fe5c	Towards His tory-based Grammars: Using Richer Models for Probabi l i s t ic Parsing*
+edcf1571e4dcd2259d76a179b9f3d7de3d74c7bf	A Critical Evaluation of Commensurable Abduction Models for Semantic Interpretation
+fb5da2771062b203fd79682154f2a3293897aded	Topic models for meaning similarity in context
+3f7f6a5a990fc10a5b78d19b4967751ea1a7bbe6	WFST-based Grapheme-to-Phoneme Conversion: Open Source Tools for Alignment, Model-Building and Decoding
+20e2934054ef99b448f3099fc9c5488d30ce1468	A Generalized Framework for Revealing Analogous
+e1dc116a0d89e0f638ca21e64ab3cfe34102a62b	UPC-CORE: What Can Machine Translation Evaluation Metrics and Wikipedia Do for Estimating Semantic Textual Similarity?
+935c83c4d9ca351fd5fa89a01d4afd8b868018a6	Using Topic Sentiment Sentences to Recognize Sentiment Polarity in Chinese Reviews
+86a0c081b11275806cd675759d6876ac7972f489	Domain Adaptation of a Dependency Parser with a Class-Class Selectional Preference Model
+31fd675529208d75d8241329905ec8aa86e7a6ca	K-Best Combination of Syntactic Parsers
+f25a31a8fdd1e614d03aa2936faa9c655cc49613	UoY: Graphs of Unambiguous Vertices for Word Sense Induction and Disambiguation
+b4153c8429d8f24095a291c9e659d923aca9341f	Social Links from Latent Topics in Microblogs
+fdc61e4429d74821230f71dac257f83e41c8ab43	Improved Models of Distortion Cost for Statistical Machine Translation
+6e83aee94515eb435b4f29d55c12c8c0087c289e	Language comparison through sparse multilingual word alignment
+c7063aa2791132b9d2d65d75cb83257b75d32e74	Second position clitics and monadic second-order transduction
+9725a56f4578462f96cc3ec54c4577ba476f0aad	STRUCTURAL NON-CORRESPONDENCE IN TRANSLATION
+d3e5c17d9a45b00d1923d256f3fd607553ce0231	Radu F l o r i a n a nd Dav i d Ya r owsky Compu t e r Science Depa r tmen t and Cen te r for Language and Speech Process ing , J ohns Hopk ins Unive r s i ty Ba l t imore , Ma ry l and 21218 {r f lo r ian ,yarowsky}@cs . jhu .edu
+bd04d5799a6e6aa7a7bd4474f30d30443f36cdb0	A PROPOSAL FOR LEXICAL DISAMBIGUATION
+ad571941a8f66e10bfba87439e52646ebd43b8ab	Combining Syntactic and Semantic Features by SVM for Unrestricted Coreference Resolution
+9a767631ad0e4477765daa5e81335fcec78a5d30	
+bd6f885032e5324fa64b488a10e468d583b3f1fb	Temporal Evaluation
+265bf67fd0e221dae35d7d994d3a849e8bfea785	
+b699604777b437dde71fbd427c4e177e9ca1029b	Information Based Intonation Synthesis
+95142bdec8661c374aa0c1082fa560d323cea177	Automatic Knowledge Representation using a Graph-based Algorithm for Language-Independent Lexical Chaining
+3740a511523e460d4038c14e3ee94a0f6fdcbe45	UBIU for Multilingual Coreference Resolution in OntoNotes
+cebed30094945d9cce87c50e769d979e297da39c	Semantic Analysis of Chinese Garden-Path Sentences
+886d4ead88671dc6919831a8a0cce558aab9db08	Statistical Models for Deep-structure Disambiguation
+a5282f729c3b018d5b3326fa8e56ac2421bfe172	Accurate Argumentative Zoning with Maximum Entropy models
+13e22d15451a25ec753bb5706d8851316f3ff878	Information Technology Research Inst i tute University of Brighton Brighton, BN2 4G J, UK Roger. Evans @it ri. brighton, ac. uk
+e2370116eb930fdb2d0dad3c961938a386021b85	Tracking Point of View in Narrative
+26b673b827d52fe38a65792d1967d50b9f1b8382	Cross-Framework Evaluation for Statistical Parsing
+292a4ece480bcfcddfc9dc625f57f9672daffb81	Philippine Language Resources: Trends and Directions
+74594d099b81bfaef5a267d5df2f8da253cd3341	
+f5b59454dc8c76ee3531e29df26d041dff5dab03	Linefeed Insertion into Japanese Spoken Monologue for Captioning
+922786cedd9756cc598bf6569a455564e1a3dddf	Event Extraction as Dependency Parsing for BioNLP 2011
+a2723c779af606521398d5a47e46b415f7179c06	Towards a Matrix-based Distributional Model of Meaning
+6d42e405d9b7270079eb33e228141de9d57bded7	
+9a66167f0ec32ecec86eb1021be12ea611aa3d46	S imone T eu f e l t Compu t e r Science Depa r tmen t Co lumbia Univers i ty
+20e26166dd4449846d74c09ac92e80ec6e44b908	Syntactic Constraints on Paraphrases Extracted from Parallel Corpora
+a2276bf62123481d6b208564abe62e1d4157a08c	Demonstration of the Emote Wizard of Oz Interface for Empathic Robotic Tutors
+a628d782e39ef5ce2d546b36d386abc9e5a5e064	SemEval-2013 Task 7: The Joint Student Response Analysis and 8th Recognizing Textual Entailment Challenge
+83e5c5ba6371e0ca152aa0df13cfbf640385c9d7	
+b5c15f2685fd5dc95b9a638d5e7f271fd61ed180	A Log-linear Block Transliteration Model based on Bi-Stream HMMs
+6dc34b3e1b54d71ee61bd8cd12081f4ebb324e1a	Asser t ions f rom D iscourse S t ruc tu re
+09afab1132644ad76a3afe379362bbc8a7a62216	A preliminary approach to recognize generic drug names by combining UMLS resources and USAN naming conventions
+3e771b09dba09603bf416bb67ccd57644e56b25b	Exact Phrases in Information Retrieval for Question Answering
+e654bf95adf4feacffec0c986ddc3b87f6fd7f03	Sentence Diagram Generation Using Dependency Parsing
+ca20f8146adf21294f048121f234c449299ef67e	Combining Multiple Knowledge Sources for Discourse Segmentation
+f8783de1f6831bc29cd273f1f1468f21ac94e954	Variational Inference for Adaptor Grammars
+181ceeab21a6402823a561aad09517069f3f86c6	RECENT ADVANCES IN HNC'S CONTEXT VECTOR INFORMATION RETRIEVAL TECHNOLOGY
+ff682d0cb5dd6e85458203096c2b5c9d9cac390a	Polynomial to Linear: Efficient Classification with Conjunctive Features
+91dc119d10a4260c7a18b2abcc3483789eb6a3d5	Timothy J Gillott
+9dda3b1ec5088d1d2f88be09587ff9aae0dc9682	Letter N-Gram-based Input Encoding for Continuous Space Language Models
+c60aebdba919d75c37e8a0fcade6be82f7244d13	Analysis of Link Grammar on Biomedical Dependency Corpus Targeted at Protein-Protein Interactions
+30a2865292fe1c058dd6730bc7fc23e43a440495	Tense Tagging for Verbs in Cross-Lingual Context: A Case Study
+261149f149bbb812632402c33b29f9b01cf794b8	Large-Margin Learning of Submodular Summarization Models
+382dba2e3d900f94b3b3b73222467cb0393a7af3	
+e315a1bdc58a74a0b6dc4cc0a05a7215345ff22a	Learning the Information Status of Noun Phrases in Spoken Dialogues
+b87b89e95e14388ec04db38250a81011a33d9782	Using Tree Adjoining Grammars in the Systemic Framework*
+27cf5a830dcd2e105cb3babbff192043c8f5e1cf	Experiments with Spectral Learning of Latent-Variable PCFGs
+46f13e76f2b673aaad013b92c9289d93e09221c5	Centering: A Framework for Modeling the Local Coherence of Discourse
+f951f8490fc7ee15b85cf89e1a7a6b8dd08071ba	University of Pittsburgh LRDC Pittsburgh PA, 15260, USA
+5a354340b87a33973b6928f0c77e7e2a86c274d5	A Note on the Implementation of Hierarchical Dirichlet Processes
+794e03473140760db0681fda938fad93e6d159bd	Using Mostly Native Data to Correct Errors in Learners' Writing
+7c3a4683d604ce7932c0719391b0ff2a26f05253	Computer Science Department New York University 715 Broadway, 7th floor New York, NY 10003, USA
+b86f68f8eefefb8224064e0756b1850f8871415a	Scaling Conditional Random Fields Using Error-Correcting Codes
+5869a922845b680fa08ac2f6883188196e5c595b	
+37798b65b083c4d134a1a154a5fa1f17cf954375	Multilingual Structural Projection across Interlinear Text
+b902df1d983809b47e137618d6a1146848a95c54	Statistical Machine Translation with Local Language Models
+cfdee3124ebcac0173bb429ab8f7a029c9570dbf	Subgroup Detection in Ideological Discussions
+cf61727c5e5c8441bbaac2fbcd954a4ea140d5c2	AUTOMATIC PROOFREADING OF' FROZEN PIIRASES IN GERMAN
+7deebdcda579836a29572aee2f066a12e6c8df41	ONYX: A System for the Semantic Analysis of Clinical Text
+570df39ba9c448d481946b3c9c9e80a37516cf65	TIlE EXPERIENCE OF DEVELOPING A LARGE-SCALE NATURAL LANGUAGE TEXT PROCFASSING SYSTEM: CRITIQUE
+6ebf5edb5a43ef197c4e3646ba4c3f22dee7be34	://~w. etl. go. jp/et I/nl/GDA/t agset, html
+a955ef76b29922441c67ce1278c36d50a9d52be5	Writing Annotation Instructions
+a614dce63eb4e7799c20ad8cded57cf074f250ee	Adapting a WSJ-Trained Parser to Grammatically Noisy Text
+82bbd5b59f8f1dfa339668de16e1207f7ca85ddc	Matching Syntactic-Semantic Graphs for Semantic Relation Assignment
+f54b729eb1c4e30c46efde4f7fe9a6f54918ba2f	A Bayesian Method for Robust Estimation of Distributional Similarities
+cd9a9d8ae816fbd2404e886d9d88f91f81d5218d	Word Translation Disambiguation Using Bilingual Bootstrapping
+3a70bda2ea5764774f89ab5432e82a2e03f07a00	Speeding up Training with Tree Kernels for Node Relation Labeling
+e0458637181e8fb342b6bd19870c3254b5faa64e	
+e4738c8b41a45845f3c34f2f73b2fba45d5532f2	Estimating probability of correctness for ASR N-Best lists
+fee85729f6edfca382ce747b877bda307b6145e9	A Comprehensive Dictionary of Multiword Expressions
+782d19b7b07c8cdab8174a0c9b2b0a7e28917d6f	A Frame-Semantic Approach to Semantic Annotation
+e9c1f510bcf5933d3cf8ec8108a04a9ba601a843	Abstract
+ad78490de7a38121efbec732de3640bb60896fa3	An Extensible Crosslinguistic Readability Framework
+d7ae13ad4d1383d4af3ba2feb54bdda1a00ac861	Transforming Meaning Representation Grammars to Improve Semantic Parsing
+a4ebc3ebed13c30b6729690f220a6ad6cdc88b61	Interaction Grammar for the Persian Language: Noun and Adjectival Phrases
+58b542df8059e682a70c95da9265a50981d35666	Teaching Language Technology at the North-West University
+a22d01199587fcac4c96df5b6e68f0156f643737	Alignment of Shared Forests for Bilingual Corpora
+34ad5ea056d9a74646be0880d84c26325b68cef4	
+53951c899c0aadd726f79c1b98706f958a199ea7	Indexing Google 1T for low-turnaround wildcarded frequency queries
+feb081390cd35b662357b9129c600e01e548f8cd	Predicting Change in Student Motivation by Measuring Cohesion between Tutor and Student
+67fcff21f14b0fb87b40a37c4f9fac6225ad35de	Thumbs up? Sentiment Classification using Machine Learning Techniques
+7307a189565aa6fb98e532da61fecc23f2d3cb93	Using Reinforcement Learning to Build a Better Model of Dialogue State
+d82bf4ff133d5d991de7df4e7b32440d9903cdb5	Computing and Evaluating Syntactic Complexity Features for Automated Scoring of Spontaneous Non-Native Speech
+c0fe849601a791656398f022237604af2390d511	A Re-est imation Method for Stochastic Language Model ing from Ambiguous Observations
+1bd1b8e5d21727377ff07fd751d9fc8c22abf2b3	Representation of Morphosyntactic Units and Coordination Structures in the Turkish Dependency Treebank
+047f3461da44ca79fd9c362a0a2665f3dee92eda	Improving Translation Model by Monolingual Data
+3b56693f6fe6b82092c4adc756f20fb9b7710ac5	Efficient Subsampling for Training Complex Language Models
+835571388c1415ae2d039ce34a9ddc30acde340f	Exact Decoding of Syntactic Translation Models through Lagrangian Relaxation
+d6d89b2e7cc31108ddc9cf90132a3c3f58f98268	Computing relative polarity for textual inference
+e143cb6d6619bc56cb9c4b70467d7d8e68186821	Balancing User Effort and Translation Error in Interactive Machine Translation via Confidence Measures
+8fab7603c7fafde03fc3e98e88322b6d5c43b6b0	
+a0c894005adbee250788ab47c3224502c7ab7a46	EVALUATION OF NATURAL LANGUAGE INTERFACES TO DATA BASE SYSTEMS
+2a2fa21ef65b82b77ea2ffb1a4e042fa36b9b5df	Kyoto: An Integrated System for Specific Domain WSD
+ff4157222432c0f566a528a1425648673e9057db	Question Answering Using Enhanced Lexical Semantic Models∗
+718163af9b535aeaf38568ceb55f75d4de55acc9	Automatic Prediction of Cognate Orthography Using Support Vector Machines
+8640e3ff4f7e0422ad0e6e58a5b004a804b05c1f	MEANING NEGOTIATION IN DIALOGUE
+e6aef043a873d32106129b65ad3a180cd8a5fda2	teragram: Rule-based detection of sentiment phrases using SAS Sentiment Analysis
+1dfae23c8825e5afcf1c422bbad950d4b9f6fbcd	Palo Alto , CA.. 94~O3, USA
+9261047210c8a5e9c89b36accca3ba21c6b122cf	Using a Supertagged Dependency Language Model to Select a Good Translation in System Combination
+e8f87361638e60af85c7a513d832ac052cf1051f	XML-Based NLP Tools for Analysing and Annotating Medical Language
+59b64737a1888fe622e7f80d93cb1e530503e8fc	Recognition of spontaneous speech
+6ffbfc01fd25546093d1f1953522d782d4e7fa8d	
+cb59fada125478c0302c6874aa13a83ab0ac62f1	
+41c65388fc3adea3dc51f7c2997fa1d1586649bb	A Generate and Rank Approach to Sentence Paraphrasing
+419c3ff142fb0a4066b02754a52718927b62fb4d	Refinementsin BTG-based Statistical Machine Translation
+9f742271cfd4711585da26c82053051fa4923913	Mind the Gap: Dangers of Divorcing Evaluations of Summary Content from Linguistic Quality
+56dd47ee5d7d6072e970aee05018f504c8c5fbf7	Unsupervised Acquisition of Predominant Word Senses
+bcb6776fe81d5edf45c24a4ad1ed640e174275fa	Baby SRL: Modeling Early Language Acquisition.
+e20dd4d92c7fa6a289da47464048c728c5c9dd56	Better Hypothesis Testing for Statistical Machine Translation: Controlling for Optimizer Instability
+7741f75cea98342020059d5f964560f3e6ef07ef	
+4376c9712bae2979b7f338e76d3135eb5142bda9	String Extension Learning
+bde018c35d1a797380701840fdd365483458ba92	Curveship: An Interactive Fiction System for Interactive Narrating
+72bdee81abf5ca5f88ff66e009ee38af866ca2dc	NUS at the HOO 2012 Shared Task
+d9b25549ed06a399b5707808a32387b81b318a15	Foma: a finite-state compiler and library
+c1d009cae25b0d5fd0e0c2268df00006b9450df0	Transfer Learning for Constituency-Based Grammars
+727522fd728d15403ab49e42abff5416447c5ca2	Feature-Rich Statistical Translation of Noun Phrases
+c57f5103ab0268278f5cb1e62a9c7ad8ed2f4e93	Improving Arabic Dependency Parsing with Lexical and Inflectional Morphological Features
+74305a6fb4b73f4faa7e6ba12f6b64b7581e79d7	What and where: An empirical investigation of pointing gestures and descriptions in multimodal referring actions
+b2b49a4c32774d03ee1f7a49ea8b2fd5e7508bfe	Modeling the Translation of Predicate-Argument Structure for SMT
+a563c6f1564b1e6d1a643c544379abf5069f8000	A Beam-Search Decoder for Grammatical Error Correction
+24eb97792a7e2c7cdffa01db3c1414667833b52d	
+d63525f3a4be235fcf28e071c8a518749e385c1e	Proposal for an Extension of Traditional Named Entities: From Guidelines to Evaluation, an Overview
+488c9fafea979de353df82a68cb41d82494b4cae	Quantifying the Limits and Success of Extractive Summarization Systems Across Domains
+a56240a477e7920ee6c7696af3fc120882e61ed3	A Semantic Approach to Recognizing Textual Entailment
+7449d140d482ded6ad2825d461aa8933d9331dd4	
+317f2c306eb616ec20e3c52773ac2ce94bb54806	A Hierarchical Entity-based Approach to Structuralize User Generated
+a224e8d1073cf8485d8d48276ad8cf5a5a22589d	Report on the Second NLG Challenge on Generating Instructions in Virtual Environments (GIVE-2)
+5af106bb70fba129d2d5511a192003e9da2b56f4	China Center for Information Industry Development, Beijing, 100044
+ab63e9432581d634835d180af994cc5cfb1a92e5	Two-step translation with grammatical post-processing
+74e2e86c669ca0e4273cefd7f79d0879f163dd19	Automatic Interpretation of the English Possessive
+7f287b5798a86e7a2194bde6611a884cc179c25e	LexStat: Automatic Detection of Cognates in Multilingual Wordlists
+dffcba6e7cf2f680bc39430461bc188338690514	On the Parameterized Complexity of Linear Context-Free Rewriting Systems
+5ff9026c254d26c4c66c3eebe793680c2e3e8921	TAG, Dynamic Programming, and the Perceptron for Efficient, Feature-Rich Parsing
+3953a2c27e140ae7e20a10089cd0dd68c9c794df	USPwlv and WLVusp: Combining Dictionaries and Contextual Information for Cross-Lingual Lexical Substitution
+1a48d77b45824cc1982abfa7750f84f3079e930b	Behind the Article: Recognizing Dialog Acts in Wikipedia Talk Pages
+a877ccea302725880a0eee16d0f9f27e045c7b5d	Lexical Disambiguation using Simulated Annealing
+4794a0009bdf58a18f8a3b9910093cc9f5d7e144	
+262a44f2bd54ca75bb95359f90ce60410b1f67bf	
+f88deef9ad93bdfbcf4c157402121823eb65a359	Parsing the Wall Street Journal with the Inside-Outside Algorithm
+09311fef1c773ee0df5f02d11473018f21187177	MELODI: A Supervised Distributional Approach for Free Paraphrasing of Noun Compounds
+f21d4c1ce87e0d4c304166bc46cce98678e789e8	Assessing the Role of Discourse References in Entailment Inference
+f2f5f11771b31a20de7cce70980df3d104fa8775	Towards Free-text Semantic Parsing: A Unified Framework Based on
+c2b3936844c0d340502836b47aa4a6c11c133d29	ALGORITHMS THAT LEARN TO EXTRACT INFORMATION m BBN: T IPSTER PHASE III
+c181afc58808beecf18ad9ee23f2fa48f13c1ed7	Re-evaluating the Role of BLEU in Machine Translation Research
+a72cadf290d5779bc9838ae1dde25e4cb76a0566	A Hierarchical Model of Web Summaries
+b891549fa7274ebc33dc2e0b52de920675b3c9d7	Exploring Entity Relations for Named Entity Disambiguation
+9ac03bd95ee68eaf9951195368d3e7d8fa55514d	Comparing and Combining Finite-State and Context-Free Parsers
+5b266962454dbf1072f98c217f73568e75458f58	Structuring Knowledge for Reference Generation: A Clustering Algorithm
+bf3b2f8aaa92e44244659030cd304723e2f4c2a9	Reformatting Web Documents via Header Trees
+1aacfbd5dfbdfbd65fe5ac1a7c2a5203ead032fd	Anchor-Progression in Spatially Situated Discourse: a Production Experiment
+6ae2191a3d4736781c087a1fde68dec6f5845658	
+1a5929e0f044592ec382c32d82e1fcc9c5d771b5	Using Domain-specific and Collaborative Resources for Term Translation
+d4d14920554b9899a7bc2a32c774274098d8bfca	Generation of Vietnamese for French-Vietnamese and English-
+035cdcfc139b541ca132093674a513f2fc434adb	
+6b923033b0ad4de06c54b44d30c5c588c092907d	A Comparative Study of Bayesian Models for Unsupervised Sentiment Detection
+8637c71189002623f96b7527d1f1dcde9c7c4dc4	Semi-Supervised Discriminative Language Modeling with Out-of-Domain Text Data
+a2095e95a828759311f1fb16409ebb95cd73b272	Reconnaissance d’ordres domotiques en conditions bruitées pour l’assistance à domicile
+b7e918806d84412e791a479eb7df05ed1b06ba76	Contextual Phrase-Level Polarity Analysis using Lexical Affect Scoring and Syntactic N-grams
+4d06669b8b13ad35a6cdadcb981c6c0f70a6fa26	A Lexicon for Underspecified Semantic Tagging
+8f7737359a20babdee1f3b383a31585b4bf65ce1	A COMPUTATIONAL MECHANISM FOR PRONOMINAL REFERENCE
+67ab6b7017264f5e5ec68d2a3c185aac70eeeb5c	Generating Concept Map Exercises from Textbooks
+6390ae400a61ff367e4f4778a1cc7bea3e24561a	Supervised Text-based Geolocation Using Language Models on an Adaptive Grid
+8e3fd10c08c36a930abe54218d78f20d2a87e888	Tree-Rewriting Models of Multi-Word Expressions
+b034eccb6dbf2dbac266840dba2e5b3246867ce7	Computer Science Dept. Ben-Gurion University in the Negev
+163396f0fcf123f0c6528130dcb54817df028b7d	Investigating Pitch Accent Recognition in Non-native Speech
+efe92f3a8ffe91845d296ee9346c34bd012ba78c	Broadcast Audio and Video Bimodal Corpus Exploitation and Application
+47f5f99242a57491d5b34f5df6606ca6bd5c0fc6	
+6d9c315f716f3527b0e09c94bfb7870328a91ef6	UMBC EBIQUITY-CORE: Semantic Textual Similarity Systems
+f0cce550a3729bb78a82bb8466feef796fd0d3c4	A Regularized Compression Method To Unsupervised Word Segmentation
+e01dfd49ab3ac9f2dceb51257baed27d36bc5d29	What Humour Tells Us About Discourse Theories
+18db48e76ee138d340de75c944a343052b577a80	ON CUSTOMIZING PROSODY IN SPEECH SYNTHESIS: NAMES AND ADDRESSES AS A CASE IN POINT
+9a37345e292097a3acb223748b6aa478ffc400b4	Décrire la morphologie des verbes en ikota au moyen d’une métagrammaire
+eaecb287f1b44bf243b3067793871f5ecfc3e2e0	The ATIS Spoken Language Systems Pilot Corpus
+c27c93b036feece6d0fb070228007b7a912654f1	Semantic Signatures for Example-Based Linguistic Metaphor Detection
+9dccaf6ea0fa19772cf8067295b16df3eb7b4dda	Products of Random Latent Variable Grammars
+0a5cba700b430f676dc83c83412e4d60879fba22	Semantic-driven Generat ion with LFG- and PATR-style Grammars
+7b51c183da0e7de6757a269d83dd9afad695ac3d	HeidelTime: Tuning English and Developing Spanish Resources for TempEval-3
+d30e9330bf14776baa7557c6ca50861c39d2bd4a	A Func t i ona l Approach to Gene ra t i on w i t h TAG 1
+b9e52692d981607475368f68a304f9de420eb74a	A Logistic Regression Model of Determiner Omission in PPs
+8a80724ba549af1b239206955954ef7f452c6b98	Predicting a Scientific Community’s Response to an Article
+2b4b852dba463878235f13529248d2efd25902f7	A Task-based Framework to Evaluate Evaluative Arguments
+38a3225d83685937c60a3b4d80804f5a5c718bf4	Ordering Prenominal Modifiers with a Reranking Approach
+167ad306d84cca2455bc50eb833454de9f2dcd02	Joint Language and Translation Modeling with Recurrent Neural Networks
+21b3007f967d39e1346bc91e0fc8b3f16121300c	Grounding Action Descriptions in Videos
+0644abb773c422eea42561bc8b9b5de19ef44f83	Efficient kernels for sentence pair classification
+3e6b5ce2203feef292783b3bfc2bf1011a796ffb	Distributed Listening: A Parallel Processing Approach to Automatic Speech Recognition
+63c49d77bca937c2ca94b3d5ad1443599dac280d	Automatic Induction of Finite State Transducers for Simple Phonological Rules
+1d358588e5cccd75d9290dd8ab669e85b43441b5	Putting a Value on Comparable Data
+a7102ea0bbf675d18d6a6bdac261e0199b7f7274	Answer Extraction as Sequence Tagging with Tree Edit Distance
+1e83c2798e87b9d84a8281cc3e9750c948d62cb3	A Simple, Fast, and Effective Reparameterization of IBM Model 2
+0c30f1d33af6cb7046397b31d411a93c69512771	AUTOMATIC RECOGNITION OF SPEECH SOUNDS BY A DIGITAL COMPUTER
+437c00d6b4e947dbd9a65458f5b86ec1e418a48f	Non-humanlike Spoken Dialogue: A Design Perspective
+eb427e4f1de261d3a4404c3808a671a74827baf9	Best Analysis Selection in Inflectional Languages
+24a2f50147a3722b99384bd983d902969a8b6bad	A Class-based Probabilistic approach to Structural Disambiguation
+ec13adebe90a879a3d4e4c9c029042ade5653640	User-Controlled, Robust Natural Language Generation from an Evolving Knowledge Base
+457c6047e2710feba5ac901de97a458e64ce4b92	Finding Deceptive Opinion Spam by Any Stretch of the Imagination
+510d7e821e55e86a1b0c3bb79907eaabc3cb9910	Reading the Markets: Forecasting Public Opinion of Political Candidates by News Analysis
+a2b48df03588b72d8b3b7ba9e8ce6bcb0df5f2f7	LCC-TE: A Hybrid Approach to Temporal Relation Identification in News Text
+173f01d68298ad95e969bdf38824809728bae1ef	EM Can Find Pretty Good HMM POS-Taggers (When Given a Good Start)
+5cbd8381f1cb1358d9ce599e9f1383747839e712	Machine Translation System Combination with Flexible Word Ordering
+d3c020502c446e8b87d8e4a1384b59cf00146996	Automatic Classification of English Verbs Using Rich Syntactic Features
+80f304efbb6beeb9e7ca9d5945aa3cece9c7383a	
+1aac9a51700b4f548ed4d406d3987c8008876521	Finding PredominantWord Sensesin UntaggedText
+c51592b839bb73317b16014919f62c675428e654	Dynamic Programming for Higher Order Parsing of Gap-Minding Trees
+5c1c6c06f95944b819651e62042c6c1be953c580	NavyTime: Event and Time Ordering from Raw Text
+653c289b204db3749beb1d5d5f36a26978a266cf	pages 69–76, Ann Arbor, June 2005.c©Association for Computational Linguistics, 2005
+5d0a82523347629f9f65a539deee4c7af7329381	The CMU-Avenue French-English Translation System
+124f442cac7748c1182a2187f5eb233f54a50fa6	Jointly Identifying Temporal Relations with Markov Logic
+e0a043fdc032f92041876fbccdbbdcc074d78ab7	
+61a3085c79be280354e6e9c8c29e378812ae3600	Generating Vague Descriptions
+49ee14e1ccb0cda702f200ad006ccdd5a7b41111	Unsupervised Discovery of Domain-Specific Knowledge from Text
+b8db880b8b534c1e022915c9e568933ca9e689bf	Applying Repair Processing in Chinese Homophone Disambiguation
+b444082f5253ed489e2ce1f905971f6bb413cf0e	Graduate Institute of Applied Linguistics University of Maryland, Bal-
+60f0bdc214d3d8f9ae5590d6e8eddaf193dd2144	Fumiyo Fukumoto and Yusuke Yamaji
+9b681baed6755ee4af0d8e27a8fd75bf8ebded7a	Computer Science Department
+47fbc70a58e0ee760a49241f0649101a63d909c0	Phonological and Logographic Influences on Errors in Written Chinese Words
+4e9aaafc373e0e3b324355abf2425f4813803472	A State-Transition Grammar for Data-Oriented Parsing
+d13807bffb74f898c7d8b1860002d2cb0449f68d	Punctuation as Implicit Annotations for Chinese Word Segmentation
+e5b5c820e870c25543f5a5e85c0375c35b54c2e6	Type-inheritance Combinatory Categorial Grammar
+2c8f45bd0578ef07cb9bcaf0fc997885dd69a048	ON THE ACQUIS IT ION OF CONCEPTUAL DEF INIT IONS VIA TEXTUAL MODELLING OF MEANING PARAPHRASES
+071d4270ec6b098477cac4e0939860f4c67a8858	Situational language training for hotel receptionists
+739015190852b999a44b346663ec22e523526c9a	Chinese Parsing Exploiting Characters
+26058fda4537d38ee87c1bb4707bda54533ced5b	SESSION 12: CONTINUOUS SPEECH RECOGNITION AND EVALUATION II
+404a7bb70a535de4ac3edf79543f00293523d486	Toward Learning and Evaluation of Dialogue Policies with Text Examples
+f271d25ad85f2b05bf6e5e5931c7e8aacc479a37	Abstract
+240f279000e08202212b2fa21aa8bb3ff398b225	Computer Science Department Columbia University New York, NY 10027
+8a0086ee084cdde70ff23834122edf238af84400	From Shallow to Deep Parsing Using Constraint Satisfaction
+275425e11f51483697fd1e6593a241fa185df08b	Improving Language Models by Clustering Training Sentences
+9fc06a669eba2dafd4e3603de6e441ca9825d44d	Consistency Checking for Treebank Alignment
+25d2151c57a7ce5b1a615d49014a2ab6d7320886	A Large Scale Ranker-Based System for Search Query Spelling Correction
+b71e020c4c0ee896174d11a9a87d8941750dad22	
+9929112a67eb37a9e68a835fd192268e88b82c0e	A Discriminative Latent Variable Model for Statistical Machine Translation
+be47225edcf09a38166aa5308c030ff87e9f3f82	Mining Transliterations from Web Query Results: An Incremental Approach
+996b9bb9b42d044c328d96718dd78568238bed02	Probes in a Taxonomy of Factored Phrase-Based Models
+38d9600c4bfd2acc89f6c3df73997fb1c9d8ca13	
+257cedcbbd78a9bf281d758a3761f897a7a73f1c	Bilingually-Guided Monolingual Dependency Grammar Induction
+7a79847e0218d9bab6bd1b1f8c76c8c13e577534	Two-Phased Event Relation Acquisition: Coupling the Relation-Oriented and Argument-Oriented Approaches
+7e0adc74ad2e9b5e29c42c53c15646946a398c91	ACCOMMODATING CONTEXT CHANGE
+660117e7c89692376f2cf7513386ff6026c794eb	DSO National Laboratories
+f08bb0e4abf9cd758730a248e45136daec1df8d3	The Chinese Persons Name Disambiguation Evaluation: Exploration of
+c08453625b0dc78ddebe78be50b7d86a7d58247a	A Measure of Term Representativeness Based on the Number of Co-occurring Salient Words
+2d0fe2c6ca588323d1be4466d1114882ff5b6ee1	Acquiring Knowledge from the Web to be used as Selectors for Noun Sense Disambiguation
+ab7d5452f8169e28fa61c001f47417bdd96bbafa	Semantic Relatedness for Biomedical Word Sense Disambiguation
+55022b6104ab31ef655441f1670b902ecca2f361	Unsupervised Learning of Morphology
+7139b94b39d225946e02c32eda05af4c7e29741c	Improving Word Sense Disambiguation Using Topic Features
+7c844ec8705797ed63d9d5c98ba71df1e680b936	Syntactic Reordering for English-Arabic Phrase-Based Machine Translation
+3b472466fa64d59d0a92fbf6ba89c83707884cc4	Large Scale Parallel Document Mining for Machine Translation
+fbfbee5fd3bbb5e1295bf04e2139f38c27c7f782	Influence of preprocessing on dependency syntax annotation: speed and agreement
+2719f7bb6512f647cfdf5258a3795edc55995de4	
+3b60e57ec6b3a68864b36854f0698af63216d219	Using Grammatical Relations to Compare Parsers
+6552aca640ec970d232b55142a1ba49186c1467e	
+3127d3b1245a85def0f1fa9b8b2bbf4653cea2f1	Improving transliteration accuracy using word-origin detection and
+e3859aa606f27a31e61c85273862e77c2d07624f	Accurate Word Segmentation using Transliteration and Language Model Projection
+535ef87eaf180cb1feee95e3c17dbe0ea54151ae	Unsupervised Tokenization for Machine Translation
+64887b841f12d71e1385bc792fa4126a7b97db91	Automatic Article Restoration
+f95bcacf2bb0a66f4f95227d5771de5b123f43c4	Improving Accuracy in Word Class Tagging through the Combination of Machine Learning Systems
+67164daab7e6e01c378979acacc41f94d9492de8	Lessons Learned in Part-of-Speech Tagging of Conversational Speech
