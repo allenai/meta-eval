@@ -2,26 +2,25 @@ package org.allenai.scholar
 
 import java.time.Year
 
-import org.allenai.scholar.metrics.metadata._
 import org.apache.commons.lang3.StringUtils._
 
 object StringUtils {
 
   val whiteSpaceRegex = """\s+""".r
   val nonAsciiRegex = """[^\p{ASCII}]""".r
-  val punctuationRegex = """[\p{Punct}]""".r
+  val punctuationRegex = """[\p{Punct}\*’“”→–—]""".r
 
   implicit class StringImplicits(str: String) {
 
     /** @return Trim white spaces, lower case, then strip the accents.
       */
-    def normalize(): String = whiteSpaceRegex.replaceAllIn(stripAccents(str.toLowerCase.trim), " ")
+    def normalized: String = whiteSpaceRegex.replaceAllIn(stripAccents(str.toLowerCase.trim), " ")
 
-    def splitOnWhitespace(): Array[String] = whiteSpaceRegex.split(str)
+    def splitOnWhitespace: Array[String] = whiteSpaceRegex.split(str)
 
-    def removePunctuation(): String = punctuationRegex.replaceAllIn(str, " ")
+    def removePunctuation: String = punctuationRegex.replaceAllIn(str, " ")
 
-    def collapseWhitespace(): String = whiteSpaceRegex.replaceAllIn(str, " ")
+    def collapseWhitespace: String = whiteSpaceRegex.replaceAllIn(str, " ")
 
     /** @param filter Determine if a character is blacklisted and should be trimmed.
       * @return String with blacklisted chars trimmed from the right.
@@ -48,11 +47,6 @@ object StringUtils {
       * @return Trim characters from the right that belongs to a blacklist.
       */
     def trimChars(chars: String): String = str.trimRight(c => chars.contains(c))
-
-    def extractYear(): Year = "\\d{4}".r.findFirstIn(str) match {
-      case Some(y) => Year.parse(y)
-      case None => yearZero
-    }
   }
 
 }

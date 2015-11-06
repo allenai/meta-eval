@@ -1,82 +1,67 @@
 # Meta-Eval
 
-This is a tool to evaluate performance of various (research papers') metadata extraction
-libraries (see for example [this article](https://medium.com/@vha14/extracting-metadata-from-research-articles-metatagger-versus-grobid-9249e4364734) for background). It has been verified to run on Mac OS X and Linux Ubuntu.
+A tool for evaluating the accuracy of extracting metadata from research papers.
 
-Currently, two libraries are supported:
+## Usage
 
-- [Grobid](https://github.com/kermitt2/grobid) by Patrice Lopez.
-- [Metatagger](https://github.com/iesl/rexa1-metatagger) by the University of Massachusetts's Information Extraction and Synthesis Laboratory led by Andrew McCallum. This library uses a custom PDF processor called [pstotext](https://github.com/iesl/rexa1-pstotext) which is based on DEC library of the same name.
+    ./meta-eval.sh --input <dir> --truth <dir> --output <dir>
+    
+where
 
-This tool currently supports evaluation using the [ACL Anthology](http://www.aclweb.org/anthology/), which contains about twenty thousand paper PDFs (as of 2014), together with the metadata provided by the the University of Michigan's Computational Linguistics and Information Retrieval group led by Dragomir Radev.
+- `--input` points to a directory of predicted labels (see below for format description)
+- `--truth` points to a directory of true labels (defaults to `src/main/resources/gold/acl`)
+- `--output` points to a directory where the output report will be saved (defaults to `output`)
+ 
+## Label Format
 
-For a comparison of Grobid and Metatagger on the ACL dataset, please read [this article] (https://medium.com/@vha14/extracting-metadata-from-research-articles-metatagger-versus-grobid-9249e4364734) on Medium.
+The input/truth directories should each contain a set of files named `<field>.txt` where `<field>` 
+is the name of a metadata field, e.g. **titleExact** for the exact title string or **titleNormalized**
+for the normalized title string. A metadata field can be multi-valued, e.g. for authors. Files with the
+same name in the input/truth directories will be compared against each other to compute a precision/recall
+number for that metric. The format of a label file is tab-separated:
 
-## User Guide
+    <paper-id>	<value1>	<value2>	...
+    	
+where any number of values can be listed, each separated by a tab.
 
-Below is the guide to set up and run meta-eval on your own machine. We are in the process of creating an Amazon AMI that is ready to use. 
+Note that paper PDFs can be downloaded via 
+`http://ai2-s2-pdfs.s3.amazonaws.com/<first-4-digits-of-paper-id>/<remainder-of-paper-id>.pdf`,
+e.g. [http://ai2-s2-pdfs.s3.amazonaws.com/3bc4/6849083e55e690fb3e2b8e3a18b3adc19a32.pdf](http://ai2-s2-pdfs.s3.amazonaws.com/3bc4/6849083e55e690fb3e2b8e3a18b3adc19a32.pdf)
 
-### Requirements
+## Measurement Methodology
 
-To run this evaluation tool, the following are needed:
+A precision/recall number will be computed for each paper that appears in either the predictions 
+or the truth file for a field.  The truth file yields a set of string values for each paper, 
+and the predictions file yields a set of string values.  The precision 
+is the ratio of the size of the intersection between the true and predicted values to the number
+of predicted values. The recall is the ratio of the size of the intersection to the number of
+true values. Either precision or recall may be undefined if there are no predicted values or no true values.
 
-- Mac OS X or Linux. Linux Ubuntu has been tested.
-- Java 8 (due to the use of Java's time library.
-- Scala 2.11 or later.
-- Git.
-- Simple build tool (sbt), version 0.13.7 or later.
-- Maven (for building Grobid). 
-- Ghostscript (for building pstotext).
+The overall precision/recall number is the average precision/recall value over all papers in which the
+precision/recall is defined.
 
-### Setting Up Software
+## Output
 
-- Create a directory called `eval`, [for example](https://github.com/allenai/meta-eval/blob/master/src/main/resources/application.conf#L1), in `$HOME` directory. 
-- Git clone the following four repositories: [Grobid](https://github.com/kermitt2/grobid), [Metatagger](https://github.com/iesl/rexa1-metatagger), [pstotext](https://github.com/iesl/rexa1-pstotext), and [Meta-Eval](https://github.com/allenai/meta-eval) in `eval`. 
-- Build Grobid with `mvn install` in Grobid's home. This should produce the Grobid jar, for example `eval/grobid/grobid-core/target/grobid-core-0.3.1-SNAPSHOT.one-jar.jar`. Note that the actual Grobid version may be different. 
-- Build Metatagger with `./sbt compile` in Metatagger's home.
-- Build pstotext with `bin/setup` in pstotext's home. 
-- Buidl Meta-Eval with `make stage` in Meta-Eval's home. This will call SBT to produce the necessary binaries in `meta-eval/universal/stage`.
+The program creates a `PR.txt` file with the overall precision/recall number for each metadata field.
+It also creates a `details` directory with information about individual examples contained in files named
+`<field>-labels.txt`. The files have a tab-separated format:
 
-### Download and Setting Up Evaluation Data
+    <paper-id>	<accuracy>	<type>	<value>
 
-- Download the compressed [ACL dataset's PDFs](https://s3-us-west-2.amazonaws.com/ai2-s2/pipeline/source-data/acl-pdf/acl-pdf-2014-08-27.zip) (warning: about 7.2GB) from Amazon S3. Extract the PDFs to `~/eval/data/acl/pdfs/` folder.
-- Download the [ACL metadata](https://s3-us-west-2.amazonaws.com/ai2-s2/pipeline/source-data/metadata-2014-08-25.json) (about 4.6M) from Amazon S3 to `~/eval/data/acl` folder.
-- Download the [ACL citation graph data](https://s3-us-west-2.amazonaws.com/ai2-s2/pipeline/source-data/citation-edges/citation-edges-2014-08-25.txt) from Amazon S3 to `~/eval/data/acl` folder.
-- Create the following folders in `~/eval/data/acl/extracted`: `pstotext`, `metatagger`, `grobid`.
+where each predicted/true value for a paper is listed on a separate line.
 
-### Running Meta-Eval
+- `type` is **true** if the value exists in the truth file or **pred** if it exists in the predictions file
+- `accuracy` is 1 if the value is in the intersection between truth and predictions and 0 otherwise
+- `value` is the value of the field
 
-You are now ready to run and evaluate Metatagger and Grobid on the ACL data set using the commands in the [Makefile](https://github.com/allenai/meta-eval/blob/master/Makefile) in meta-eval's home directory.
+Thus, **\[type=true, accuracy=0\]** indicates a recall error, while **\[type=pred, accuracy=0\]** indicates a precision error.
 
-```
-# This is needed to run 'make conf'.
-.PHONY: reports
+## Baseline
 
-# Rebuild meta-eval after code change.
-stage:
-	sbt stage
+Truth files for `acl` and `dblp` datasets are in `src/main/resources/gold`
 
-# Print out the content of meta-eval's current configuration.
-conf: reports
-	cat src/main/resources/application.conf
+Prediction files for some baseline models (grobid, scienceParse, and scienceParse-highP) on those datasets 
+are in `src/main/resources/baseline` You can generate goaccuracy numbers for a baseline model against a gold dataset with 
 
-# Run Grobid.
-runGrobid: 
-	target/universal/stage/bin/meta-eval runGrobid
-
-# Evaluate Grobid. It is required to run Grobid first.
-evalGrobid:
-	target/universal/stage/bin/meta-eval evalGrobid
-
-# Run pstotext. This is required before running Metatagger.
-runPsToText:
-	target/universal/stage/bin/meta-eval runPsToText
-
-# Run Metatagger.
-runMetatagger:
-	target/universal/stage/bin/meta-eval runMetatagger
-
-# Evaluate Metatagger. It is required to run Metatagger first.
-evalMetatagger:
-	target/universal/stage/bin/meta-eval evalMetatagger
-```
+    ./meta-eval.sh --truth src/main/resources/gold/<dataset> --input src/main/resources/baseline/<dataset>/<model>
+    
