@@ -8,15 +8,17 @@ import org.allenai.scholar.fields.{ Author, Title, Venue }
 import spray.json.DefaultJsonProtocol._
 import spray.json._
 
-import scala.collection.mutable.ListBuffer
+import java.nio.file.{ Paths, Files }
+import java.util.stream.Collectors
+import java.util.zip.GZIPInputStream
 import scala.io.Source
-import scala.util.Random
+import scala.collection.JavaConverters._
 
 /** Run this to create .tsv files with different fields extracted based on a raw data file, whose format depends on the source
   */
 trait CreateGoldData {
   def write(paperId: String, w: PrintWriter, data: String*) = {
-    val nonEmptyData = data.filter(_.length > 0)
+    val nonEmptyData = data.filter(_.length > 0).sorted
     if (nonEmptyData.nonEmpty) {
       w.println(s"$paperId\t${nonEmptyData.mkString("\t")}")
     }
@@ -28,7 +30,6 @@ trait CreateGoldData {
 
 // Format is directory of JSON files produced by org.allenai.scienceparse.Parser
 object DblpScienceParse extends App with CreateGoldData {
-
   case class SP(title: String, authors: List[String])
   implicit val fmt = jsonFormat2(SP)
   val inputDir = new File(args(0))
@@ -65,34 +66,26 @@ object DblpFromPipeline extends App with CreateGoldData {
 
   import MetadataParser._
 
-  val rand = new Random()
-  var size = 1000.0
-  var count = 1.0
-  val clusters = new ListBuffer[Cluster]
   val keepId: String => Boolean = {
     val idFile = new File("src/main/resources/raw/dblp/ids.txt")
-    if (idFile.exists) {
-      // Use ID file if it exists
-      val ids = Resource.using(Source.fromFile(idFile)) { src => src.getLines.toSet }
-      s: String => ids(s)
-    } else {
-      // Resevoir sample 1000 papers
-      s: String => (rand.nextDouble < size / count)
+    val ids = Resource.using(Source.fromFile(idFile)) { src => src.getLines().toSet }
+    s: String => ids(s)
+  }
+
+  val allClusters = Resource.using(Files.list(Paths.get("/Users/dirkg/temp/FinalPaperClusters.fa33b8c61c12c42b3e240e2dc7bc1e44591619aa"))) { javaPaths =>
+    val paths = javaPaths.collect(Collectors.toList()).asScala.toIterator
+    paths.filter(p => p.getFileName.toString.startsWith("part-") && p.getFileName.toString.endsWith(".gz")).flatMap { path =>
+      println(path.toString + " ...")
+      Resource.using(Source.fromInputStream(new GZIPInputStream(Files.newInputStream(path)))) { source =>
+        source.getLines().map(parse).toList
+      }
     }
   }
-  Resource.using(Source.fromFile(pipelineMetadataOutputFile)) {
-    src =>
-      for {
-        c @ Cluster(ids, acl, Some(dblp), grobid, scienceParse) <- src.getLines().map(parse) if keepId(ids.head)
-      } {
-        if (count <= size) {
-          clusters += c
-        } else {
-          clusters(rand.nextInt(clusters.size)) = c
-        }
-        count += 1
-      }
-  }
+
+  val keptClusters = allClusters.filter { cluster => keepId(cluster.paperIds.head) }
+  val clustersWithDblp = keptClusters.filter(_.dblp.isDefined)
+  val clusters = clustersWithDblp.toSeq.sortBy(_.paperIds.head)
+
   Resource.using(new PrintWriter("src/main/resources/baseline/dblp/scienceParse/titleExact.tsv")) {
     spTitleExact =>
       Resource.using(new PrintWriter("src/main/resources/baseline/dblp/scienceParse/titleNormalized.tsv")) {
@@ -125,7 +118,6 @@ object DblpFromPipeline extends App with CreateGoldData {
                                                             Cluster(ids, acl, Some(dblp), grobid, scienceParse) <- clusters
                                                             paperId = ids.head
                                                           } {
-                                                            count += 1
                                                             write(paperId, goldTitle, dblp.title.text)
                                                             write(paperId, goldTitleNorm, dblp.title.normalized.text)
                                                             write(paperId, goldAuthor, dblp.authors: _*)
